@@ -1,8 +1,8 @@
 # IngramMicro
+[![Build Status](https://travis-ci.org/WalkerAndCoBrandsInc/ingram_micro.svg?branch=master)](https://travis-ci.org/WalkerAndCoBrandsInc/ingram_micro)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ingram_micro`. To experiment with that code, run `bin/console` for an interactive prompt.
+[IngramMicro](http://www.ingrammicro.com/IMD_WASWeb/jsp/login/corporate.jsp) HTTPS XML API wrapper.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -22,7 +22,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+  IngramMicro.configure do |config|
+    config.api_root = "https://yourhttpsurlfrmoingram"
+    config.debug = true
+    config.logger = Rails.logger
+  end
+```
 
 ## Development
 
