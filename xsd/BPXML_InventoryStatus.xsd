@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<xs:schema id="message" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="message" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="message-header">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="message-id" type="xs:string" minOccurs="0" />
+              <xs:element name="transaction-name" type="xs:string" minOccurs="0" />
+              <xs:element name="partner-name" type="xs:string" minOccurs="0" />
+              <xs:element name="source-url" type="xs:string" minOccurs="0" />
+              <xs:element name="create-timestamp" type="xs:string" minOccurs="0" />
+              <xs:element name="response-request" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="inventory-status">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="status-change" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="customer-id" type="xs:string" minOccurs="0" />
+                    <xs:element name="site-id" type="xs:string" minOccurs="0" />
+                    <xs:element name="status-date" type="xs:string" minOccurs="0" />
+                    <xs:element name="transaction-number" type="xs:string" minOccurs="0" />
+                    <xs:element name="quantity" type="xs:string" minOccurs="0" />
+                    <xs:element name="unit-of-measure" type="xs:string" minOccurs="0" />
+                    <xs:element name="customer-item-code" type="xs:string" minOccurs="0" />
+                    <xs:element name="universal-product-code" type="xs:string" minOccurs="0" />
+                    <xs:element name="item_description" type="xs:string" minOccurs="0" />
+                    <xs:element name="from-reason-code" type="xs:string" minOccurs="0" />
+                    <xs:element name="from-hold-code" type="xs:string" minOccurs="0" />
+                    <xs:element name="to-reason-code" type="xs:string" minOccurs="0" />
+                    <xs:element name="to-hold-code" type="xs:string" minOccurs="0" />
+                    <xs:element name="status-code" type="xs:string" minOccurs="0" />
+                    <xs:element name="lot-code" type="xs:string" minOccurs="0" />
+                    <xs:element name="comments" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
