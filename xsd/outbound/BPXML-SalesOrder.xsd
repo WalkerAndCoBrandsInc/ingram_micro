@@ -175,7 +175,7 @@
 				<xs:element ref="no-ship-before" minOccurs="0"/>
 				<xs:element ref="ship-request-from" minOccurs="0"/>
 				<xs:element ref="ship-request-warehouse" minOccurs="0"/>
-				<xs:element ref="dock-date" minOccurs="0"/>
+				
 				<xs:element ref="ship-to-code" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -262,7 +262,7 @@
 	<xs:element name="credit-card-information" nillable="true">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">
-        This element contains all credit card related information for the order.  Please note that due to PCI compliance issues, we can 
+        This element contains all credit card related information for the order.  Please note that due to PCI compliance issues, we can
         only accept the last four digits of a credit card number.  The prior digits must be replaced with X characters.
       </xs:documentation>
 		</xs:annotation>
