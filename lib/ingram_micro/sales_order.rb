@@ -45,6 +45,7 @@ class IngramMicro::SalesOrder
         add_transaction_info(builder)
       end
     end
+
   end
 
 

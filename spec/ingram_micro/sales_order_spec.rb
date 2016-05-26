@@ -34,9 +34,9 @@ describe IngramMicro::SalesOrder do
 
     context "a sales order with all components set" do
       before do
-        customer.first_name = "John"
-        customer.last_name = "Doe"
-        customer.email = "jd@lame.com"
+        customer.element[:customer_first_name] = "John"
+        customer.element[:customer_last_name] = "Doe"
+        customer.element[:customer_email] = "jd@lame.com"
       end
 
       it "is true" do
