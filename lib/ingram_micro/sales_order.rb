@@ -1,6 +1,6 @@
 class IngramMicro::SalesOrder
   attr_reader :customer, :errors, :credit_card_information, :order_header,
-  :shipment_information, :detail
+  :shipment_information, :detail, :message_header
 
   def initialize(options={})
     @customer = options[:customer]
@@ -12,23 +12,13 @@ class IngramMicro::SalesOrder
     @errors = []
   end
 
-  # def schema_valid?
-  #   xsd = Nokogiri::XML::Schema(File.read("#{IngramMicro::DIR}/../xsd/outbound/BPXML-SalesOrder.xsd"))
-  #   xml = File.read("#{IngramMicro::DIR}/../xsd/xml_samples/Sales_order_sample.xml")
-  #   valid = true
-  #   errors = []
-  #   xsd.validate(order_builder.doc).each do |error|
-  #     errors << error.message
-  #     valid = false
-  #   end
-  #   errors.each { |error| puts "XML VALIDATION ERROR: " + error }
-  #   valid
+  # def check_defaults
+  #   [:customer, :credit_card_information, :order_header, :shipment_information, :detail]
   # end
 
   def valid?
     xsd = Nokogiri::XML::Schema(File.read("#{IngramMicro::DIR}/../xsd/outbound/BPXML-SalesOrder.xsd"))
     valid = true
-    errors = []
     xsd.validate(order_builder.doc).each do |error|
       errors << error.message
       valid = false
@@ -45,20 +35,25 @@ class IngramMicro::SalesOrder
         add_transaction_info(builder)
       end
     end
-
   end
-
 
   def add_message_header(builder)
     builder.send("message-header") do
-      @message_header.build(builder)
+      message_header.build(builder)
     end
   end
 
   def add_sales_order_submission(builder)
+    sos_options = {
+      detail: @detail,
+      customer: @customer,
+      shipment_information: @shipment_information,
+      order_header: @order_header,
+      credit_card_information: @credit_card_information
+    }
+    sos = IngramMicro::SalesOrderSubmission.new(sos_options)
     builder.send("sales-order-submission") do
-      IngramMicro::SalesOrderSubmission.build(builder, @customer,
-        @shipment_information, @credit_card_information, @order_header, @detail)
+      sos.build(builder)
     end
   end
 
@@ -67,10 +62,4 @@ class IngramMicro::SalesOrder
       builder.send("eventID")
     end
   end
-
-  # def add_detail(builder)
-  #   @detail.build(builder)
-  # end
-
-
 end

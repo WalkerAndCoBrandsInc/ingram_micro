@@ -17,13 +17,15 @@ describe IngramMicro::SalesOrder do
     let(:detail) { IngramMicro::SalesOrderDetail.new({line_items: [line_item_1, line_item_2]}) }
     let(:line_item_1) { IngramMicro::SalesOrderLineItem.new }
     let(:line_item_2) { IngramMicro::SalesOrderLineItem.new }
+    # let(:sales_order_submission) { IngramMicro::SalesOrderSubmission.new({detail: detail})}
     # let(:message_header) { IngramMicro::MessageHeader.new }
     let(:options) { {
-      customer: customer,
-      shipment_information: shipment_information,
-      credit_card_information: credit_card_information,
-      order_header: order_header,
+      # customer: customer,
+      # shipment_information: shipment_information,
+      # credit_card_information: credit_card_information,
+      # order_header: order_header,
       detail: detail} }
+    # let(:sales_order) { IngramMicro::SalesOrder.new(options)}
     let(:sales_order) { IngramMicro::SalesOrder.new(options)}
 
     # context "the sample xml doesn't suck" do
