@@ -9,6 +9,7 @@ require "ingram_micro/order_header"
 require "ingram_micro/sales_order_detail"
 require "ingram_micro/order_line_item"
 require "ingram_micro/message_header"
+require "ingram_micro/sales_order_submission"
 
 
 module IngramMicro

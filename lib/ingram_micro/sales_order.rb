@@ -1,6 +1,6 @@
 class IngramMicro::SalesOrder
   attr_reader :customer, :errors, :credit_card_information, :order_header,
-  :shipment_information, :detail, :message_header
+  :shipment_information, :detail
 
   def initialize(options={})
     @customer = options[:customer]
@@ -8,7 +8,7 @@ class IngramMicro::SalesOrder
     @credit_card_information = options[:credit_card_information]
     @order_header = options[:order_header]
     @detail = options[:detail]
-    @message_header = options[:message_header]
+    @message_header = IngramMicro::MessageHeader.new({transaction_name: "sales-order-submission"})
     @errors = []
   end
 
@@ -56,26 +56,8 @@ class IngramMicro::SalesOrder
 
   def add_sales_order_submission(builder)
     builder.send("sales-order-submission") do
-      builder.send("header") do
-        builder.send "customer-id", 123456
-        builder.send "business-name", "MegaGloboCo"
-        builder.send "carrier-name", "FEDEX"
-        builder.send("customer-information") do
-          @customer.build(builder)
-        end
-        builder.send("shipment-information") do
-          @shipment_information.build(builder)
-        end
-        builder.send("credit-card-information") do
-          @credit_card_information.build(builder)
-        end
-        builder.send("order-header") do
-          @order_header.build(builder)
-        end
-      end
-      builder.detail do
-        @detail.build(builder)
-      end
+      IngramMicro::SalesOrderSubmission.build(builder, @customer,
+        @shipment_information, @credit_card_information, @order_header, @detail)
     end
   end
 
