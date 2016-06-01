@@ -1,4 +1,4 @@
-class IngramMicro::MessageHeader < IngramMicro::BaseElement
+class IngramMicro::MessageHeaderPW < IngramMicro::BaseElement
 
   DEFAULTS = {
     message_id: 0,
