@@ -24,7 +24,7 @@
         <xs:element ref="message-id" maxOccurs="1" minOccurs="1" />
         <xs:element ref="transaction-name" maxOccurs="1" minOccurs="1"/>
         <xs:element ref="partner-name" maxOccurs="1" minOccurs="1"/>
-	<xs:element ref="partner-password" minOccurs="0" maxOccurs="1"/>
+      	<xs:element ref="partner-password" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="source-url" minOccurs="0" maxOccurs="1"/>
         <xs:element ref="create-timestamp" minOccurs="1" maxOccurs="1"/>
         <xs:element ref="response-request" minOccurs="1" maxOccurs="1"/>

@@ -9,8 +9,15 @@ class IngramMicro::SalesOrderDetail < IngramMicro::BaseElement
   end
 
   def build(builder)
-    @element[:line_items].each_with_index do |line_item, idx|
+
+    if element[:line_items].empty?
+      line_item = IngramMicro::SalesOrderLineItem.new
+      element[:line_items] << line_item
+    end
+
+    element[:line_items].each_with_index do |line_item, idx|
       line_item.line_no = idx + 1 if line_item.line_no.nil?
+      puts line_item.line_no
       builder.send("line-item") do
         line_item.build(builder)
       end
