@@ -25,7 +25,6 @@ class IngramMicro::ReturnAuthorizationLineItem < IngramMicro::BaseElement
     failure_description: nil
   }
 
-
   def line_no
     @element[:line_no]
   end

@@ -13,7 +13,7 @@ class IngramMicro::ShipmentStatus < IngramMicro::BaseElement
 
   def initialize(options={})
     super
-    @element[:order_header] ||= IngramMicro::OrderHeader.new
+    @element[:order_header] ||= IngramMicro::SalesOrderHeader.new
     check_line_items
     @element[:detail] ||= IngramMicro::Detail.new({line_items: @element[:line_items]})
   end
