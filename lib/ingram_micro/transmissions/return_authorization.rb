@@ -32,12 +32,12 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
 
   def add_return_authorization_submission(builder)
     ra_options = {
-      customer: @customer,
-      shipment_information: @shipment_information,
-      credit_card_information: @credit_card_information,
-      order_header: @order_header,
-      detail: @detail,
-      purchase_order_information: @purchase_order_information
+      customer: customer,
+      shipment_information: shipment_information,
+      credit_card_information: credit_card_information,
+      order_header: order_header,
+      detail: detail,
+      purchase_order_information: purchase_order_information
     }
     ras = IngramMicro::ReturnAuthorizationSubmission.new(ra_options)
     builder.send("return-authorization-submission") do

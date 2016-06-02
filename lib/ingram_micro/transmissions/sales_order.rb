@@ -32,11 +32,11 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
 
   def add_sales_order_submission(builder)
     sos_options = {
-      detail: @detail,
-      customer: @customer,
-      shipment_information: @shipment_information,
-      order_header: @order_header,
-      credit_card_information: @credit_card_information
+      detail: detail,
+      customer: customer,
+      shipment_information: shipment_information,
+      order_header: order_header,
+      credit_card_information: credit_card_information
     }
     sos = IngramMicro::SalesOrderSubmission.new(sos_options)
     builder.send("sales-order-submission") do

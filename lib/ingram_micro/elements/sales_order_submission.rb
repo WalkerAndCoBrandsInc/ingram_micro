@@ -6,7 +6,10 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
     credit_card_information: nil,
     order_header: nil,
     detail: nil,
-    line_items: []
+    line_items: [],
+    customer_id: nil,
+    business_name: nil,
+    carrier_name: nil
   }
 
 
@@ -26,9 +29,9 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
 
   def build(builder)
     builder.send("header") do
-      builder.send "customer-id", 123456
-      builder.send "business-name", "MegaGloboCo"
-      builder.send "carrier-name", "FEDEX"
+      builder.send "customer-id", @element[:customer_id]
+      builder.send "business-name", @element[:business_name]
+      builder.send "carrier-name", @element[:carrier_name]
       builder.send("customer-information") do
         @element[:customer].build(builder)
       end

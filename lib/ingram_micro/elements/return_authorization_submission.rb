@@ -7,7 +7,9 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
     order_header: nil,
     detail: nil,
     purchase_order_information: nil,
-    line_items: []
+    customer_id: nil,
+    business_name: nil,
+    carrier_name: nil
   }
 
 
@@ -22,15 +24,14 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
     @element[:credit_card_information] ||= IngramMicro::CreditCardInformation.new
     @element[:order_header] ||= IngramMicro::ReturnOrderHeader.new
     @element[:purchase_order_information] ||= IngramMicro::PurchaseOrderInformation.new
-    check_line_items
-    @element[:detail] ||= IngramMicro::Detail.new({line_items: @element[:line_items]})
+    @element[:detail] ||= IngramMicro::Detail.new
   end
 
   def build(builder)
     builder.send("header") do
-      builder.send "customer-id", 123456
-      builder.send "business-name", "MegaGloboCo"
-      builder.send "carrier-name", "FEDEX"
+      builder.send "customer-id", @element[:customer_id]
+      builder.send "business-name", @element[:business_name]
+      builder.send "carrier-name", @element[:carrier_name]
       builder.send("customer-information") do
         @element[:customer].build(builder)
       end
@@ -47,15 +48,16 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
         @element[:order_header].build(builder)
       end
     end
+    check_line_items
     builder.send("detail") do
       @element[:detail].build(builder)
     end
   end
 
   def check_line_items
-    if @element[:line_items].empty?
+    if @element[:detail].@element[:line_items].empty?
       line_item = IngramMicro::ReturnAuthorizationLineItem.new
-      @element[:line_items] << line_item
+      @element[:detail].@element[:line_items] << line_item
     end
   end
 
