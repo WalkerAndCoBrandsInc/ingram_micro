@@ -55,9 +55,9 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
   end
 
   def check_line_items
-    if @element[:detail].@element[:line_items].empty?
+    if @element[:detail].element[:line_items].empty?
       line_item = IngramMicro::ReturnAuthorizationLineItem.new
-      @element[:detail].@element[:line_items] << line_item
+      @element[:detail].element[:line_items] << line_item
     end
   end
 
