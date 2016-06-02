@@ -26,6 +26,10 @@ describe IngramMicro::Client do
 
   describe "call from SalesOrder class" do
     context "the client can be used by other classes" do
+      # 
+      # it "creates a valid sales order xml form" do
+      #   expect(sales_order.valid?).to be true
+      # end
 
       it "sends requests on behalf of a SalesOrder object" do
         expect(sales_order.order_request).to be_truthy

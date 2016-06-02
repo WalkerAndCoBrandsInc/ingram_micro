@@ -1,4 +1,4 @@
-class IngramMicro::SalesOrderDetail < IngramMicro::BaseElement
+class IngramMicro::Detail < IngramMicro::BaseElement
 
   DEFAULTS = {
     line_items: []
@@ -9,12 +9,6 @@ class IngramMicro::SalesOrderDetail < IngramMicro::BaseElement
   end
 
   def build(builder)
-
-    if element[:line_items].empty?
-      line_item = IngramMicro::SalesOrderLineItem.new
-      element[:line_items] << line_item
-    end
-
     element[:line_items].each_with_index do |line_item, idx|
       line_item.line_no = idx + 1 if line_item.line_no.nil?
       puts line_item.line_no
