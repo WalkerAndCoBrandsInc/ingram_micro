@@ -35,7 +35,7 @@ class IngramMicro::Transmission
     end
   end
 
-  def order_request
+  def submit_request
     send_request if valid?
   end
 
