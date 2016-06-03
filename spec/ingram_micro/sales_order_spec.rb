@@ -106,15 +106,15 @@ describe IngramMicro::SalesOrder do
     end
   end
 
-  describe "#order_request" do
+  describe "#submit_request" do
     context "with no data passed into SalesOrder object" do
       it "valides and submits xml via HTTP POST request" do
-        expect(empty_sales_order.order_request).to be_truthy
+        expect(empty_sales_order.submit_request).to be_truthy
       end
     end
     context "with data passed in" do
       it "valides and submits xml via HTTP POST request" do
-        expect(sales_order_with_info.order_request).to be_truthy
+        expect(sales_order_with_info.submit_request).to be_truthy
       end
     end
   end

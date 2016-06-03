@@ -13,7 +13,7 @@ describe IngramMicro::CheckShipmentStatus do
 
     context "form transmission" do
       it "sends the form" do
-        expect(shipment_status.order_request).to be_truthy
+        expect(shipment_status.submit_request).to be_truthy
       end
     end
   end

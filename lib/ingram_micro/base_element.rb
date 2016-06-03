@@ -18,4 +18,8 @@ class IngramMicro::BaseElement
     end
   end
 
+  def method_missing(methId)
+    return element[methId] if element[methId]
+  end
+
 end
