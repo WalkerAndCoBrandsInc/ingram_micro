@@ -12,13 +12,21 @@ describe IngramMicro::Client do
     end
   end
 
+  describe "Client#get" do
+    context "Basic request to default url" do
+      it "should make a get request" do
+        expect(client.get).to be_truthy
+      end
+    end
+  end
+
   let(:sales_order) { IngramMicro::SalesOrder.new }
 
   describe "Client#post" do
     context "the client hits the right host" do
 
       it "sends data to requestbin" do
-        expect(client.post(sales_order.order_builder.to_xml)).to be_truthy
+        expect(client.post("TEST")).to be_truthy
       end
 
     end
@@ -26,10 +34,6 @@ describe IngramMicro::Client do
 
   describe "call from SalesOrder class" do
     context "the client can be used by other classes" do
-      #
-      # it "creates a valid sales order xml form" do
-      #   expect(sales_order.valid?).to be true
-      # end
 
       it "sends requests on behalf of a SalesOrder object" do
         expect(sales_order.submit_request).to be_truthy

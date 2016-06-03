@@ -17,6 +17,7 @@ class IngramMicro::Client
   end
 
   def get
+    conn.get uri.request_uri
   end
 
   def post(data)

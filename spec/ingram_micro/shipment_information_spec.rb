@@ -90,9 +90,5 @@ describe IngramMicro::ShipmentInformation do
         expect(shipment_info_with_data.shipping_method_name).to eq("FedEx Second Day")
       end
     end
-
-
-
   end
-
 end
