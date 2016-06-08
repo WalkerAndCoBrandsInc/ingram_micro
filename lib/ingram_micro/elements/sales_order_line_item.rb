@@ -20,7 +20,7 @@ class IngramMicro::SalesOrderLineItem < IngramMicro::BaseElement
     :line_discount => 0.0,
     :line_tax1 => 0.0,
     :line_tax2 => 0.0,
-    :line_tax3 => 0.0,
+    :line_tax3 => 0.0
   }
 
   def line_no

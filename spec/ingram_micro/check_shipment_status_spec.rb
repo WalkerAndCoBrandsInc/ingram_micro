@@ -11,6 +11,14 @@ describe IngramMicro::CheckShipmentStatus do
     line_items: []
     }}
 
+  describe "xml form creation" do
+    context "with no data passed" do
+      it "creates a valid xml form" do
+        expect(empty_shipment_status.valid?).to be true
+      end
+    end
+  end
+
   describe "creates and sends a shipment status request" do
     context "xml form" do
       it "is valid" do
