@@ -4,61 +4,18 @@ describe IngramMicro::ReturnAuthorization do
 
   let(:ra_no_info) { IngramMicro::ReturnAuthorization.new }
 
-  let(:customer_options) { {
-    customer_first_name: "Frank",
-    customer_last_name: "Castle",
-    customer_address1: "2815 Punisher Alley",
-    customer_city: "New York",
-    customer_state: "NY",
-    customer_post_code: "10001",
-    customer_phone1: "212-451-3718",
-    customer_email: "francis.castiglione@usmc.mil"
-    } }
-
-  let(:shipment_options) { {
-    ship_first_name: "Frank",
-    ship_last_name: "Castle",
-    ship_address1: "2815 Punisher Alley",
-    ship_city: "New York",
-    ship_state: "NY",
-    ship_post_code: "10001",
-    ship_phone1: "212-451-3718",
-    ship_email: "francis.castiglione@usmc.mil"
-    } }
-
-  let(:credit_card_options) { {
-    credit_card_number: "4471834566719702",
-    credit_card_expiration_date: "202011",
-    credit_card_identification: "871",
-    card_holder_name: "Frank Castle",
-    card_holder_address1: "2815 Cold Blood Ln",
-    card_holder_city: "Hoboken",
-    card_holder_state: "NJ",
-    card_holder_post_code: "07030",
-    card_holder_country_code: "US"
-    } }
-
   let(:order_header_options) {{
     customer_order_number: "37159B",
-    order_sub_total: 2150.00,
-    order_shipment_charge: 28.72,
-    order_total_net: 2178.72
+    order_sub_total: 89.85,
+    order_shipment_charge: 6.95,
+    order_total_net: 96.80
     }}
 
-  let(:line_item_options) {{
-    line_no: "AR15X15",
-    product_name: "AR-15 Assault Rifle",
-    quantity: 1.0,
-    unit_of_measure: "Each",
-    base_price: 2150.00,
-    line_tax1: 0.0,
-    }}
-
-  let(:customer) { IngramMicro::Customer.new(customer_options)}
-  let(:shipment_information) { IngramMicro::ShipmentInformation.new(shipment_options)}
-  let(:credit_card_information) { IngramMicro::CreditCardInformation.new(credit_card_options)}
+  let(:customer) { FactoryGirl.create(:customer) }
+  let(:shipment_information) { FactoryGirl.create(:shipment_information) }
+  let(:credit_card_information) { FactoryGirl.create(:credit_card_information) }
   let(:order_header) { IngramMicro::ReturnOrderHeader.new(order_header_options)}
-  let(:line_item) { IngramMicro::ReturnAuthorizationLineItem.new(line_item_options)}
+  let(:line_item) { FactoryGirl.create(:return_authorization_line_item) }
   let(:detail) { IngramMicro::Detail.new(line_items: [line_item])}
 
   let(:ra_options) {{
