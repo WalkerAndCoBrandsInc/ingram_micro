@@ -6,7 +6,7 @@ require 'ingram_micro/version'
 Gem::Specification.new do |spec|
   spec.name          = "ingram_micro"
   spec.version       = IngramMicro::VERSION
-  spec.authors       = ["Rachel Heaton"]
+  spec.authors       = ["Rachel Heaton","Joseph Nguyen"]
   spec.email         = ["rachelmheaton@gmail.com"]
 
   spec.summary       = %q{Rubygem wrapper for Ingram Micro API}
@@ -35,5 +35,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "factory_girl", "~>4.0"
-  spec.add_development_dependency "faker"
 end
