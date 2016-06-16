@@ -22,4 +22,18 @@ describe IngramMicro do
       end
     end
   end
+
+  context '.shipping_methods' do
+    it 'returns a hash of shipping methods with code as key' do
+      shipping_methods = {
+        FX01: {description: 'FedEx Standard Overnight', domestic: true},
+        FX2D: {description: 'FedEx Second Day', domestic: true},
+        FXSP: {description: 'FedEx Smart Post', domestic: true},
+        FXIE: {description: 'FedEx International Economy', domestic: false},
+        FXIP: {description: 'FedEx International Priority', domestic: false},
+      }
+
+      expect(IngramMicro.shipping_methods).to eq shipping_methods
+    end
+  end
 end

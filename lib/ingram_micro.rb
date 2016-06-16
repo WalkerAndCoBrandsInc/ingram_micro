@@ -22,4 +22,14 @@ module IngramMicro
   def self.configure
     yield configuration
   end
+
+  def self.shipping_methods
+    {
+      FX01: {description: 'FedEx Standard Overnight', domestic: true},
+      FX2D: {description: 'FedEx Second Day', domestic: true},
+      FXSP: {description: 'FedEx Smart Post', domestic: true},
+      FXIE: {description: 'FedEx International Economy', domestic: false},
+      FXIP: {description: 'FedEx International Priority', domestic: false},
+    }
+  end
 end
