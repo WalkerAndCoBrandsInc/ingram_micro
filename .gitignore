@@ -1,5 +1,7 @@
 /.bundle/
 /.yardoc
+.idea
+.pairs
 /Gemfile.lock
 /_yardoc/
 /coverage/
