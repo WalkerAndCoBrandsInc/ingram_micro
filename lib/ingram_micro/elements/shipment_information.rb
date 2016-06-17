@@ -1,5 +1,19 @@
 class IngramMicro::ShipmentInformation < IngramMicro::BaseElement
 
+  SCAC = {
+    "FX01" => "FedEx Standard Overnight", #parcel
+    "FXAM" => "FedEx Priority Overnight", #parcel
+    "FX2D" => "FedEx Second Day", #parcel
+    "FXSV" => "FedEx Express saver (3 day)", #parcel
+    "USPP" => "Postal Priority", #parcel
+    "GGRNDP" => "Ground shipping", #parcel
+    "FXL1" => "FedEx Freight Overnight (Air)", #ltl freight
+    "FXL2" => "FedEx Freight 2-day (Air)", #ltl freight
+    "FXL3" => "FedEx Freight 3-day (Air)", #ltl freight
+    "FXLE" => "FedEx Freight Ground", #ltl freight
+    "GGRNDP" => "Ground shipping" #ltl freight
+   }
+
   DEFAULTS = {
     ship_first_name: nil,
     ship_last_name: nil,
@@ -23,6 +37,20 @@ class IngramMicro::ShipmentInformation < IngramMicro::BaseElement
 
   def defaults
     DEFAULTS
+  end
+
+  def valid_scac?
+    scac = ship_via
+    !!SCAC[scac]
+  end
+
+  def shipping_method_name
+    scac = ship_via
+    if valid_scac?
+      SCAC[ship_via]
+    else
+      return "Invalid shipping code"
+    end
   end
 
 end

@@ -1,48 +1,80 @@
 require 'spec_helper'
 
 describe IngramMicro::SalesOrder do
-  describe "#build" do
 
-    # binding.pry
+  let(:empty_sales_order) { IngramMicro::SalesOrder.new }
+
+  let(:order_header_options) {{
+    cutomer_order_number: "355658",
+    order_sub_total: "29.95",
+    order_shipment_charge: 6.95,
+    order_total_net: 36.90
+  }}
+
+  let(:customer) { FactoryGirl.create(:customer)}
+  let(:shipment_information) { FactoryGirl.create(:shipment_information) }
+  let(:credit_card_information) { FactoryGirl.create(:credit_card_information) }
+  let(:order_header) { IngramMicro::SalesOrderHeader.new(order_header_options)}
+  let(:line_item) { FactoryGirl.create(:sales_order_line_item) }
+  let(:detail) { IngramMicro::Detail.new(line_items: [line_item])}
+  let(:sales_order_options) {{
+    customer: customer,
+    credit_card_information: credit_card_information,
+    order_header: order_header,
+    shipment_information: shipment_information,
+    detail: detail
+    }}
+
+  let(:sales_order_with_info) { IngramMicro::SalesOrder.new(sales_order_options) }
+
+  describe "#initialize" do
+    context "with no data passed in" do
+      it "should still create a valid SalesOrder object" do
+        expect(empty_sales_order).to be_truthy
+      end
+    end
+    context "with data passed in" do
+      it "should create a valid SalesOrder object with the data passed in" do
+        expect(sales_order_with_info).to be_truthy
+      end
+    end
+  end
+
+  describe "#build" do
+    context "with no data passed into SalesOrder object" do
+      it "should create an xml form" do
+        expect(empty_sales_order.order_builder).to be_truthy
+      end
+    end
+    context "with data passed in" do
+      it "should create an xml form" do
+        expect(sales_order_with_info.order_builder).to be_truthy
+      end
+    end
   end
 
   describe "#valid?" do
-    # validates against xsd
-    # gives useful errors, extract some stuff to super class
-
-    let(:customer) { IngramMicro::Customer.new }
-    let(:shipment_information) { IngramMicro::ShipmentInformation.new }
-    let(:credit_card_information) { IngramMicro::CreditCardInformation.new }
-    let(:order_header) { IngramMicro::OrderHeader.new({order_sub_total: 25.8}) }
-    let(:detail) { IngramMicro::SalesOrderDetail.new({line_items: [line_item_1, line_item_2]}) }
-    let(:line_item_1) { IngramMicro::SalesOrderLineItem.new }
-    let(:line_item_2) { IngramMicro::SalesOrderLineItem.new }
-    # let(:sales_order_submission) { IngramMicro::SalesOrderSubmission.new({detail: detail})}
-    # let(:message_header) { IngramMicro::MessageHeader.new }
-    let(:options) { {
-      # customer: customer,
-      # shipment_information: shipment_information,
-      # credit_card_information: credit_card_information,
-      # order_header: order_header,
-      detail: detail} }
-    # let(:sales_order) { IngramMicro::SalesOrder.new(options)}
-    let(:sales_order) { IngramMicro::SalesOrder.new(options)}
-
-    # context "the sample xml doesn't suck" do
-    #   it "passes the schema" do
-    #     expect(sales_order.schema_valid?).to be_truthy
-    #   end
-    # end
-
-    context "a sales order with all components set" do
-      before do
-        customer.element[:customer_first_name] = "John"
-        customer.element[:customer_last_name] = "Doe"
-        customer.element[:customer_email] = "jd@lame.com"
+    context "with no data passed into SalesOrder object" do
+      it "checks xml output against the SalesOrder schema" do
+        expect(empty_sales_order.valid?).to be true
       end
+    end
+    context "with data passed in" do
+      it "validates output xml using SalesOrder schema" do
+        expect(sales_order_with_info.valid?).to be true
+      end
+    end
+  end
 
-      it "is true" do
-        expect(sales_order.valid?).to be_truthy
+  describe "#submit_request" do
+    context "with no data passed into SalesOrder object" do
+      it "valides and submits xml via HTTP POST request" do
+        expect(empty_sales_order.submit_request).to be_truthy
+      end
+    end
+    context "with data passed in" do
+      it "validates and submits xml via HTTP POST request" do
+        expect(sales_order_with_info.submit_request).to be_truthy
       end
     end
   end

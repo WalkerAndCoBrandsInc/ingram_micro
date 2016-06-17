@@ -1,4 +1,4 @@
-class IngramMicro::OrderHeader < IngramMicro::BaseElement
+class IngramMicro::SalesOrderHeader < IngramMicro::BaseElement
 
   DEFAULTS = {
     customer_order_number: 0,
@@ -18,5 +18,12 @@ class IngramMicro::OrderHeader < IngramMicro::BaseElement
   def defaults
     DEFAULTS
   end
+
+  def use_current_date?
+    if @element[:customer_order_date].nil?
+      @element[:customer_order_date] = DateTime.now.strftime("%Y%m%d")
+    end
+  end
+
 
 end

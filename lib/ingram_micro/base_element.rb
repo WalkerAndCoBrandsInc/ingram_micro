@@ -18,10 +18,16 @@ class IngramMicro::BaseElement
     end
   end
 
-  def use_current_date?
-    if @element[:customer_order_date].nil?
-      @element[:customer_order_date] = DateTime.now.strftime("%Y%m%d")
+  def parse(message_hash)
+    defaults.each do |field|
+      # element_name = field.gsub("-","_").to_sym
+      element_name = field.to_s.gsub("_", "-")
+      @element[field] = message_hash[element_name]
     end
+  end
+
+  def method_missing(methId)
+    return element[methId] if element[methId]
   end
 
 end

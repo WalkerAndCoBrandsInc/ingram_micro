@@ -1,3 +1,4 @@
+# require 'pry'
 class IngramMicro::Customer < IngramMicro::BaseElement
 
   DEFAULTS = {
@@ -20,5 +21,6 @@ class IngramMicro::Customer < IngramMicro::BaseElement
   def defaults
     DEFAULTS
   end
+
 
 end
