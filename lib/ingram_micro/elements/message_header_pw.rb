@@ -13,5 +13,4 @@ class IngramMicro::MessageHeaderPW < IngramMicro::BaseElement
   def defaults
     DEFAULTS
   end
-
 end

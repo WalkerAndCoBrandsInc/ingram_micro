@@ -4,33 +4,20 @@ describe IngramMicro::CheckShipmentStatus do
 
   let(:empty_shipment_status) { IngramMicro::CheckShipmentStatus.new }
 
-  let(:ss_options) {{
-    customer_id: nil,
-    business_name: nil,
-    detail: nil,
-    line_items: []
-    }}
-
-  describe "xml form creation" do
-    context "with no data passed" do
-      it "creates a valid xml form" do
-        expect(empty_shipment_status.valid?).to be true
-      end
+  describe 'valid' do
+    it 'creates a valid xml form' do
+      expect(empty_shipment_status.valid?).to be true
     end
   end
 
-  describe "creates and sends a shipment status request" do
-    context "xml form" do
-      it "is valid" do
-        expect(empty_shipment_status.valid?).to be true
-      end
-    end
+  describe 'order_builder' do
+    it 'generates xml' do
+      expected_xml = File.read(IngramMicro::GEM_DIR + 'spec/output_xmls/empty_shipment_status.xml')
+      puts empty_shipment_status.order_builder.to_xml
+      expect(empty_shipment_status.order_builder.to_xml).to eq expected_xml
 
-    context "form transmission" do
-      it "sends the form" do
-        expect(empty_shipment_status.submit_request).to be_truthy
-      end
+      hash_from_xml = Hash.from_xml(empty_shipment_status.order_builder.to_xml)
+      expect(hash_from_xml['message']['message_header']['transaction_name']).to eq 'shipment-status'
     end
   end
-
 end

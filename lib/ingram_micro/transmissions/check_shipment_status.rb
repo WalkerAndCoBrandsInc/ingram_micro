@@ -31,5 +31,4 @@ class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
       ss.build(builder)
     end
   end
-
 end
