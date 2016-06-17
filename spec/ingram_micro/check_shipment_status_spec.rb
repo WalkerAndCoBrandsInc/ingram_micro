@@ -16,13 +16,13 @@ describe IngramMicro::CheckShipmentStatus do
   describe 'valid' do
     context 'shipment status is empty' do
       it 'creates a valid xml form' do
-        expect(empty_shipment_status.valid?).to be true
+        expect(empty_shipment_status.schema_valid?).to be true
       end
     end
 
     context 'shipment status with information' do
       it 'creates a valid xml form' do
-        expect(shipment_status_with_info.valid?).to be true
+        expect(shipment_status_with_info.schema_valid?).to be true
       end
     end
   end
