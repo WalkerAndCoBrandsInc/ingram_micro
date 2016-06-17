@@ -41,10 +41,4 @@ describe IngramMicro::ReturnAuthorization do
       end
     end
   end
-
-  describe "#submit_request" do
-    it "validates xml and sends it to the specified endpoint" do
-      expect(return_auth_with_info.submit_request).to be_truthy
-    end
-  end
 end
