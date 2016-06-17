@@ -6,7 +6,7 @@ FactoryGirl.define do
       detail 'detail'
       line_items []
     end
-    after(:create) do |info, evaluator|
+    after(:build) do |info, evaluator|
       info.element[:customer_id] = evaluator.customer_id
       info.element[:business_name] = evaluator.business_name
       info.element[:detail] = evaluator.detail

@@ -23,7 +23,7 @@ FactoryGirl.define do
       line_tax3 0.0
     end
 
-    after(:create) do |soli, evaluator|
+    after(:build) do |soli, evaluator|
       soli.element[:line_no] = evaluator.line_no
       soli.element[:item_code] = evaluator.item_code
       soli.element[:universal_product_code] = evaluator.universal_product_code

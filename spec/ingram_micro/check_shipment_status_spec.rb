@@ -7,7 +7,7 @@ describe IngramMicro::CheckShipmentStatus do
     # shipment_status: shipment_status_2,
     business_name: 'Nguyen & Sedano Inc.',
     customer_id: '1',
-    line_items: [FactoryGirl.create(:shipment_status_line_item)]
+    line_items: [FactoryGirl.build(:shipment_status_line_item)]
   }}
 
   let(:shipment_status_with_info) { IngramMicro::CheckShipmentStatus.new(options) }

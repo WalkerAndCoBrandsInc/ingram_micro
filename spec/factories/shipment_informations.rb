@@ -13,7 +13,7 @@ FactoryGirl.define do
       ship_email "the_dude@yahoo.com"
       ship_via "FX01"
     end
-    after(:create) do |shipment_information, evaluator|
+    after(:build) do |shipment_information, evaluator|
       shipment_information.element[:ship_first_name] = evaluator.ship_first_name
       shipment_information.element[:ship_last_name] = evaluator.ship_last_name
       shipment_information.element[:ship_middle_initial] = evaluator.ship_middle_initial

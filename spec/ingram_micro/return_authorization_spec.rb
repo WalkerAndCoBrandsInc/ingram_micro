@@ -5,17 +5,17 @@ describe IngramMicro::ReturnAuthorization do
   let(:ra_no_info) { IngramMicro::ReturnAuthorization.new }
 
   let(:order_header_options) {{
-    customer_order_number: "37159B",
+    customer_order_number: '37159B',
     order_sub_total: 89.85,
     order_shipment_charge: 6.95,
     order_total_net: 96.80
     }}
 
-  let(:customer) { FactoryGirl.create(:customer) }
-  let(:shipment_information) { FactoryGirl.create(:shipment_information) }
-  let(:credit_card_information) { FactoryGirl.create(:credit_card_information) }
+  let(:customer) { FactoryGirl.build(:customer) }
+  let(:shipment_information) { FactoryGirl.build(:shipment_information) }
+  let(:credit_card_information) { FactoryGirl.build(:credit_card_information) }
   let(:order_header) { IngramMicro::ReturnOrderHeader.new(order_header_options)}
-  let(:line_item) { FactoryGirl.create(:return_authorization_line_item) }
+  let(:line_item) { FactoryGirl.build(:return_authorization_line_item) }
   let(:detail) { IngramMicro::Detail.new(line_items: [line_item])}
 
   let(:ra_options) {{
@@ -28,23 +28,17 @@ describe IngramMicro::ReturnAuthorization do
 
   let(:return_auth_with_info) { IngramMicro::ReturnAuthorization.new(ra_options)}
 
-  describe "#build" do
-    context "without data passed in" do
-      it "creates xml that passes the schema" do
+  describe '#build' do
+    context 'without data passed in' do
+      it 'creates xml that passes the schema' do
         expect(ra_no_info.valid?).to be true
       end
     end
 
-    context "with data entered" do
-      it "creates xml that passes the schema" do
+    context 'with data entered' do
+      it 'creates xml that passes the schema' do
         expect(return_auth_with_info.valid?).to be true
       end
-    end
-  end
-
-  describe "#submit_request" do
-    it "validates xml and sends it to the specified endpoint" do
-      expect(return_auth_with_info.submit_request).to be_truthy
     end
   end
 end

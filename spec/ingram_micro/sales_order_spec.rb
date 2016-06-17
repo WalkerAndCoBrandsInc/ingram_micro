@@ -11,11 +11,11 @@ describe IngramMicro::SalesOrder do
     order_total_net: 36.90
   }}
 
-  let(:customer) { FactoryGirl.create(:customer)}
-  let(:shipment_information) { FactoryGirl.create(:shipment_information) }
-  let(:credit_card_information) { FactoryGirl.create(:credit_card_information) }
+  let(:customer) { FactoryGirl.build(:customer)}
+  let(:shipment_information) { FactoryGirl.build(:shipment_information) }
+  let(:credit_card_information) { FactoryGirl.build(:credit_card_information) }
   let(:order_header) { IngramMicro::SalesOrderHeader.new(order_header_options)}
-  let(:line_item) { FactoryGirl.create(:sales_order_line_item) }
+  let(:line_item) { FactoryGirl.build(:sales_order_line_item) }
   let(:detail) { IngramMicro::Detail.new(line_items: [line_item])}
   let(:sales_order_options) {{
     carrier_name: 'a carrier name',

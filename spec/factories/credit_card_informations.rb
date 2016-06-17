@@ -20,7 +20,7 @@ FactoryGirl.define do
       avs_hold nil
       merchant_name "walker"
     end
-    after(:create) do |cc_info, evaluator|
+    after(:build) do |cc_info, evaluator|
       cc_info.element[:credit_card_number] = evaluator.credit_card_number
       cc_info.element[:credit_card_expiration_date] = evaluator.credit_card_expiration_date
       cc_info.element[:credit_card_identification] = evaluator.credit_card_identification

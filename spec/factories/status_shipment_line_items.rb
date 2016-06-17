@@ -14,7 +14,7 @@ FactoryGirl.define do
       comments 'some comments'
     end
 
-    after(:create) do |ship_status_line_item, evaluator|
+    after(:build) do |ship_status_line_item, evaluator|
       ship_status_line_item.element[:line_no] = evaluator.line_no
       ship_status_line_item.element[:transaction_document_number] = evaluator.transaction_document_number
       ship_status_line_item.element[:bill_of_lading] = evaluator.bill_of_lading

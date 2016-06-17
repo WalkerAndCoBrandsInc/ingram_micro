@@ -25,8 +25,4 @@ class IngramMicro::BaseElement
       @element[field] = message_hash[element_name]
     end
   end
-
-  def method_missing(methId)
-    return element[methId] if element[methId]
-  end
 end

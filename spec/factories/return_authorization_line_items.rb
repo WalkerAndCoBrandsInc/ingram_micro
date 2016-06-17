@@ -23,7 +23,7 @@ FactoryGirl.define do
       failure_date nil
       failure_description nil
     end
-    after(:create) do |ra_line_item, evaluator|
+    after(:build) do |ra_line_item, evaluator|
       ra_line_item.element[:line_no] = evaluator.line_no
       ra_line_item.element[:item_code] = evaluator.item_code
       ra_line_item.element[:universal_product_code] = evaluator.universal_product_code
