@@ -5,21 +5,21 @@ describe IngramMicro::ShipmentInformation do
   let(:empty_shipment_info) { IngramMicro::ShipmentInformation.new }
 
   let(:shipment_options) {{
-    ship_first_name: "Jeffrey",
-    ship_last_name: "Lebowski",
-    ship_middle_initial: "D",
-    ship_address1: "606 Venezia Ave Apt B",
+    ship_first_name: 'Jeffrey',
+    ship_last_name: 'Lebowski',
+    ship_middle_initial: 'D',
+    ship_address1: '606 Venezia Ave Apt B',
     ship_address2: nil,
     ship_address3: nil,
-    ship_city: "Venice",
-    ship_state: "CA",
-    ship_post_code: "90291",
-    ship_country_code: "US",
-    ship_phone1: "213-371-9147",
+    ship_city: 'Venice',
+    ship_state: 'CA',
+    ship_post_code: '90291',
+    ship_country_code: 'US',
+    ship_phone1: '213-371-9147',
     ship_phone2: nil,
     ship_fax: nil,
-    ship_email: "the_dude@yahoo.com",
-    ship_via: "FX2D",
+    ship_email: 'the_dude@yahoo.com',
+    ship_via: 'FX2D',
     ship_request_date: nil,
     ship_request_from: nil,
     ship_request_warehouse: nil
@@ -27,7 +27,7 @@ describe IngramMicro::ShipmentInformation do
 
   let(:shipment_info_with_data) { IngramMicro::ShipmentInformation.new(shipment_options)}
 
-  let(:ship_info_bad_scac) { IngramMicro::ShipmentInformation.new({ship_via: "ABCD"})}
+  let(:ship_info_bad_scac) { IngramMicro::ShipmentInformation.new({ship_via: 'ABCD'})}
 
   describe '#initialize' do
     context 'without values passed in' do
