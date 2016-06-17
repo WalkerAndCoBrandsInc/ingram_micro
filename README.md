@@ -20,20 +20,16 @@ Or install it yourself as:
 
     $ gem install ingram_micro
 
-Next, you need to configure your defaults. In `lib/config`, create a
-`defaults.yml` file, which should look something like this:
 
-```
-  :api_root: "api.com/path"
-  :api_version: /vx.x/OtherInfo
-  :content_type: content/xml
-  :ca_path: /Path/To/Your/certs
-```
+Modify the spec_helper.rb and provide a api_root. You can create one on requestb.in
+
+## Run the Tests
+
+    $ rake
 
 ## Usage
 
 You could also configure `lib/ingram_micro/configuration.rb` directly
-instead of loading a `defaults.yml` file.
 
 ```
   IngramMicro.configure do |config|

@@ -4,7 +4,10 @@ class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
 
   def initialize(options={})
     super
-    @transaction_name = "shipment-status"
+    @transaction_name = 'shipment-status'
+    @business_name = options[:business_name]
+    @customer_id = options[:customer_id]
+    @line_items = options[:line_items]
   end
 
   def order_builder
@@ -20,16 +23,20 @@ class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
   def add_message_header(builder)
     message_header = IngramMicro::MessageHeaderNoPW.new({
       transaction_name: transaction_name})
-    builder.send("message-header") do
+    builder.send('message-header') do
       message_header.build(builder)
     end
   end
 
   def add_shipment_status(builder)
-    ss = IngramMicro::ShipmentStatus.new
-    builder.send("shipment-status") do
+    options = {
+      business_name: @business_name,
+      customer_id: @customer_id,
+      line_items: @line_items
+    }
+    ss = IngramMicro::ShipmentStatus.new(options)
+    builder.send('shipment-status') do
       ss.build(builder)
     end
   end
-
 end

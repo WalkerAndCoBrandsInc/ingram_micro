@@ -28,7 +28,7 @@ require "ingram_micro/elements/shipment_status"
 
 
 module IngramMicro
-  DIR = File.dirname(__FILE__).freeze
+  GEM_DIR = (File.dirname(__FILE__) + '/../').freeze
 
   def self.configuration
     @configuration ||= IngramMicro::Configuration.new

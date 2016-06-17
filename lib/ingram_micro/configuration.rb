@@ -14,20 +14,7 @@ module IngramMicro
         logger_valid?
     end
 
-    def initialize
-      defaults = load_defaults
-      @api_root = defaults[:api_root]
-      @api_version = defaults[:api_version]
-      @content_type = defaults[:content_type]
-      @ca_path = defaults[:ca_path]
-      @debug = false
-    end
-
     private
-
-    def load_defaults
-      YAML.load_file(File.join(File.dirname(__FILE__),'..','config','defaults.yml'))
-    end
 
     def logger_valid?
       return true unless debug

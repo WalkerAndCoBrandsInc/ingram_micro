@@ -1,4 +1,4 @@
-require 'pry'
+require 'uri'
 class IngramMicro::Client
 
   attr_reader :uri, :conn
@@ -27,5 +27,4 @@ class IngramMicro::Client
       req.body = data
     end
   end
-
 end

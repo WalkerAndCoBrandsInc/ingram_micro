@@ -47,6 +47,4 @@ describe IngramMicro::ReturnAuthorization do
       expect(return_auth_with_info.submit_request).to be_truthy
     end
   end
-
-
 end

@@ -3,13 +3,16 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
   :shipment_information, :detail
 
   def initialize(options={})
-    super
+    super(options)
     @transaction_name = "sales-order-submission"
     @customer = options[:customer]
     @shipment_information = options[:shipment_information]
     @credit_card_information = options[:credit_card_information]
     @order_header = options[:order_header]
     @detail = options[:detail]
+    @business_name = options[:business_name]
+    @customer_id = options[:customer_id]
+    @carrier_name = options[:carrier_name]
   end
 
   def order_builder
@@ -25,7 +28,7 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
   def add_message_header(builder)
     message_header = IngramMicro::MessageHeaderPW.new({
       transaction_name: transaction_name})
-    builder.send("message-header") do
+    builder.send('message-header') do
       message_header.build(builder)
     end
   end
@@ -33,6 +36,9 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
   def add_sales_order_submission(builder)
     sos_options = {
       detail: detail,
+      business_name: @business_name,
+      customer_id: @customer_id,
+      carrier_name: @carrier_name,
       customer: customer,
       shipment_information: shipment_information,
       order_header: order_header,

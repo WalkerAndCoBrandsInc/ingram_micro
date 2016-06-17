@@ -8,5 +8,4 @@ class IngramMicro::RequestProcessor
   def hashify
     Hash.from_xml(@body_xml)
   end
-
 end

@@ -4,34 +4,34 @@ require 'logger'
 describe IngramMicro::Configuration do
   let(:config) { IngramMicro::Configuration.new }
 
-  it "sets api root" do
-    config.api_root = "https://imm.com/post"
+  it 'sets api root' do
+    config.api_root = 'https://imm.com/post'
 
-    expect(config.api_root).to eq "https://imm.com/post"
+    expect(config.api_root).to eq 'https://imm.com/post'
   end
 
-  it "sets debug" do
+  it 'sets debug' do
     config.debug = true
 
     expect(config.debug).to eq true
   end
 
-  it "sets logger" do
+  it 'sets logger' do
     config.logger = Logger.new(STDOUT)
 
     expect(config.logger).to be_a Logger
   end
 
-  it "sets crt file" do
-    config.ca_file = "/etc/ssl/certs/ca-certificates.crt"
+  it 'sets crt file' do
+    config.ca_file = '/etc/ssl/certs/ca-certificates.crt'
 
-    expect(config.ca_file).to eq "/etc/ssl/certs/ca-certificates.crt"
+    expect(config.ca_file).to eq '/etc/ssl/certs/ca-certificates.crt'
   end
 
-  it "sets partner name" do
-    config.partner_name = "walker and co"
+  it 'sets partner name' do
+    config.partner_name = 'walker and co'
 
-    expect(config.partner_name).to eq "walker and co"
+    expect(config.partner_name).to eq 'walker and co'
   end
 
   it "sets partner password" do
