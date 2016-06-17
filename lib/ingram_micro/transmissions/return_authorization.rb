@@ -4,7 +4,7 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
 
   def initialize(options={})
     super
-    @transaction_name = "return-authorization"
+    @transaction_name = 'return-authorization'
     @customer = options[:customer]
     @shipment_information = options[:shipment_information]
     @credit_card_information = options[:credit_card_information]
@@ -15,7 +15,7 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
 
   def order_builder
     @builder ||= Nokogiri::XML::Builder.new do |builder|
-      builder.send("message") do
+      builder.send('message') do
         add_message_header(builder)
         add_return_authorization_submission(builder)
       end
@@ -24,8 +24,9 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
 
   def add_message_header(builder)
     message_header = IngramMicro::MessageHeaderPW.new({
+      partner_name: IngramMicro.configuration.partner_name,
       transaction_name: transaction_name})
-    builder.send("message-header") do
+    builder.send('message-header') do
       message_header.build(builder)
     end
   end
@@ -40,9 +41,8 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
       purchase_order_information: purchase_order_information
     }
     ras = IngramMicro::ReturnAuthorizationSubmission.new(ra_options)
-    builder.send("return-authorization-submission") do
+    builder.send('return-authorization-submission') do
       ras.build(builder)
     end
   end
-
 end

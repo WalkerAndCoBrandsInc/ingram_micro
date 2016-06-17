@@ -17,7 +17,7 @@ class IngramMicro::Transmission
     @errors = []
   end
 
-  def valid?
+  def schema_valid?
     xsd = Nokogiri::XML::Schema(File.read("#{IngramMicro::GEM_DIR}/xsd/" +
       XSD[self.transaction_name]))
     valid = true
@@ -36,7 +36,7 @@ class IngramMicro::Transmission
   end
 
   def submit_request
-    send_request if valid?
+    send_request if schema_valid?
   end
 
   def send_request

@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe IngramMicro::SalesOrder do
 
-  let(:empty_sales_order) { IngramMicro::SalesOrder.new }
+  let(:empty_sales_order) { IngramMicro::SalesOrder.new({parner_name: 'empty'}) }
 
   let(:order_header_options) {{
-    cutomer_order_number: "355658",
-    order_sub_total: "29.95",
+    cutomer_order_number: '355658',
+    order_sub_total: '29.95',
     order_shipment_charge: 6.95,
     order_total_net: 36.90
   }}
@@ -56,15 +56,15 @@ describe IngramMicro::SalesOrder do
     end
   end
 
-  describe '#valid?' do
+  describe '#schema_valid?' do
     context 'with no data passed into SalesOrder object' do
       it 'checks xml output against the SalesOrder schema' do
-        expect(empty_sales_order.valid?).to be true
+        expect(empty_sales_order.schema_valid?).to be true
       end
     end
     context 'with data passed in' do
       it 'validates output xml using SalesOrder schema' do
-        expect(populated_sales_order.valid?).to be true
+        expect(populated_sales_order.schema_valid?).to be true
       end
     end
   end
