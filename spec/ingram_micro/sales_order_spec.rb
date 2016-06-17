@@ -18,6 +18,9 @@ describe IngramMicro::SalesOrder do
   let(:line_item) { FactoryGirl.create(:sales_order_line_item) }
   let(:detail) { IngramMicro::Detail.new(line_items: [line_item])}
   let(:sales_order_options) {{
+    carrier_name: 'a carrier name',
+    business_name: 'Nguyen & Sedano Inc',
+    customer_id: 'customer id 42',
     customer: customer,
     credit_card_information: credit_card_information,
     order_header: order_header,
@@ -25,56 +28,65 @@ describe IngramMicro::SalesOrder do
     detail: detail
     }}
 
-  let(:sales_order_with_info) { IngramMicro::SalesOrder.new(sales_order_options) }
+  let(:populated_sales_order) { IngramMicro::SalesOrder.new(sales_order_options) }
 
-  describe "#initialize" do
-    context "with no data passed in" do
-      it "should still create a valid SalesOrder object" do
+  describe '#initialize' do
+    context 'with no data passed in' do
+      it 'should still create a valid SalesOrder object' do
         expect(empty_sales_order).to be_truthy
       end
     end
-    context "with data passed in" do
-      it "should create a valid SalesOrder object with the data passed in" do
-        expect(sales_order_with_info).to be_truthy
+    context 'with data passed in' do
+      it 'should create a valid SalesOrder object with the data passed in' do
+        expect(populated_sales_order).to be_truthy
       end
     end
   end
 
-  describe "#build" do
-    context "with no data passed into SalesOrder object" do
-      it "should create an xml form" do
+  describe '#build' do
+    context 'with no data passed into SalesOrder object' do
+      it 'should create an xml form' do
         expect(empty_sales_order.order_builder).to be_truthy
       end
     end
-    context "with data passed in" do
-      it "should create an xml form" do
-        expect(sales_order_with_info.order_builder).to be_truthy
+    context 'with data passed in' do
+      it 'should create an xml form' do
+        expect(populated_sales_order.order_builder).to be_truthy
       end
     end
   end
 
-  describe "#valid?" do
-    context "with no data passed into SalesOrder object" do
-      it "checks xml output against the SalesOrder schema" do
+  describe '#valid?' do
+    context 'with no data passed into SalesOrder object' do
+      it 'checks xml output against the SalesOrder schema' do
         expect(empty_sales_order.valid?).to be true
       end
     end
-    context "with data passed in" do
-      it "validates output xml using SalesOrder schema" do
-        expect(sales_order_with_info.valid?).to be true
+    context 'with data passed in' do
+      it 'validates output xml using SalesOrder schema' do
+        expect(populated_sales_order.valid?).to be true
       end
     end
   end
 
-  describe "#submit_request" do
-    context "with no data passed into SalesOrder object" do
-      it "valides and submits xml via HTTP POST request" do
-        expect(empty_sales_order.submit_request).to be_truthy
+  describe 'order_builder' do
+    context 'empty sales order' do
+      it 'generates xml' do
+        expected_xml = File.read(IngramMicro::GEM_DIR + 'spec/output_xmls/empty_sales_order.xml')
+        expect(empty_sales_order.order_builder.to_xml).to eq expected_xml
+
+        hash_from_xml = Hash.from_xml(empty_sales_order.order_builder.to_xml)
+        expect(hash_from_xml['message']['message_header']['transaction_name']).to eq 'sales-order-submission'
       end
     end
-    context "with data passed in" do
-      it "validates and submits xml via HTTP POST request" do
-        expect(sales_order_with_info.submit_request).to be_truthy
+
+    context 'populated sales order' do
+      it 'generates xml' do
+        expected_xml = File.read(IngramMicro::GEM_DIR + 'spec/output_xmls/populated_sales_order.xml')
+        expect(populated_sales_order.order_builder.to_xml).to eq expected_xml
+
+        hash_from_xml = Hash.from_xml(populated_sales_order.order_builder.to_xml)
+        expect(hash_from_xml['message']['message_header']['transaction_name']).to eq 'sales-order-submission'
       end
     end
   end

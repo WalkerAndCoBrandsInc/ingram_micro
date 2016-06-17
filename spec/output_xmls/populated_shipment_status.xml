@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<message>
+  <message-header>
+    <message-id>0</message-id>
+    <transaction-name>shipment-status</transaction-name>
+    <partner-name/>
+    <source-url/>
+    <create-timestamp/>
+    <response-request>1</response-request>
+  </message-header>
+  <shipment-status>
+    <header>
+      <customer-information>
+        <customer-id>1</customer-id>
+        <business-name>Nguyen &amp; Sedano Inc.</business-name>
+      </customer-information>
+    </header>
+    <detail>
+      <line-item>
+        <line-no>WC0001</line-no>
+        <transaction-document-number>some number</transaction-document-number>
+        <bill-of-lading>some bill</bill-of-lading>
+        <customer-order-number>customer number</customer-order-number>
+        <brightpoint-order-number>brightpoint order number</brightpoint-order-number>
+        <status-code>status_code</status-code>
+        <status-date>status_date</status-date>
+        <reason-code>reason_code</reason-code>
+        <signed-by>signed_by</signed-by>
+        <status-timestamp>status_timestamp</status-timestamp>
+        <comments>some comments</comments>
+      </line-item>
+    </detail>
+  </shipment-status>
+  <transactionInfo>
+    <eventID/>
+  </transactionInfo>
+</message>
