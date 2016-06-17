@@ -4,7 +4,6 @@ describe IngramMicro::CheckShipmentStatus do
 
   let(:empty_shipment_status) { IngramMicro::CheckShipmentStatus.new }
   let(:options) {{
-    # shipment_status: shipment_status_2,
     business_name: 'Nguyen & Sedano Inc.',
     customer_id: '1',
     line_items: [FactoryGirl.build(:shipment_status_line_item)]

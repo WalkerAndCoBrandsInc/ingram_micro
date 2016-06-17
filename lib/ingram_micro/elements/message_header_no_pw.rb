@@ -13,4 +13,9 @@ class IngramMicro::MessageHeaderNoPW < IngramMicro::BaseElement
     DEFAULTS
   end
 
+  def valid?
+    raise IngramMicro::InvalidType.new('message_id must be a number') unless integer?(@element[:message_id])
+    raise IngramMicro::MissingField.new('partner_name must be present') unless @element[:partner_name]
+    true
+  end
 end

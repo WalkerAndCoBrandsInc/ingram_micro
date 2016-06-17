@@ -3,7 +3,7 @@
   <message-header>
     <message-id>0</message-id>
     <transaction-name>sales-order-submission</transaction-name>
-    <partner-name/>
+    <partner-name>Your company</partner-name>
     <partner-password/>
     <source-url/>
     <create-timestamp/>

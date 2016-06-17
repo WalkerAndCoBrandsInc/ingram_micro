@@ -3,7 +3,7 @@
   <message-header>
     <message-id>0</message-id>
     <transaction-name>shipment-status</transaction-name>
-    <partner-name/>
+    <partner-name>Your company</partner-name>
     <source-url/>
     <create-timestamp/>
     <response-request>1</response-request>

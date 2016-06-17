@@ -12,7 +12,7 @@ class IngramMicro::BaseElement
 
   def build(builder)
     self.defaults.keys.each do |field|
-      element_name = field.to_s.gsub("_", "-")
+      element_name = field.to_s.gsub('_', '-')
       element_value = @element[field]
       builder.send(element_name, element_value)
     end
@@ -20,9 +20,12 @@ class IngramMicro::BaseElement
 
   def parse(message_hash)
     defaults.each do |field|
-      # element_name = field.gsub("-","_").to_sym
-      element_name = field.to_s.gsub("_", "-")
+      element_name = field.to_s.gsub('_', '-')
       @element[field] = message_hash[element_name]
     end
+  end
+
+  def integer?(string)
+    Integer(string) != nil rescue false
   end
 end

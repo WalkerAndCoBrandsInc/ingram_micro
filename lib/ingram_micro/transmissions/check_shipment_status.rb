@@ -22,6 +22,7 @@ class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
 
   def add_message_header(builder)
     message_header = IngramMicro::MessageHeaderNoPW.new({
+      partner_name: IngramMicro.configuration.partner_name,
       transaction_name: transaction_name})
     builder.send('message-header') do
       message_header.build(builder)

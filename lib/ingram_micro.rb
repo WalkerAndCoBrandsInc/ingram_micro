@@ -25,7 +25,8 @@ require "ingram_micro/elements/sales_order_submission"
 require "ingram_micro/elements/return_authorization_submission"
 require "ingram_micro/elements/purchase_order_information"
 require "ingram_micro/elements/shipment_status"
-
+require "ingram_micro/errors/invalid_type"
+require "ingram_micro/errors/missing_field"
 
 module IngramMicro
   GEM_DIR = (File.dirname(__FILE__) + '/../').freeze
@@ -37,5 +38,4 @@ module IngramMicro
   def self.configure
     yield configuration
   end
-
 end
