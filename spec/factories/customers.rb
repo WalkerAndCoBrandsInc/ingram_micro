@@ -12,7 +12,7 @@ FactoryGirl.define do
       phone "213-371-9147"
       email "the_dude@yahoo.com"
     end
-    after(:create) do |customer, evaluator|
+    after(:build) do |customer, evaluator|
       customer.element[:customer_first_name] = evaluator.first_name
       customer.element[:customer_last_name] = evaluator.last_name
       customer.element[:customer_address1] = evaluator.address1

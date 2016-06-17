@@ -39,13 +39,13 @@ class IngramMicro::ShipmentInformation < IngramMicro::BaseElement
   end
 
   def valid_scac?
-    scac = ship_via
+    scac = element[:ship_via]
     !!SCAC[scac]
   end
 
   def shipping_method_name
     if valid_scac?
-      SCAC[ship_via]
+      SCAC[element[:ship_via]]
     else
       'Invalid shipping code'
     end

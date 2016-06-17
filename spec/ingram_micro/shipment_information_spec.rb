@@ -36,9 +36,9 @@ describe IngramMicro::ShipmentInformation do
       end
 
       it 'has attributes set to default values' do
-        expect(empty_shipment_info.ship_first_name).to be nil
-        expect(empty_shipment_info.ship_city).to be nil
-        expect(empty_shipment_info.ship_via).to be nil
+        expect(empty_shipment_info.element[:ship_first_name]).to be nil
+        expect(empty_shipment_info.element[:ship_city]).to be nil
+        expect(empty_shipment_info.element[:ship_via]).to be nil
       end
     end
 
@@ -48,9 +48,9 @@ describe IngramMicro::ShipmentInformation do
       end
 
       it 'has attributes set to specified values' do
-        expect(shipment_info_with_data.ship_first_name).to eq('Jeffrey')
-        expect(shipment_info_with_data.ship_city).to eq('Venice')
-        expect(shipment_info_with_data.ship_via).to eq('FX2D')
+        expect(shipment_info_with_data.element[:ship_first_name]).to eq('Jeffrey')
+        expect(shipment_info_with_data.element[:ship_city]).to eq('Venice')
+        expect(shipment_info_with_data.element[:ship_via]).to eq('FX2D')
       end
     end
   end
