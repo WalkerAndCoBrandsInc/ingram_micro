@@ -11,7 +11,6 @@ class IngramMicro::ShipmentInformation < IngramMicro::BaseElement
     "FXL2" => "FedEx Freight 2-day (Air)", #ltl freight
     "FXL3" => "FedEx Freight 3-day (Air)", #ltl freight
     "FXLE" => "FedEx Freight Ground", #ltl freight
-    "GGRNDP" => "Ground shipping" #ltl freight
    }
 
   DEFAULTS = {
