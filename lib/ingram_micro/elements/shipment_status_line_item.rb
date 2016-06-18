@@ -25,5 +25,4 @@ class IngramMicro::ShipmentStatusLineItem < IngramMicro::BaseElement
   def defaults
     DEFAULTS
   end
-
 end

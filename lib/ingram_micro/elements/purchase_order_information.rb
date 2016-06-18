@@ -12,5 +12,4 @@ class IngramMicro::PurchaseOrderInformation < IngramMicro::BaseElement
   def defaults
     DEFAULTS
   end
-
 end

@@ -23,5 +23,4 @@ class IngramMicro::CreditCardInformation < IngramMicro::BaseElement
   def defaults
     DEFAULTS
   end
-  
 end

@@ -26,6 +26,4 @@ class IngramMicro::ReturnOrderHeader < IngramMicro::BaseElement
       @element[:customer_order_date] = DateTime.now.strftime("%Y%m%d")
     end
   end
-
-
 end
