@@ -36,5 +36,4 @@ class IngramMicro::ReturnAuthorizationLineItem < IngramMicro::BaseElement
   def defaults
     DEFAULTS
   end
-
 end

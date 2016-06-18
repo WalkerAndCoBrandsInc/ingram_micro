@@ -29,6 +29,10 @@ class IngramMicro::Transmission
     valid
   end
 
+  def order_builder
+    raise Exception('order_builder needs to be implemented in subclass')
+  end
+  
   def add_transaction_info(builder)
     builder.send('transactionInfo') do
       builder.send('eventID')

@@ -34,5 +34,4 @@ class IngramMicro::SalesOrderLineItem < IngramMicro::BaseElement
   def defaults
     DEFAULTS
   end
-
 end

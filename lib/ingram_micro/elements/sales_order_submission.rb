@@ -12,7 +12,6 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
     carrier_name: nil
   }
 
-
   def defaults
     DEFAULTS
   end
@@ -28,24 +27,24 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
   end
 
   def build(builder)
-    builder.send("header") do
-      builder.send "customer-id", @element[:customer_id]
-      builder.send "business-name", @element[:business_name]
-      builder.send "carrier-name", @element[:carrier_name]
-      builder.send("customer-information") do
+    builder.send('header') do
+      builder.send 'customer-id', @element[:customer_id]
+      builder.send 'business-name', @element[:business_name]
+      builder.send 'carrier-name', @element[:carrier_name]
+      builder.send('customer-information') do
         @element[:customer].build(builder)
       end
-      builder.send("shipment-information") do
+      builder.send('shipment-information') do
         @element[:shipment_information].build(builder)
       end
-      builder.send("credit-card-information") do
+      builder.send('credit-card-information') do
         @element[:credit_card_information].build(builder)
       end
-      builder.send("order-header") do
+      builder.send('order-header') do
         @element[:order_header].build(builder)
       end
     end
-    builder.send("detail") do
+    builder.send('detail') do
       @element[:detail].build(builder)
     end
   end
@@ -56,5 +55,4 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
       @element[:line_items] << line_item
     end
   end
-
 end
