@@ -1,6 +1,6 @@
 class IngramMicro::ShipmentInformation < IngramMicro::BaseElement
 
-  SCAC = {
+  SHIPPING_METHODS = {
     'FX01' => 'FedEx Standard Overnight', #parcel
     'FXAM' => 'FedEx Priority Overnight', #parcel
     'FX2D' => 'FedEx Second Day', #parcel
@@ -38,14 +38,14 @@ class IngramMicro::ShipmentInformation < IngramMicro::BaseElement
     DEFAULTS
   end
 
-  def valid_scac?
-    scac = element[:ship_via]
-    !!SCAC[scac]
+  def valid_shipping_methods?
+    shipping_method = element[:ship_via]
+    !!SHIPPING_METHODS[shipping_method]
   end
 
   def shipping_method_name
-    if valid_scac?
-      SCAC[element[:ship_via]]
+    if valid_shipping_methods?
+      SHIPPING_METHODS[element[:ship_via]]
     else
       'Invalid shipping code'
     end

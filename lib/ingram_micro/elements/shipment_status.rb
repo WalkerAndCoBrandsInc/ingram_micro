@@ -36,4 +36,9 @@ class IngramMicro::ShipmentStatus < IngramMicro::BaseElement
       @element[:line_items] << ss_line_item
     end
   end
+
+  def valid?
+      raise IngramMicro::InvalidType.new('customer_id must be a number') unless integer?(@element[:customer_id])
+    true
+  end
 end
