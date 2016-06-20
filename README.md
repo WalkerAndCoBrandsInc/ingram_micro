@@ -29,7 +29,10 @@ Modify the spec_helper.rb and provide a api_root. You can create one on requestb
 
 ## Usage
 
-You could also configure `lib/ingram_micro/configuration.rb` directly
+The ```example.rb``` script demonstrates how to use this gem. When 
+configured, it creates a sales order with Ingram Micro.
+
+To see configuration options see `lib/ingram_micro/configuration.rb` 
 
 ```
   IngramMicro.configure do |config|
