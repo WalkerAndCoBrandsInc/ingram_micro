@@ -29,6 +29,7 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
     builder.send('message-header') do
       message_header.build(builder)
     end
+    message_header.valid?
   end
 
   def add_return_authorization_submission(builder)
@@ -44,5 +45,6 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
     builder.send('return-authorization-submission') do
       ras.build(builder)
     end
+    ras.valid?
   end
 end

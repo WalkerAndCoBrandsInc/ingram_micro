@@ -20,7 +20,7 @@ describe IngramMicro::SalesOrder do
   let(:sales_order_options) {{
     carrier_name: 'a carrier name',
     business_name: 'Nguyen & Sedano Inc',
-    customer_id: 'customer id 42',
+    customer_id: '42',
     customer: customer,
     credit_card_information: credit_card_information,
     order_header: order_header,
@@ -45,8 +45,8 @@ describe IngramMicro::SalesOrder do
 
   describe '#build' do
     context 'with no data passed into SalesOrder object' do
-      it 'should create an xml form' do
-        expect(empty_sales_order.order_builder).to be_truthy
+      it 'raises an error' do
+        expect{empty_sales_order.schema_valid?}.to raise_error(Exception)
       end
     end
     context 'with data passed in' do
@@ -58,8 +58,8 @@ describe IngramMicro::SalesOrder do
 
   describe '#schema_valid?' do
     context 'with no data passed into SalesOrder object' do
-      it 'checks xml output against the SalesOrder schema' do
-        expect(empty_sales_order.schema_valid?).to be true
+      it 'raises an error' do
+        expect{empty_sales_order.schema_valid?}.to raise_error(Exception)
       end
     end
     context 'with data passed in' do
@@ -71,12 +71,8 @@ describe IngramMicro::SalesOrder do
 
   describe 'order_builder' do
     context 'empty sales order' do
-      it 'generates xml' do
-        expected_xml = File.read(IngramMicro::GEM_DIR + 'spec/output_xmls/empty_sales_order.xml')
-        expect(empty_sales_order.order_builder.to_xml).to eq expected_xml
-
-        hash_from_xml = Hash.from_xml(empty_sales_order.order_builder.to_xml)
-        expect(hash_from_xml['message']['message_header']['transaction_name']).to eq 'sales-order-submission'
+      it 'raises an error' do
+        expect{empty_sales_order.schema_valid?}.to raise_error(Exception)
       end
     end
 

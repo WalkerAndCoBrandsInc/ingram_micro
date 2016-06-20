@@ -11,7 +11,7 @@
   </message-header>
   <sales-order-submission>
     <header>
-      <customer-id>customer id 42</customer-id>
+      <customer-id>42</customer-id>
       <business-name>Nguyen &amp; Sedano Inc</business-name>
       <carrier-name>a carrier name</carrier-name>
       <customer-information>
