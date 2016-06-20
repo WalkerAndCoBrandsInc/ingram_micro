@@ -55,4 +55,9 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
       @element[:line_items] << line_item
     end
   end
+
+  def valid?
+    raise IngramMicro::InvalidType.new('customer_id must be a number') unless integer?(@element[:customer_id])
+    true
+  end
 end
