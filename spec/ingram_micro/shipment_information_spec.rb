@@ -27,7 +27,7 @@ describe IngramMicro::ShipmentInformation do
 
   let(:shipment_info_with_data) { IngramMicro::ShipmentInformation.new(shipment_options)}
 
-  let(:ship_info_bad_scac) { IngramMicro::ShipmentInformation.new({ship_via: 'ABCD'})}
+  let(:ship_info_bad_shipping_method) { IngramMicro::ShipmentInformation.new({ship_via: 'ABCD'})}
 
   describe '#initialize' do
     context 'without values passed in' do
@@ -55,37 +55,37 @@ describe IngramMicro::ShipmentInformation do
     end
   end
 
-  describe '#valid_scac?' do
+  describe '#valid_shipping_methods?' do
     context 'without values passed in' do
-      it 'returns false for a nil SCAC' do
-        expect(empty_shipment_info.valid_scac?).to be false
+      it 'returns false for a nil SHIPPING_METHODS' do
+        expect(empty_shipment_info.valid_shipping_methods?).to be false
       end
     end
     context 'with a valid shipping code entered' do
       it 'returns true' do
-        expect(shipment_info_with_data.valid_scac?).to be true
+        expect(shipment_info_with_data.valid_shipping_methods?).to be true
       end
     end
     context 'with an invalid shipping code entered' do
       it 'returns false' do
-        expect(ship_info_bad_scac.valid_scac?).to be false
+        expect(ship_info_bad_shipping_method.valid_shipping_methods?).to be false
       end
     end
   end
 
   describe '#shipping_method_name' do
-    context 'with no scac value passed in' do
-      it 'returns invalid scac message' do
+    context 'with no shipping_method value passed in' do
+      it 'returns invalid shipping_method message' do
         expect(empty_shipment_info.shipping_method_name).to eq('Invalid shipping code')
       end
     end
-    context 'with invalid scac value passed in' do
-      it 'returns invalid scac message' do
-        expect(ship_info_bad_scac.shipping_method_name).to eq('Invalid shipping code')
+    context 'with invalid shipping_method value passed in' do
+      it 'returns invalid shipping_method message' do
+        expect(ship_info_bad_shipping_method.shipping_method_name).to eq('Invalid shipping code')
       end
     end
 
-    context 'with valid scac value passed in' do
+    context 'with valid shipping_method value passed in' do
       it 'should return the shipping method associated with the code' do
         expect(shipment_info_with_data.shipping_method_name).to eq('FedEx Second Day')
       end
