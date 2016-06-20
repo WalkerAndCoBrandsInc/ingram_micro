@@ -1,16 +1,19 @@
 class IngramMicro::ShipmentInformation < IngramMicro::BaseElement
 
   SHIPPING_METHODS = {
-    'FX01' => 'FedEx Standard Overnight', #parcel
-    'FXAM' => 'FedEx Priority Overnight', #parcel
-    'FX2D' => 'FedEx Second Day', #parcel
-    'FXSV' => 'FedEx Express saver (3 day)', #parcel
-    'USPP' => 'Postal Priority', #parcel
-    'GGRNDP' => 'Ground shipping', #parcel
-    'FXL1' => 'FedEx Freight Overnight (Air)', #ltl freight
-    'FXL2' => 'FedEx Freight 2-day (Air)', #ltl freight
-    'FXL3' => 'FedEx Freight 3-day (Air)', #ltl freight
-    'FXLE' => 'FedEx Freight Ground', #ltl freight
+    'FX01' => 'FedEx Standard Overnight',
+    'FXAM' => 'FedEx Priority Overnight',
+    'FX2D' => 'FedEx Second Day',
+    'FXSP' => 'FedEx Smart Post',
+    'FXIE' => 'FedEx International Economy',
+    'FXIP' => 'FedEx International Priority',
+    'FXSV' => 'FedEx Express saver (3 day)',
+    'USPP' => 'Postal Priority',
+    'GGRNDP' => 'Ground shipping',
+    'FXL1' => 'FedEx Freight Overnight (Air)',
+    'FXL2' => 'FedEx Freight 2-day (Air)',
+    'FXL3' => 'FedEx Freight 3-day (Air)',
+    'FXLE' => 'FedEx Freight Ground',
    }
 
   DEFAULTS = {
