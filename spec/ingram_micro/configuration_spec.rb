@@ -16,6 +16,12 @@ describe IngramMicro::Configuration do
     expect(config.debug).to eq true
   end
 
+  it 'sets body logger' do
+    config.log_request_body = true
+
+    expect(config.log_request_body).to eq true
+  end
+
   it 'sets logger' do
     config.logger = Logger.new(STDOUT)
 
@@ -40,6 +46,12 @@ describe IngramMicro::Configuration do
     expect(config.partner_password).to eq "password"
   end
 
+  it "sets customer id" do
+    config.customer_id = "123"
+
+    expect(config.customer_id).to eq "123"
+  end
+
   it "sets source url" do
     config.source_url = "https://www.getbevel.com"
 
@@ -53,6 +65,7 @@ describe IngramMicro::Configuration do
     let(:partner_name) { 'walker and co' }
     let(:partner_password) { 'password' }
     let(:source_url) { "https://www.getbevel.com" }
+    let(:customer_id) { "123456" }
     let(:debug) { false }
     let(:logger) { nil }
 
@@ -64,6 +77,7 @@ describe IngramMicro::Configuration do
         config.logger = logger
         config.partner_password = partner_password
         config.partner_name = partner_name
+        config.customer_id = customer_id
         config.source_url = source_url
       end
     end

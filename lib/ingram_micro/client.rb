@@ -3,17 +3,13 @@ class IngramMicro::Client
 
   attr_reader :uri, :conn
 
-  def initialize(url=default_url)
+  def initialize(url=api_root)
     @uri = URI.parse(url)
     @conn = Faraday.new(:url => uri) do |faraday|
-      faraday.request  :url_encoded             # form-encode POST params
-      faraday.response :logger                  # log requests to STDOUT
-      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+      faraday.request  :url_encoded
+      faraday.response :logger, logger, bodies: log_request_body
+      faraday.adapter  Faraday.default_adapter
     end
-  end
-
-  def default_url
-    IngramMicro.configuration.api_root
   end
 
   def get
@@ -26,5 +22,21 @@ class IngramMicro::Client
       req.headers['Content-Type'] = 'application/xml'
       req.body = data
     end
+  end
+
+  def api_root
+    configuration.api_root
+  end
+
+  def logger
+    configuration.logger
+  end
+
+  def log_request_body
+    configuration.log_request_body
+  end
+
+  def configuration
+    IngramMicro.configuration
   end
 end

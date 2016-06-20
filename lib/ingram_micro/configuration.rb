@@ -3,13 +3,15 @@ require 'yaml'
 module IngramMicro
   class Configuration
     attr_accessor :api_root, :debug, :logger, :ca_file,
-      :partner_name, :partner_password, :source_url
+      :partner_name, :partner_password, :source_url,
+      :log_request_body, :customer_id
 
     def valid?
       present?(partner_name) &&
       present?(partner_password) &&
       present?(source_url) &&
       present?(api_root) &&
+      present?(customer_id) &&
         present?(ca_file) &&
         logger_valid?
     end
