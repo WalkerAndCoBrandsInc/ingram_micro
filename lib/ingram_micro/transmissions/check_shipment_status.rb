@@ -27,6 +27,7 @@ class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
     builder.send('message-header') do
       message_header.build(builder)
     end
+    message_header.valid?
   end
 
   def add_shipment_status(builder)
@@ -39,5 +40,6 @@ class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
     builder.send('shipment-status') do
       ss.build(builder)
     end
+    ss.valid?
   end
 end

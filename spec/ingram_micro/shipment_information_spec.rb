@@ -73,6 +73,22 @@ describe IngramMicro::ShipmentInformation do
     end
   end
 
+  describe '#add_ship_address2' do
+    it 'adds a default shipping_address2' do
+      shipment_info_with_data.add_ship_address2
+      expect(shipment_info_with_data.element[:ship_address2]).to eq ' '
+    end
+
+    it 'adds a default shipping_address2' do
+      shipment_options[:ship_address2] = 'c/o the devil'
+      shipment_info_with_data = IngramMicro::ShipmentInformation.new(shipment_options)
+
+      shipment_info_with_data.add_ship_address2
+
+      expect(shipment_info_with_data.element[:ship_address2]).to eq 'c/o the devil'
+    end
+  end
+
   describe '#shipping_method_name' do
     context 'with no shipping_method value passed in' do
       it 'returns invalid shipping_method message' do

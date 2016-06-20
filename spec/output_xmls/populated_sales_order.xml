@@ -11,7 +11,7 @@
   </message-header>
   <sales-order-submission>
     <header>
-      <customer-id>customer id 42</customer-id>
+      <customer-id>42</customer-id>
       <business-name>Nguyen &amp; Sedano Inc</business-name>
       <carrier-name>a carrier name</carrier-name>
       <customer-information>
@@ -35,7 +35,7 @@
         <ship-last-name>Lebowsky</ship-last-name>
         <ship-middle-initial>D</ship-middle-initial>
         <ship-address1>606 Venezia Ave Apt B</ship-address1>
-        <ship-address2/>
+        <ship-address2> </ship-address2>
         <ship-address3/>
         <ship-city>Venice</ship-city>
         <ship-state>CA</ship-state>

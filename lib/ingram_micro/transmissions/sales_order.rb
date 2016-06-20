@@ -50,5 +50,6 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
     builder.send('sales-order-submission') do
       sos.build(builder)
     end
+    sos.valid?
   end
 end

@@ -30,14 +30,14 @@ describe IngramMicro::ReturnAuthorization do
 
   describe '#build' do
     context 'without data passed in' do
-      it 'creates xml that passes the schema' do
-        expect(ra_no_info.schema_valid?).to be true
+      it 'raises an error' do
+        expect{ra_no_info.schema_valid?}.to raise_error(Exception)
       end
     end
 
     context 'with data entered' do
-      it 'creates xml that passes the schema' do
-        expect(return_auth_with_info.schema_valid?).to be true
+      it 'raises an error' do
+        expect{return_auth_with_info.schema_valid?}.to raise_error(Exception)
       end
     end
   end
