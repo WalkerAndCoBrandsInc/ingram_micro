@@ -8,6 +8,7 @@ class IngramMicro::BaseElement
       value = (options[field] ? options[field] : default)
       @element[field] = value
     end
+    @element[:customer_id] ||= IngramMicro.configuration.customer_id
   end
 
   def build(builder)

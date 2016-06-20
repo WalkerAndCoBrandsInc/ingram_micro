@@ -10,6 +10,7 @@ RSpec.configure do |rconfig|
       config.ca_file = ''
       config.partner_name = 'Your company'
       config.partner_password = ''
+      config.customer_id = ''
       config.source_url = ''
       config.debug = true
       # config.logger = Logger

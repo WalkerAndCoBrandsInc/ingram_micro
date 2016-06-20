@@ -20,8 +20,6 @@ describe IngramMicro::Client do
     end
   end
 
-  let(:sales_order) { IngramMicro::SalesOrder.new }
-
   describe "Client#post" do
     context "the client hits the right host" do
 
