@@ -13,8 +13,6 @@ RSpec.configure do |rconfig|
       config.customer_id = ''
       config.source_url = ''
       config.debug = true
-      # config.logger = Logger
-      # config.content_type = 'content/xml'
     end
   end
 end

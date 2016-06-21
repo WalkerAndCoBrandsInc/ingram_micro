@@ -4,7 +4,7 @@ module IngramMicro
   class Configuration
     attr_accessor :api_root, :debug, :logger, :ca_file,
       :partner_name, :partner_password, :source_url,
-      :log_request_body, :customer_id
+      :log_request_body, :customer_id, :proxy
 
     def valid?
       present?(partner_name) &&

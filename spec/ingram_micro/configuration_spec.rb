@@ -58,6 +58,12 @@ describe IngramMicro::Configuration do
     expect(config.source_url).to eq "https://www.getbevel.com"
   end
 
+  it "sets proxy" do
+    config.proxy = "localhost:8888"
+
+    expect(config.proxy).to eq("localhost:8888")
+  end
+
   describe "#valid?" do
     let(:config) { IngramMicro.configuration }
     let(:api_root) { "https://imm.com" }

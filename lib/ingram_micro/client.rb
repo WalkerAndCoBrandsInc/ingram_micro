@@ -5,10 +5,11 @@ class IngramMicro::Client
 
   def initialize(url=api_root)
     @uri = URI.parse(url)
-    @conn = Faraday.new(:url => uri) do |faraday|
+    @conn = Faraday.new(url: uri) do |faraday|
       faraday.request  :url_encoded
       faraday.response :logger, logger, bodies: log_request_body
       faraday.adapter  Faraday.default_adapter
+      faraday.proxy proxy if proxy
     end
   end
 
@@ -24,6 +25,8 @@ class IngramMicro::Client
     end
   end
 
+  private
+
   def api_root
     configuration.api_root
   end
@@ -34,6 +37,10 @@ class IngramMicro::Client
 
   def log_request_body
     configuration.log_request_body
+  end
+
+  def proxy
+    configuration.proxy
   end
 
   def configuration
