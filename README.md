@@ -1,5 +1,8 @@
 # IngramMicro
-[![Build Status](https://travis-ci.org/WalkerAndCoBrandsInc/ingram_micro.svg?branch=master)](https://travis-ci.org/WalkerAndCoBrandsInc/ingram_micro)
+[![Build Status](https://travis-ci.org/WalkerAndCoBrandsInc/ingram_micro.svg?branch=develop)](https://travis-ci.org/WalkerAndCoBrandsInc/ingram_micro) Development
+
+[![Build Status](https://travis-ci.org/WalkerAndCoBrandsInc/ingram_micro.svg?branch=master)](https://travis-ci.org/WalkerAndCoBrandsInc/ingram_micro) Latest Release
+
 
 [IngramMicro](http://www.ingrammicro.com/IMD_WASWeb/jsp/login/corporate.jsp) HTTPS XML API wrapper.
 
@@ -66,7 +69,7 @@ calibrated this gem to work properly with the API.
 ## For sites hosted in the cloud :cloud:
 
 You may not be able to get a range of IPs for Ingram Micro to whitelist. 
-To get around this, you can route requests through tinyproxy. 
+To get around this, you can route requests through [tinyproxy](https://github.com/tinyproxy/tinyproxy). 
 
 Make sure to allow the ports that IngramMicro gives you to connect to e.g.
 

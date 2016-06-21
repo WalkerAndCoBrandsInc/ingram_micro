@@ -62,6 +62,7 @@ describe IngramMicro::SalesOrder do
         expect{empty_sales_order.schema_valid?}.to raise_error(Exception)
       end
     end
+
     context 'with data passed in' do
       it 'validates output xml using SalesOrder schema' do
         expect(populated_sales_order.schema_valid?).to be true
