@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<message>
+  <message-header>
+    <message-id>0</message-id>
+    <transaction-name>sales-order-submission</transaction-name>
+    <partner-name>Your company</partner-name>
+    <partner-password/>
+    <source-url/>
+    <create-timestamp/>
+    <response-request>1</response-request>
+  </message-header>
+  <sales-order-submission>
+    <header>
+      <customer-id>42</customer-id>
+      <business-name>Nguyen &amp; Sedano Inc</business-name>
+      <carrier-name>a carrier name</carrier-name>
+      <customer-information>
+        <customer-first-name>Jeffrey</customer-first-name>
+        <customer-last-name>Lebowsky</customer-last-name>
+        <customer-middle-initial/>
+        <customer-address1>606 Venezia Ave Apt B</customer-address1>
+        <customer-address2/>
+        <customer-address3/>
+        <customer-city>Venice</customer-city>
+        <customer-state>CA</customer-state>
+        <customer-post-code>90291</customer-post-code>
+        <customer-country-code/>
+        <customer-phone1/>
+        <customer-phone2/>
+        <customer-fax/>
+        <customer-email>the_dude@yahoo.com</customer-email>
+      </customer-information>
+      <shipment-information>
+        <ship-first-name>Jeffrey</ship-first-name>
+        <ship-last-name>Lebowsky</ship-last-name>
+        <ship-middle-initial>D</ship-middle-initial>
+        <ship-address1>606 Venezia Ave Apt B</ship-address1>
+        <ship-address2> </ship-address2>
+        <ship-address3/>
+        <ship-city>Venice</ship-city>
+        <ship-state>CA</ship-state>
+        <ship-post-code>90291</ship-post-code>
+        <ship-country-code>USA</ship-country-code>
+        <ship-phone1>213-371-9147</ship-phone1>
+        <ship-phone2/>
+        <ship-fax/>
+        <ship-email>the_dude@yahoo.com</ship-email>
+        <ship-via>FX01</ship-via>
+        <ship-request-date/>
+        <ship-request-from/>
+        <ship-request-warehouse/>
+      </shipment-information>
+      <credit-card-information>
+        <credit-card-number>8617338279172675</credit-card-number>
+        <credit-card-expiration-date>201810</credit-card-expiration-date>
+        <credit-card-identification>671</credit-card-identification>
+        <global-card-classification-code/>
+        <card-holder-name>The Dude</card-holder-name>
+        <card-holder-address1>606 Venezia Ave Apt B</card-holder-address1>
+        <card-holder-address2/>
+        <card-holder-city>Venice</card-holder-city>
+        <card-holder-state>CA</card-holder-state>
+        <card-holder-post-code>90291</card-holder-post-code>
+        <card-holder-country-code>USA</card-holder-country-code>
+        <authorized-amount>36.9</authorized-amount>
+        <billing-sequence-number/>
+        <billing-authorization-response/>
+        <billing-address-match>Y</billing-address-match>
+        <billing-zip-match>Y</billing-zip-match>
+        <avs-hold/>
+        <merchant-name>walker</merchant-name>
+      </credit-card-information>
+      <order-header>
+        <customer-order-number>0</customer-order-number>
+        <customer-order-date/>
+        <order-sub-total>29.95</order-sub-total>
+        <order-discount>0.0</order-discount>
+        <order-tax1>0.0</order-tax1>
+        <order-tax2>0.0</order-tax2>
+        <order-tax3>0.0</order-tax3>
+        <order-shipment-charge>6.95</order-shipment-charge>
+        <order-total-net>36.9</order-total-net>
+        <order-status/>
+        <order-type/>
+        <gift-flag/>
+      </order-header>
+    </header>
+    <detail>
+      <line-item>
+        <line-no>WC0001</line-no>
+        <item-code>SKU123</item-code>
+        <universal-product-code>UPC098</universal-product-code>
+        <product-name>Bevel Starter Kit</product-name>
+        <comments/>
+        <quantity>1.0</quantity>
+        <unit-of-measure>EA</unit-of-measure>
+        <sid/>
+        <esn/>
+        <min/>
+        <mdn/>
+        <irdb/>
+        <imei/>
+        <market-id/>
+        <line-status/>
+        <base-price>89.85</base-price>
+        <line-discount>0.0</line-discount>
+        <line-tax1>0.0</line-tax1>
+        <line-tax2>0.0</line-tax2>
+        <line-tax3>0.0</line-tax3>
+      </line-item>
+    </detail>
+  </sales-order-submission>
+  <transactionInfo>
+    <eventID/>
+  </transactionInfo>
+</message>
