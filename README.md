@@ -87,23 +87,29 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Development with tinyproxy
 
-e.g. on a mac with homebrew
+e.g. on a mac with homebrew (homebrew puts tinyproxy in sbin)
 
-  $ brew install tinyproxy
+    $ brew install tinyproxy
 
-  create a tinyproxy.conf [Example](https://github.com/tinyproxy/tinyproxy/blob/186bbc3efb4b47caac0b5e14465c97918c99e442/etc/tinyproxy.conf.in)
-  set your log file & ConnectPorts
+- create a tinyproxy.conf [Example](https://github.com/tinyproxy/tinyproxy/blob/186bbc3efb4b47caac0b5e14465c97918c99e442/etc/tinyproxy.conf.in)
+- set your LogFile (config file does not understand ~ and needs full path)
+- set ConnectPort for ports IMM uses
 
-  $ tinyproxy -d -c tinyproxy/tinyproxy.conf
-  $ tail -f your/log/file.log
-
-Configuring Ingram Micro
+### Configuring Ingram Micro for a proxy
 
 ```
   IngramMicro.configure do |config|
     [...]
     config.proxy = 'http://localhost:8888'
   end
+```
+
+### Testing the proxy with curl
+
+```
+$ tinyproxy -d -c path/to/tinyproxy.conf
+$ tail -f path/to/file.log
+$ curl -x localhost:8888 https://blog.engineyard.com -v
 ```
 
 You should see logging that the proxy is working!
