@@ -44,11 +44,6 @@ describe IngramMicro::SalesOrder do
   end
 
   describe '#build' do
-    context 'with no data passed into SalesOrder object' do
-      it 'raises an error' do
-        expect{empty_sales_order.schema_valid?}.to raise_error(Exception)
-      end
-    end
     context 'with data passed in' do
       it 'should create an xml form' do
         expect(populated_sales_order.order_builder).to be_truthy
@@ -57,11 +52,6 @@ describe IngramMicro::SalesOrder do
   end
 
   describe '#schema_valid?' do
-    context 'with no data passed into SalesOrder object' do
-      it 'raises an error' do
-        expect{empty_sales_order.schema_valid?}.to raise_error(Exception)
-      end
-    end
     context 'with data passed in' do
       it 'validates output xml using SalesOrder schema' do
         expect(populated_sales_order.schema_valid?).to be true
@@ -70,12 +60,6 @@ describe IngramMicro::SalesOrder do
   end
 
   describe 'order_builder' do
-    context 'empty sales order' do
-      it 'raises an error' do
-        expect{empty_sales_order.schema_valid?}.to raise_error(Exception)
-      end
-    end
-
     context 'populated sales order' do
       it 'generates xml' do
         expected_xml = File.read(IngramMicro::GEM_DIR + 'spec/output_xmls/populated_sales_order.xml')

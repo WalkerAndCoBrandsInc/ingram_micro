@@ -7,14 +7,13 @@ RSpec.configure do |rconfig|
   rconfig.before(:each) do
     IngramMicro.configure do |config|
       config.api_root = 'http://requestb.in/rg1yeirg'
-      config.ca_file = ''
       config.partner_name = 'Your company'
       config.partner_password = ''
-      config.customer_id = ''
-      config.source_url = ''
-      config.debug = true
-      # config.logger = Logger
-      # config.content_type = 'content/xml'
+      config.customer_id = '123'
+      config.debug = false
+      config.proxy = nil
     end
+
+    IngramMicro.configuration.assert_valid
   end
 end
