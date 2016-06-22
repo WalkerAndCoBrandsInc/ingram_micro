@@ -28,12 +28,6 @@ describe IngramMicro::Configuration do
     expect(config.logger).to be_a Logger
   end
 
-  it 'sets crt file' do
-    config.ca_file = '/etc/ssl/certs/ca-certificates.crt'
-
-    expect(config.ca_file).to eq '/etc/ssl/certs/ca-certificates.crt'
-  end
-
   it 'sets partner name' do
     config.partner_name = 'walker and co'
 
@@ -52,105 +46,73 @@ describe IngramMicro::Configuration do
     expect(config.customer_id).to eq "123"
   end
 
-  it "sets source url" do
-    config.source_url = "https://www.getbevel.com"
-
-    expect(config.source_url).to eq "https://www.getbevel.com"
-  end
-
   it "sets proxy" do
     config.proxy = "localhost:8888"
 
     expect(config.proxy).to eq("localhost:8888")
   end
 
-  describe "#valid?" do
-    let(:config) { IngramMicro.configuration }
-    let(:api_root) { "https://imm.com" }
-    let(:ca_file) { "/foo/ca-certificates.crt" }
-    let(:partner_name) { 'walker and co' }
-    let(:partner_password) { 'password' }
-    let(:source_url) { "https://www.getbevel.com" }
-    let(:customer_id) { "123456" }
-    let(:debug) { false }
-    let(:logger) { nil }
+  describe '#assert_valid' do
+    let(:configuration) { IngramMicro::Configuration.new }
 
-    before do
-      IngramMicro.configure do |config|
-        config.api_root = api_root
-        config.ca_file = ca_file
-        config.debug = debug
-        config.logger = logger
-        config.partner_password = partner_password
-        config.partner_name = partner_name
-        config.customer_id = customer_id
-        config.source_url = source_url
+    context 'when everything is valid' do
+      before do
+        configuration.api_root = 'not empty'
+        configuration.partner_name = 'not empty'
+        configuration.partner_password = 'exists'
+        configuration.customer_id = '123'
       end
-    end
 
-    context "ca_file and api_root are set" do
-      it "is true" do
-        expect(config).to be_valid
+      it 'does not raise' do
+        expect { configuration.assert_valid }.to_not raise_error
       end
-    end
 
-    context "ca_file is empty" do
-      let(:ca_file) { nil }
+      context 'debug and logger are set' do
+        before do
+          configuration.debug = true
+          configuration.logger = :my_logger
+        end
 
-      it "is false" do
-        expect(config).to_not be_valid
-      end
-    end
-
-    context "api_root is blank" do
-      let(:api_root) { nil }
-
-      it "is false" do
-        expect(config).to_not be_valid
-      end
-    end
-
-    context "partner_name is blank" do
-      let(:partner_name) { nil }
-
-      it "is false" do
-        expect(config).to_not be_valid
-      end
-    end
-
-    context "partner_password is blank" do
-      let(:partner_password) { nil }
-
-      it "is false" do
-        expect(config).to_not be_valid
-      end
-    end
-
-    context "source_url is blank" do
-      let(:source_url) { nil }
-
-      it "is false" do
-        expect(config).to_not be_valid
-      end
-    end
-
-    context "debug is true" do
-      let(:debug) { true }
-
-      context "logger is blank" do
-        let(:logger) { nil }
-
-        it "is false" do
-          expect(config).to_not be_valid
+        it 'does not raise when logger is set' do
+          expect { configuration.assert_valid }.to_not raise_error
         end
       end
+    end
 
-      context "logger is set" do
-        let(:logger) { Logger.new(STDOUT) }
+    context "when it's not valid" do
+      before do
+        configuration.api_root = 'not empty'
+        configuration.partner_name = 'not empty'
+        configuration.partner_password = 'exists'
+        configuration.customer_id = '123'
+      end
 
-        it "is true" do
-          expect(config).to be_valid
-        end
+      it 'fails when there is no partner_name' do
+        configuration.partner_name = nil
+        expect { configuration.assert_valid }.to raise_error(IngramMicro::Configuration::Error, 'partner_name is required')
+      end
+
+      it 'fails when there is no api_root' do
+        configuration.api_root = nil
+        expect { configuration.assert_valid }.to raise_error(IngramMicro::Configuration::Error, 'api_root is required')
+      end
+
+      it 'fails when there is no customer_id' do
+        configuration.customer_id = nil
+        expect { configuration.assert_valid }.to raise_error(IngramMicro::Configuration::Error, 'customer_id is required')
+      end
+
+      it 'fails when debug is set without logger' do
+        configuration.debug = true
+        configuration.logger = nil
+
+        expect { configuration.assert_valid }.to raise_error(IngramMicro::Configuration::Error, 'logger must be set if debug is set')
+      end
+
+      it 'fails when customer_id is non-integer' do
+        configuration.customer_id = 'not integery'
+
+        expect { configuration.assert_valid }.to raise_error(IngramMicro::Configuration::Error, 'customer_id must be an integer')
       end
     end
   end

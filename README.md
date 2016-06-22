@@ -40,10 +40,8 @@ To see configuration options see `lib/ingram_micro/configuration.rb`
 ```
   IngramMicro.configure do |config|
     config.api_root = "https://ingramurl.com"
-    config.ca_file = '/path/to/your.crt'
     config.partner_name = 'account name'
     config.partner_password = 'password'
-    config.source_url = 'https://www.example.com'
     config.debug = true
     config.logger = Rails.logger
   end

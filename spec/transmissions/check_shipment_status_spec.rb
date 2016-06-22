@@ -13,12 +13,6 @@ describe IngramMicro::CheckShipmentStatus do
 
 
   describe 'schema_valid?' do
-    context 'shipment status is empty' do
-      it 'raises an error' do
-        expect{empty_shipment_status.schema_valid?}.to raise_error(Exception)
-      end
-    end
-
     context 'shipment status with information' do
       it 'creates a valid xml form' do
         expect(shipment_status_with_info.schema_valid?).to be true
@@ -27,12 +21,6 @@ describe IngramMicro::CheckShipmentStatus do
   end
 
   describe 'order_builder' do
-    context 'shipment status is empty' do
-      it 'raises an error' do
-        expect{empty_shipment_status.schema_valid?}.to raise_error(Exception)
-      end
-    end
-
     context 'shipment status with information' do
       it 'generates xml' do
         expected_xml = File.read(IngramMicro::GEM_DIR + 'spec/output_xmls/populated_shipment_status.xml')

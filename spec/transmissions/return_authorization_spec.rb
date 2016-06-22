@@ -8,7 +8,8 @@ describe IngramMicro::ReturnAuthorization do
     customer_order_number: '37159B',
     order_sub_total: 89.85,
     order_shipment_charge: 6.95,
-    order_total_net: 96.80
+    order_total_net: 96.80,
+    customer_id: '1'
     }}
 
   let(:customer) { FactoryGirl.build(:customer) }
@@ -29,15 +30,10 @@ describe IngramMicro::ReturnAuthorization do
   let(:return_auth_with_info) { IngramMicro::ReturnAuthorization.new(ra_options)}
 
   describe '#build' do
-    context 'without data passed in' do
-      it 'raises an error' do
-        expect{ra_no_info.schema_valid?}.to raise_error(Exception)
-      end
-    end
 
     context 'with data entered' do
       it 'raises an error' do
-        expect{return_auth_with_info.schema_valid?}.to raise_error(Exception)
+        expect(return_auth_with_info.schema_valid?).to be true
       end
     end
   end

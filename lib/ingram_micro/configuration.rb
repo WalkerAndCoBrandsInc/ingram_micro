@@ -2,30 +2,38 @@ require 'yaml'
 
 module IngramMicro
   class Configuration
-    attr_accessor :api_root, :debug, :logger, :ca_file,
-      :partner_name, :partner_password, :source_url,
+    attr_accessor :api_root, :debug, :logger,
+      :partner_name, :partner_password,
       :log_request_body, :customer_id, :proxy
 
-    def valid?
-      present?(partner_name) &&
-      present?(partner_password) &&
-      present?(source_url) &&
-      present?(api_root) &&
-      present?(customer_id) &&
-        present?(ca_file) &&
-        logger_valid?
+    def assert_valid
+      assert_present :partner_name
+      assert_present :api_root
+      assert_present :customer_id
+      fail Error.new('logger must be set if debug is set') unless logger_valid?
+      fail Error.new('customer_id must be an integer') unless customer_id_valid?
     end
 
     private
 
+    def assert_present(field_name)
+      fail Error.new("#{field_name} is required") unless present?(field_name)
+    end
+
     def logger_valid?
       return true unless debug
 
-      present?(logger)
+      present?(:logger)
     end
 
-    def present?(value)
-      !value.nil?
+    def customer_id_valid?
+      customer_id.to_s =~ /^\d+$/
     end
+
+    def present?(field_name)
+      !send(field_name).nil?
+    end
+
+    class Error < StandardError; end
   end
 end
