@@ -12,6 +12,7 @@ module IngramMicro
       assert_present :customer_id
       fail Error.new('logger must be set if debug is set') unless logger_valid?
       fail Error.new('customer_id must be an integer') unless customer_id_valid?
+      fail Error.new('proxy must have protocol http://') unless proxy_valid?
     end
 
     private
@@ -28,6 +29,12 @@ module IngramMicro
 
     def customer_id_valid?
       customer_id.to_s =~ /^\d+$/
+    end
+
+    def proxy_valid?
+      return true if proxy.nil?
+
+      proxy =~ /^http:\/\//
     end
 
     def present?(field_name)

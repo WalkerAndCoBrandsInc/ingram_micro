@@ -114,6 +114,12 @@ describe IngramMicro::Configuration do
 
         expect { configuration.assert_valid }.to raise_error(IngramMicro::Configuration::Error, 'customer_id must be an integer')
       end
+
+      it 'fails when proxy does not have protocol' do
+        configuration.proxy = 'localhost:8888'
+
+        expect { configuration.assert_valid }.to raise_error(IngramMicro::Configuration::Error, 'proxy must have protocol http://')
+      end
     end
   end
 end

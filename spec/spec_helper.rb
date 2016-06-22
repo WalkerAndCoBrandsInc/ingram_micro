@@ -11,6 +11,7 @@ RSpec.configure do |rconfig|
       config.partner_password = ''
       config.customer_id = '123'
       config.debug = false
+      config.proxy = nil
     end
 
     IngramMicro.configuration.assert_valid
