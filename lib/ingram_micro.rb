@@ -37,5 +37,6 @@ module IngramMicro
 
   def self.configure
     yield configuration
+    configuration.assert_valid
   end
 end

@@ -14,11 +14,17 @@ describe IngramMicro do
       it "accepts a block" do
         IngramMicro.configure do |config|
           config.api_root = "https://ingram.com/foo"
-          config.debug = true
         end
 
         expect(IngramMicro.configuration.api_root).to eq "https://ingram.com/foo"
-        expect(IngramMicro.configuration.debug).to eq true
+      end
+
+      it 'ensures that the config is valid' do
+        expect do
+          IngramMicro.configure do |config|
+            config.customer_id = nil
+          end
+        end.to raise_error IngramMicro::Configuration::Error
       end
     end
   end
