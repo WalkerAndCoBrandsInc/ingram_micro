@@ -20,10 +20,4 @@ class IngramMicro::ReturnOrderHeader < IngramMicro::BaseElement
   def defaults
     DEFAULTS
   end
-
-  def use_current_date?
-    if @element[:customer_order_date].nil?
-      @element[:customer_order_date] = DateTime.now.strftime("%Y%m%d")
-    end
-  end
 end
