@@ -1,12 +1,13 @@
 class IngramMicro::SalesOrder < IngramMicro::Transmission
-  attr_reader :customer, :credit_card_information, :order_header,
-  :shipment_information, :detail
+  attr_accessor :customer, :credit_card_information, :order_header,
+  :sales_order_shipment_information, :detail, :carrier_name, :business_name,
+  :customer_id
 
   def initialize(options={})
     super(options)
     @transaction_name = 'sales-order-submission'
     @customer = options[:customer]
-    @shipment_information = options[:shipment_information]
+    @shipment_information = options[:sales_order_shipment_information]
     @credit_card_information = options[:credit_card_information]
     @order_header = options[:order_header]
     @detail = options[:detail]
@@ -42,7 +43,7 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
       customer_id: @customer_id,
       carrier_name: @carrier_name,
       customer: customer,
-      shipment_information: shipment_information,
+      sales_order_shipment_information: sales_order_shipment_information,
       order_header: order_header,
       credit_card_information: credit_card_information
     }

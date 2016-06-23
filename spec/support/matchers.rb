@@ -12,11 +12,11 @@ RSpec::Matchers.define :have_xml do |xpath, text|
   end
 
   failure_message do |body|
-    "expected to find xml tag #{xpath} in:\n#{Nokogiri::XML(body).to_xml(indent: 2)}"
+    "expected to find xml tag #{xpath} with text #{text} in:\n#{Nokogiri::XML(body).to_xml(indent: 2)}"
   end
 
   failure_message_when_negated do |body|
-    "expected not to find xml tag #{xpath} in:\n#{Nokogiri::XML(body).to_xml(indent: 2)}"
+    "expected not to find xml tag #{xpath} with text #{text} in:\n#{Nokogiri::XML(body).to_xml(indent: 2)}"
   end
 
   description do

@@ -1,6 +1,6 @@
 class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
 
-  attr_reader :transaction_name
+  attr_accessor :business_name, :customer_id, :line_items
 
   def initialize(options={})
     super
