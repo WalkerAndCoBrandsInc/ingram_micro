@@ -11,7 +11,7 @@ describe IngramMicro::SalesOrder do
     order_total_net: 36.90
   }}
 
-  let(:customer) { FactoryGirl.build(:customer)}
+  let(:customer) { Fabricate(:customer)}
   let(:shipment_information) { FactoryGirl.build(:shipment_information) }
   let(:credit_card_information) { FactoryGirl.build(:credit_card_information) }
   let(:order_header) { IngramMicro::SalesOrderHeader.new(order_header_options)}
@@ -62,11 +62,7 @@ describe IngramMicro::SalesOrder do
   describe 'order_builder' do
     context 'populated sales order' do
       it 'generates xml' do
-        expected_xml = File.read(IngramMicro::GEM_DIR + 'spec/output_xmls/populated_sales_order.xml')
-        expect(populated_sales_order.order_builder.to_xml).to eq expected_xml
-
-        hash_from_xml = Hash.from_xml(populated_sales_order.order_builder.to_xml)
-        expect(hash_from_xml['message']['message_header']['transaction_name']).to eq 'sales-order-submission'
+        expect(populated_sales_order.order_builder.to_xml).to have_xml('/message/message-header/transaction-name', 'sales-order-submission')
       end
     end
   end

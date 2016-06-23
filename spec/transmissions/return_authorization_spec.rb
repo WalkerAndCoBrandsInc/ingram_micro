@@ -12,9 +12,9 @@ describe IngramMicro::ReturnAuthorization do
     customer_id: '1'
     }}
 
-  let(:customer) { FactoryGirl.build(:customer) }
+  let(:customer) { Fabricate(:customer) }
   let(:shipment_information) { FactoryGirl.build(:shipment_information) }
-  let(:credit_card_information) { FactoryGirl.build(:credit_card_information) }
+  let(:credit_card_information) { Fabricate(:credit_card_information) }
   let(:order_header) { IngramMicro::ReturnOrderHeader.new(order_header_options)}
   let(:line_item) { FactoryGirl.build(:return_authorization_line_item) }
   let(:detail) { IngramMicro::Detail.new(line_items: [line_item])}
