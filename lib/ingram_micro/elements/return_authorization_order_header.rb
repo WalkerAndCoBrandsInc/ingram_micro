@@ -1,4 +1,4 @@
-class IngramMicro::ReturnOrderHeader < IngramMicro::BaseElement
+class IngramMicro::ReturnAuthorizationOrderHeader < IngramMicro::BaseElement
 
   DEFAULTS = {
     customer_order_number: nil,

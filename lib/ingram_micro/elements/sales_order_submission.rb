@@ -2,7 +2,7 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
 
   DEFAULTS = {
     customer: nil,
-    shipment_information: nil,
+    sales_order_shipment_information: nil,
     credit_card_information: nil,
     order_header: nil,
     detail: nil,
@@ -19,7 +19,7 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
   def initialize(options={})
     super
     @element[:customer] ||= IngramMicro::Customer.new
-    @element[:shipment_information] ||= IngramMicro::ShipmentInformation.new
+    @element[:sales_order_shipment_information] ||= IngramMicro::SalesOrderShipmentInformation.new
     @element[:credit_card_information] ||= IngramMicro::CreditCardInformation.new
     @element[:order_header] ||= IngramMicro::SalesOrderHeader.new
     check_line_items
@@ -35,7 +35,7 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
         @element[:customer].build(builder)
       end
       builder.send('shipment-information') do
-        @element[:shipment_information].build(builder)
+        @element[:sales_order_shipment_information].build(builder)
       end
       builder.send('credit-card-information') do
         @element[:credit_card_information].build(builder)

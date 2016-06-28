@@ -7,7 +7,7 @@ describe IngramMicro::Client do
   describe "#initialize" do
     context "creates Faraday connection" do
       it "initializes a Faraday connection" do
-        expect(client).to be_truthy
+        expect(client.conn).to be_a(Faraday::Connection)
       end
 
       context "configuration has no proxy set" do
@@ -18,7 +18,7 @@ describe IngramMicro::Client do
         it "does not set proxy on client" do
           proxy = client.conn.proxy
 
-          expect(proxy).to be_blank
+          expect(proxy).to be_nil
         end
       end
 
@@ -30,7 +30,7 @@ describe IngramMicro::Client do
         it "sets proxy on faraday client" do
           proxy = client.conn.proxy
 
-          expect(proxy).to be_present
+          expect(proxy).to_not be_nil
           expect(proxy.uri.to_s).to eq(IngramMicro.configuration.proxy)
         end
       end

@@ -1,5 +1,5 @@
 class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
-  attr_reader :customer, :credit_card_information, :order_header,
+  attr_accessor :customer, :credit_card_information, :order_header,
   :shipment_information, :detail, :purchase_order_information
 
   def initialize(options={})

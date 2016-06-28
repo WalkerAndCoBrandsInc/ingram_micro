@@ -2,33 +2,8 @@ require 'spec_helper'
 
 describe IngramMicro::SalesOrder do
 
-  let(:empty_sales_order) { IngramMicro::SalesOrder.new({parner_name: 'empty'}) }
-
-  let(:order_header_options) {{
-    cutomer_order_number: '355658',
-    order_sub_total: '29.95',
-    order_shipment_charge: 6.95,
-    order_total_net: 36.90
-  }}
-
-  let(:customer) { FactoryGirl.build(:customer)}
-  let(:shipment_information) { FactoryGirl.build(:shipment_information) }
-  let(:credit_card_information) { FactoryGirl.build(:credit_card_information) }
-  let(:order_header) { IngramMicro::SalesOrderHeader.new(order_header_options)}
-  let(:line_item) { FactoryGirl.build(:sales_order_line_item) }
-  let(:detail) { IngramMicro::Detail.new(line_items: [line_item])}
-  let(:sales_order_options) {{
-    carrier_name: 'a carrier name',
-    business_name: 'Nguyen & Sedano Inc',
-    customer_id: '42',
-    customer: customer,
-    credit_card_information: credit_card_information,
-    order_header: order_header,
-    shipment_information: shipment_information,
-    detail: detail
-    }}
-
-  let(:populated_sales_order) { IngramMicro::SalesOrder.new(sales_order_options) }
+  let(:empty_sales_order) { IngramMicro::SalesOrder.new({partner_name: Faker::Company.name}) }
+  let(:populated_sales_order) { Fabricate.build(:sales_order) }
 
   describe '#initialize' do
     context 'with no data passed in' do
@@ -62,11 +37,7 @@ describe IngramMicro::SalesOrder do
   describe 'order_builder' do
     context 'populated sales order' do
       it 'generates xml' do
-        expected_xml = File.read(IngramMicro::GEM_DIR + 'spec/output_xmls/populated_sales_order.xml')
-        expect(populated_sales_order.order_builder.to_xml).to eq expected_xml
-
-        hash_from_xml = Hash.from_xml(populated_sales_order.order_builder.to_xml)
-        expect(hash_from_xml['message']['message_header']['transaction_name']).to eq 'sales-order-submission'
+        expect(populated_sales_order.order_builder.to_xml).to have_xml('/message/message-header/transaction-name', 'sales-order-submission')
       end
     end
   end
