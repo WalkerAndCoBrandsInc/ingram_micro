@@ -2,7 +2,7 @@ require "nokogiri"
 require "faraday"
 require "faraday_middleware"
 require "require_all"
-require_all 'lib/**/*.rb'
+require_rel 'ingram_micro/**/*.rb'
 
 module IngramMicro
   GEM_DIR = (File.dirname(__FILE__) + '/../').freeze
