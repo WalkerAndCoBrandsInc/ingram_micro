@@ -79,7 +79,7 @@ describe IngramMicro::ShipmentInformation do
   it 'formats xml' do
     Nokogiri::XML::Builder.new do |builder|
       builder.send('message') do
-        IngramMicro::ShipmentInformation.new(shipment_options).build(builder)
+        IngramMicro::ShipmentInformation.new({ship_first_name: 'Jeffrey'}).build(builder)
       end
 
       expect(builder.to_xml).to include('<ship-first-name>Jeffrey</ship-first-name>')
