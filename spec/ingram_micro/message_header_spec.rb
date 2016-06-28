@@ -28,5 +28,16 @@ require 'spec_helper'
         expect { message_header.valid? }.to raise_error(IngramMicro::MissingField)
       end
     end
+
+    it 'formats create-timestamp in the correct format' do
+      options = required_options.merge({create_timestamp: Time.new(2016, 6, 22, 4, 30, 17)})
+      Nokogiri::XML::Builder.new do |builder|
+        builder.send('message') do
+          klass.new(options).build(builder)
+        end
+
+        expect(builder.to_xml).to include('<create-timestamp>20160622043017</create-timestamp>')
+      end
+    end
   end
 end

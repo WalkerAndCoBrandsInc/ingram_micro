@@ -15,6 +15,8 @@ class IngramMicro::SalesOrderHeader < IngramMicro::BaseElement
     gift_flag: nil
   }
 
+  format :customer_order_date, IngramMicro::DateFormatter.new
+
   def defaults
     DEFAULTS
   end
