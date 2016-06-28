@@ -10,6 +10,8 @@ class IngramMicro::MessageHeaderPW < IngramMicro::BaseElement
     response_request: 1
   }
 
+  format :create_timestamp, IngramMicro::DateTimeFormatter.new
+
   def defaults
     DEFAULTS
   end
