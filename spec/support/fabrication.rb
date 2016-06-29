@@ -5,4 +5,3 @@ Fabrication.configure do |fconfig|
   fconfig.path_prefix = Dir.pwd + '/spec'
   fconfig.sequence_start = 10000
 end
-

@@ -16,6 +16,13 @@ describe IngramMicro::SalesOrder do
         expect(populated_sales_order).to be_truthy
       end
     end
+    context 'with sales order shipment information' do
+      let(:sales_order_shipment_information) { Fabricate.build(:sales_order_shipment_information) }
+      it 'sets the attribute' do
+        sales_order = IngramMicro::SalesOrder.new({sales_order_shipment_information: sales_order_shipment_information})
+        expect(sales_order.sales_order_shipment_information).to eq(sales_order_shipment_information)
+      end
+    end
   end
 
   describe '#build' do
@@ -38,6 +45,17 @@ describe IngramMicro::SalesOrder do
     context 'populated sales order' do
       it 'generates xml' do
         expect(populated_sales_order.order_builder.to_xml).to have_xml('/message/message-header/transaction-name', 'sales-order-submission')
+      end
+    end
+
+    context 'passed shipment information' do
+      let(:ship_first_name) { populated_sales_order.sales_order_shipment_information.element[:ship_first_name] }
+      before do
+        expect(ship_first_name).to_not be_nil
+      end
+
+      it 'includes it in xml' do
+        expect(populated_sales_order.order_builder.to_xml).to have_xml('/message/sales-order-submission/header/shipment-information/ship-first-name', ship_first_name)
       end
     end
   end
