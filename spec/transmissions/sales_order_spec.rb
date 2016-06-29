@@ -23,6 +23,20 @@ describe IngramMicro::SalesOrder do
         expect(sales_order.sales_order_shipment_information).to eq(sales_order_shipment_information)
       end
     end
+
+    context 'old options passed in' do
+      it 'raises for shipment information' do
+        expect do
+          IngramMicro::SalesOrder.new({shipment_information: Fabricate.build(:sales_order_shipment_information)})
+        end.to raise_error(/sales_order_shipment_information/)
+      end
+
+      it 'raises for order header' do
+        expect do
+          IngramMicro::SalesOrder.new({order_header: Fabricate.build(:sales_order_header)})
+        end.to raise_error(/sales_order_header/)
+      end
+    end
   end
 
   describe '#schema_valid?' do
