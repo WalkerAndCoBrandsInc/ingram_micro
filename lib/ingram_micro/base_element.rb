@@ -1,5 +1,4 @@
 class IngramMicro::BaseElement
-
   attr_accessor :element
 
   def initialize(options={})
@@ -14,7 +13,7 @@ class IngramMicro::BaseElement
   def build(builder)
     self.defaults.keys.each do |field|
       element_name = field.to_s.gsub('_', '-')
-      element_value = @element[field]
+      element_value = formatted_value_of(field)
       builder.send(element_name, element_value)
     end
   end
@@ -24,6 +23,25 @@ class IngramMicro::BaseElement
       element_name = field.to_s.gsub('_', '-')
       @element[field] = message_hash[element_name]
     end
+  end
+
+  def self.format(field, formatter)
+    @formatters ||= {}
+    @formatters[field] = formatter
+  end
+
+  private
+
+  def self.formatter_for(field)
+    if @formatters && @formatters[field]
+      @formatters[field]
+    else
+      IngramMicro::NullFormatter.new
+    end
+  end
+
+  def formatted_value_of(field)
+    self.class.formatter_for(field).format(@element[field])
   end
 
   def integer?(string)

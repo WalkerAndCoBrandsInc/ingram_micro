@@ -1,21 +1,23 @@
 class IngramMicro::SalesOrder < IngramMicro::Transmission
-  attr_reader :customer, :credit_card_information, :order_header,
-  :shipment_information, :detail
+  attr_accessor :customer, :credit_card_information, :sales_order_header,
+  :sales_order_shipment_information, :detail, :carrier_name, :business_name,
+  :customer_id
 
   def initialize(options={})
     super(options)
     @transaction_name = 'sales-order-submission'
     @customer = options[:customer]
-    @shipment_information = options[:shipment_information]
+    @sales_order_shipment_information = options[:sales_order_shipment_information]
     @credit_card_information = options[:credit_card_information]
-    @order_header = options[:order_header]
+    @sales_order_header = options[:sales_order_header]
     @detail = options[:detail]
     @business_name = options[:business_name]
     @customer_id = options[:customer_id]
     @carrier_name = options[:carrier_name]
+    validate_options(options)
   end
 
-  def order_builder
+  def xml_builder
     @builder ||= Nokogiri::XML::Builder.new do |builder|
       builder.message do
         add_message_header(builder)
@@ -42,8 +44,8 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
       customer_id: @customer_id,
       carrier_name: @carrier_name,
       customer: customer,
-      shipment_information: shipment_information,
-      order_header: order_header,
+      sales_order_shipment_information: sales_order_shipment_information,
+      sales_order_header: sales_order_header,
       credit_card_information: credit_card_information
     }
     sos = IngramMicro::SalesOrderSubmission.new(sos_options)
@@ -51,5 +53,10 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
       sos.build(builder)
     end
     sos.valid?
+  end
+
+  def validate_options(options)
+    raise "use sales_order_shipment_information (IngramMicro::SalesOrderShipmentInformation" if options[:shipment_information]
+    raise "use sales_order_header (IngramMicro::SalesOrderHeader" if options[:order_header]
   end
 end

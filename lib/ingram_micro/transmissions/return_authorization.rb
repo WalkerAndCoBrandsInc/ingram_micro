@@ -1,5 +1,5 @@
 class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
-  attr_reader :customer, :credit_card_information, :order_header,
+  attr_accessor :customer, :credit_card_information, :order_header,
   :shipment_information, :detail, :purchase_order_information
 
   def initialize(options={})
@@ -13,7 +13,7 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
     @purchase_order_information = options[:purchase_order_information]
   end
 
-  def order_builder
+  def xml_builder
     @builder ||= Nokogiri::XML::Builder.new do |builder|
       builder.send('message') do
         add_message_header(builder)

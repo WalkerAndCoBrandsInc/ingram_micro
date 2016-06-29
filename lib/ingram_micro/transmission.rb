@@ -21,7 +21,7 @@ class IngramMicro::Transmission
     xsd = Nokogiri::XML::Schema(File.read("#{IngramMicro::GEM_DIR}/xsd/" +
       XSD[self.transaction_name]))
     valid = true
-    xsd.validate(self.order_builder.doc).each do |error|
+    xsd.validate(self.xml_builder.doc).each do |error|
       errors << error.message
       valid = false
     end
@@ -30,7 +30,12 @@ class IngramMicro::Transmission
   end
 
   def order_builder
-    raise Exception('order_builder needs to be implemented in subclass')
+    warn '[DEPRECATION] `order_builder` is deprecated.  Please use `xml_builder` instead.'
+    xml_builder
+  end
+
+  def xml_builder
+    raise Exception('xml_builder needs to be implemented in subclass')
   end
 
   def add_transaction_info(builder)
@@ -45,6 +50,6 @@ class IngramMicro::Transmission
 
   def send_request
     client = IngramMicro::Client.new
-    client.post(self.order_builder.to_xml)
+    client.post(self.xml_builder.to_xml)
   end
 end

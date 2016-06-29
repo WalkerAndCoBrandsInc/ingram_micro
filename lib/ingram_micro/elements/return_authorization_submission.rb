@@ -21,7 +21,7 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
     @element[:customer] ||= IngramMicro::Customer.new
     @element[:shipment_information] ||= IngramMicro::ShipmentInformation.new
     @element[:credit_card_information] ||= IngramMicro::CreditCardInformation.new
-    @element[:order_header] ||= IngramMicro::ReturnOrderHeader.new
+    @element[:order_header] ||= IngramMicro::ReturnAuthorizationOrderHeader.new
     @element[:purchase_order_information] ||= IngramMicro::PurchaseOrderInformation.new
     @element[:detail] ||= IngramMicro::Detail.new
   end

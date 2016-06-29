@@ -9,3 +9,6 @@
 /spec/reports/
 /tmp/
 lib/config/defaults.yml
+.DS_STORE
+*.gem
+

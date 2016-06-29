@@ -14,7 +14,7 @@ class IngramMicro::ShipmentInformation < IngramMicro::BaseElement
     'FXL2' => 'FedEx Freight 2-day (Air)',
     'FXL3' => 'FedEx Freight 3-day (Air)',
     'FXLE' => 'FedEx Freight Ground',
-   }
+   }.freeze
 
   DEFAULTS = {
     ship_first_name: nil,
@@ -35,7 +35,7 @@ class IngramMicro::ShipmentInformation < IngramMicro::BaseElement
     ship_request_date: nil,
     ship_request_from: nil,
     ship_request_warehouse: nil
-  }
+  }.freeze
 
   def defaults
     DEFAULTS
