@@ -7,7 +7,7 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
     super(options)
     @transaction_name = 'sales-order-submission'
     @customer = options[:customer]
-    @shipment_information = options[:sales_order_shipment_information]
+    @sales_order_shipment_information = options[:sales_order_shipment_information]
     @credit_card_information = options[:credit_card_information]
     @order_header = options[:order_header]
     @detail = options[:detail]
