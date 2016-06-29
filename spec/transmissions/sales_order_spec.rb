@@ -25,14 +25,6 @@ describe IngramMicro::SalesOrder do
     end
   end
 
-  describe '#build' do
-    context 'with data passed in' do
-      it 'should create an xml form' do
-        expect(populated_sales_order.order_builder).to be_truthy
-      end
-    end
-  end
-
   describe '#schema_valid?' do
     context 'with data passed in' do
       it 'validates output xml using SalesOrder schema' do
@@ -41,10 +33,10 @@ describe IngramMicro::SalesOrder do
     end
   end
 
-  describe 'order_builder' do
+  describe 'xml_builder' do
     context 'populated sales order' do
       it 'generates xml' do
-        expect(populated_sales_order.order_builder.to_xml).to have_xml('/message/message-header/transaction-name', 'sales-order-submission')
+        expect(populated_sales_order.xml_builder.to_xml).to have_xml('/message/message-header/transaction-name', 'sales-order-submission')
       end
     end
 
@@ -55,8 +47,15 @@ describe IngramMicro::SalesOrder do
       end
 
       it 'includes it in xml' do
-        expect(populated_sales_order.order_builder.to_xml).to have_xml('/message/sales-order-submission/header/shipment-information/ship-first-name', ship_first_name)
+        expect(populated_sales_order.xml_builder.to_xml).to have_xml('/message/sales-order-submission/header/shipment-information/ship-first-name', ship_first_name)
       end
+    end
+  end
+
+  describe 'order_builder' do
+    it 'warns for deprecation and calls xml_builder' do
+      expect(populated_sales_order).to receive(:warn).with('[DEPRECATION] `order_builder` is deprecated.  Please use `xml_builder` instead.')
+      expect(populated_sales_order.order_builder.to_xml).to have_xml('/message/message-header/transaction-name', 'sales-order-submission')
     end
   end
 end

@@ -12,7 +12,7 @@ class IngramMicro::StandardResponse < IngramMicro::Transmission
     @filename = options[:filename]
   end
 
-  def order_builder
+  def xml_builder
     @builder ||= Nokogiri::XML::Builder.new do |builder|
       builder.message do
         add_message_header(builder)

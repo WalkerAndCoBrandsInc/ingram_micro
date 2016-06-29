@@ -10,7 +10,7 @@ class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
     @line_items = options[:line_items]
   end
 
-  def order_builder
+  def xml_builder
     @builder ||= Nokogiri::XML::Builder.new do |builder|
       builder.message do
         add_message_header(builder)

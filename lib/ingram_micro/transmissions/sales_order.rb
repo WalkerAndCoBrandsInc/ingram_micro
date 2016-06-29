@@ -16,7 +16,7 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
     @carrier_name = options[:carrier_name]
   end
 
-  def order_builder
+  def xml_builder
     @builder ||= Nokogiri::XML::Builder.new do |builder|
       builder.message do
         add_message_header(builder)

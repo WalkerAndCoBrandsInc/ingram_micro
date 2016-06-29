@@ -21,7 +21,7 @@ describe IngramMicro::StandardResponse do
   describe '#build' do
     context 'with data passed in' do
       it 'should create an xml form' do
-        expect(populated_standard_response.order_builder).to be_truthy
+        expect(populated_standard_response.xml_builder).to be_truthy
       end
     end
   end
@@ -34,10 +34,10 @@ describe IngramMicro::StandardResponse do
     end
   end
 
-  describe 'order_builder' do
+  describe 'xml_builder' do
     context 'populated standard response' do
       it 'generates xml' do
-        expect(populated_standard_response.order_builder.to_xml).to have_xml('/message/message-header/transaction-name', 'standard-response')
+        expect(populated_standard_response.xml_builder.to_xml).to have_xml('/message/message-header/transaction-name', 'standard-response')
       end
     end
   end

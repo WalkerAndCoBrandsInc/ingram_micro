@@ -18,10 +18,10 @@ describe IngramMicro::CheckShipmentStatus do
     end
   end
 
-  describe 'order_builder' do
+  describe 'xml_builder' do
     context 'shipment status with information' do
       it 'generates xml' do
-        expect(shipment_status_with_info.order_builder.to_xml).to have_xml('/message/message-header/transaction-name', 'shipment-status')
+        expect(shipment_status_with_info.xml_builder.to_xml).to have_xml('/message/message-header/transaction-name', 'shipment-status')
       end
     end
   end
