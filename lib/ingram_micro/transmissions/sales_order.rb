@@ -1,5 +1,5 @@
 class IngramMicro::SalesOrder < IngramMicro::Transmission
-  attr_accessor :customer, :credit_card_information, :order_header,
+  attr_accessor :customer, :credit_card_information, :sales_order_header,
   :sales_order_shipment_information, :detail, :carrier_name, :business_name,
   :customer_id
 
@@ -9,11 +9,12 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
     @customer = options[:customer]
     @sales_order_shipment_information = options[:sales_order_shipment_information]
     @credit_card_information = options[:credit_card_information]
-    @order_header = options[:order_header]
+    @sales_order_header = options[:sales_order_header]
     @detail = options[:detail]
     @business_name = options[:business_name]
     @customer_id = options[:customer_id]
     @carrier_name = options[:carrier_name]
+    validate_options(options)
   end
 
   def xml_builder
@@ -44,7 +45,7 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
       carrier_name: @carrier_name,
       customer: customer,
       sales_order_shipment_information: sales_order_shipment_information,
-      order_header: order_header,
+      sales_order_header: sales_order_header,
       credit_card_information: credit_card_information
     }
     sos = IngramMicro::SalesOrderSubmission.new(sos_options)
@@ -52,5 +53,10 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
       sos.build(builder)
     end
     sos.valid?
+  end
+
+  def validate_options(options)
+    raise "use sales_order_shipment_information (IngramMicro::SalesOrderShipmentInformation" if options[:shipment_information]
+    raise "use sales_order_header (IngramMicro::SalesOrderHeader" if options[:order_header]
   end
 end

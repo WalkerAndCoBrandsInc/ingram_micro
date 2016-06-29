@@ -4,7 +4,7 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
     customer: nil,
     sales_order_shipment_information: nil,
     credit_card_information: nil,
-    order_header: nil,
+    sales_order_header: nil,
     detail: nil,
     line_items: [],
     customer_id: nil,
@@ -21,7 +21,7 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
     @element[:customer] ||= IngramMicro::Customer.new
     @element[:sales_order_shipment_information] ||= IngramMicro::SalesOrderShipmentInformation.new
     @element[:credit_card_information] ||= IngramMicro::CreditCardInformation.new
-    @element[:order_header] ||= IngramMicro::SalesOrderHeader.new
+    @element[:sales_order_header] ||= IngramMicro::SalesOrderHeader.new
     check_line_items
     @element[:detail] ||= IngramMicro::Detail.new({line_items: @element[:line_items]})
   end
@@ -41,7 +41,7 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
         @element[:credit_card_information].build(builder)
       end
       builder.send('order-header') do
-        @element[:order_header].build(builder)
+        @element[:sales_order_header].build(builder)
       end
     end
     builder.send('detail') do
