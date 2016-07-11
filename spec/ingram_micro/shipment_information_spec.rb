@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe IngramMicro::ShipmentInformation do
+describe IngramMicro::OutboundShipmentInformation do
 
-  let(:empty_shipment_info) { IngramMicro::ShipmentInformation.new }
+  let(:empty_shipment_info) { IngramMicro::OutboundShipmentInformation.new }
   let(:shipment_info) { Fabricate.build(:shipment_information)}
-  let(:ship_info_bad_shipping_method) { IngramMicro::ShipmentInformation.new({ship_via: 'ABCD'})}
+  let(:ship_info_bad_shipping_method) { IngramMicro::OutboundShipmentInformation.new({ship_via: 'ABCD'})}
 
   describe '#initialize' do
     context 'without values passed in' do
@@ -71,7 +71,7 @@ describe IngramMicro::ShipmentInformation do
 
     context 'with valid shipping_method value passed in' do
       it 'should return the shipping method associated with the code' do
-        expect(IngramMicro::ShipmentInformation::SHIPPING_METHODS.values).to include(shipment_info.shipping_method_name)
+        expect(IngramMicro::OutboundShipmentInformation::SHIPPING_METHODS.values).to include(shipment_info.shipping_method_name)
       end
     end
   end
@@ -79,7 +79,7 @@ describe IngramMicro::ShipmentInformation do
   it 'formats xml' do
     Nokogiri::XML::Builder.new do |builder|
       builder.send('message') do
-        IngramMicro::ShipmentInformation.new({ship_first_name: 'Jeffrey'}).build(builder)
+        IngramMicro::OutboundShipmentInformation.new({ship_first_name: 'Jeffrey'}).build(builder)
       end
 
       expect(builder.to_xml).to include('<ship-first-name>Jeffrey</ship-first-name>')

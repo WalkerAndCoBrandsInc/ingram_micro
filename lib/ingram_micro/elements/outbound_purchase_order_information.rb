@@ -1,4 +1,4 @@
-class IngramMicro::PurchaseOrderInformation < IngramMicro::BaseElement
+class IngramMicro::OutboundPurchaseOrderInformation < IngramMicro::BaseElement
 
   DEFAULTS = {
     purchase_order_number: nil,
