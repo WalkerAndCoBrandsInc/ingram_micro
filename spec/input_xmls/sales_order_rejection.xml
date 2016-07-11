@@ -22,7 +22,7 @@
         <ship-phone1>(317)555-5306</ship-phone1>
         <ship-email>montnapa@yahoo.com</ship-email>
         <ship-via>SFXSVP</ship-via>
-        <ship-request-date>2010-06-16T00:00:00</ship-request-date>
+        <ship-request-date>20100616</ship-request-date>
         <ship-request-warehouse>whse1</ship-request-warehouse>
       </shipment-information>
       <purchase-order-information>
@@ -49,7 +49,7 @@
         <quantity>1</quantity>
         <unit-of-measure>EA</unit-of-measure>
         <line-status>REJECTED</line-status>
-        <comments> Domino</comments>
+        <comments>Domino</comments>
         <rejection-date>20100617</rejection-date>
         <line-discount>0.0</line-discount>
         <line-tax1>0.0</line-tax1>

@@ -83,6 +83,10 @@ class IngramMicro::InboundLineItem < IngramMicro::InboundBaseElement
     hash['backorder_quantity']
   end
 
+  def rejection_date
+    hash['rejection_date']
+  end
+
   def scac
     hash['scac']
   end
