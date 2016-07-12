@@ -13,7 +13,7 @@ class IngramMicro::InboundTransmissionFactory
 
   def from_xml
     raise "#{self.class.name} received malformed XML: #{request_body_string}" if request_hash.empty?
-    inbound_transmission_class.new(request_body_string)
+    inbound_transmission_class.new(request_hash)
   end
 
   private

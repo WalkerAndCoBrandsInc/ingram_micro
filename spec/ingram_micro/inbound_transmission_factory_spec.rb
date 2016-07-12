@@ -2,30 +2,27 @@ require 'spec_helper'
 
 describe IngramMicro::InboundTransmissionFactory do
   let(:sales_order_success_xml) { File.read(IngramMicro::GEM_DIR + 'spec/input_xmls/sales_order_success.xml') }
-  let(:sales_order_success) { IngramMicro::SalesOrderSuccess.new(sales_order_success_xml) }
   let(:sales_order_rejection_xml) { File.read(IngramMicro::GEM_DIR + 'spec/input_xmls/sales_order_rejection.xml') }
-  let(:sales_order_rejection) { IngramMicro::SalesOrderRejection.new(sales_order_rejection_xml) }
   let(:ship_advice_xml) { File.read(IngramMicro::GEM_DIR + 'spec/input_xmls/ship_advice.xml') }
-  let(:ship_advice) { IngramMicro::ShipAdvice.new(ship_advice_xml) }
 
   context 'Processes incoming sales order success data' do
     it 'creates an inbound transmission object from request body string' do
-      sales_order_success_from_processor = IngramMicro::InboundTransmissionFactory.from_xml(sales_order_success_xml)
-      expect(sales_order_success_from_processor).to eq sales_order_success
+      result = IngramMicro::InboundTransmissionFactory.from_xml(sales_order_success_xml)
+      expect(result.customer_id).to eq '560175'
     end
   end
 
   context 'Processes incoming sales order rejection data' do
     it 'creates an inbound transmission object from request body string' do
-      sales_order_rejection_from_processor = IngramMicro::InboundTransmissionFactory.from_xml(sales_order_rejection_xml)
-      expect(sales_order_rejection_from_processor).to eq sales_order_rejection
+      result = IngramMicro::InboundTransmissionFactory.from_xml(sales_order_rejection_xml)
+      expect(result.customer_id).to eq '286104'
     end
   end
 
   context 'Processes incoming ship advice data' do
     it 'creates an inbound transmission object from request body string' do
-      ship_advice_from_processor = IngramMicro::InboundTransmissionFactory.from_xml(ship_advice_xml)
-      expect(ship_advice_from_processor).to eq ship_advice
+      result = IngramMicro::InboundTransmissionFactory.from_xml(ship_advice_xml)
+      expect(result.customer_id).to eq '308524'
     end
   end
 

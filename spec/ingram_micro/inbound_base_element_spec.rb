@@ -23,4 +23,16 @@ describe IngramMicro::InboundBaseElement do
 
     expect(a).not_to eq b
   end
+
+  it 'has a transaction_type' do
+    element = IngramMicro::InboundBaseElement.new({
+      'message' => {
+        'message_header' => {
+          'transaction_name' => 'some-transaction-name'
+        }
+      }
+    })
+
+    expect(element.transaction_name).to eq 'some-transaction-name'
+  end
 end

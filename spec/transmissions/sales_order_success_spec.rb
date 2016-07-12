@@ -37,7 +37,7 @@ describe IngramMicro::SalesOrderSuccess do
     end
 
     it 'generates order_header information comparable to received xml' do
-      expect(sales_order_success.order_header.customer_order_number).to eq '137789'
+      expect(sales_order_success.order_header.customer_order_number).to eq '562134'
       expect(sales_order_success.order_header.customer_order_date).to eq '20140922'
       expect(sales_order_success.order_header.order_reference).to be_nil
       expect(sales_order_success.order_header.order_sub_total).to eq '0'
