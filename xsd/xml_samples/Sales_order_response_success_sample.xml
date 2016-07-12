@@ -1,0 +1,75 @@
+[64140, 64134, 64117].each do |i_id|
+  i = Invoice.find(i_id)
+  resp = FulfillmentProvider::IngramMicro.create_shipment(i)
+  puts "<--invoice: #{i_id}-->"
+  puts resp.body
+end
+
+<!--replenishment test order invoice: 64140-->
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+  <message-header>
+    <message-id>0</message-id>
+    <transaction-name>sales-order-submission</transaction-name>
+    <partner-name>Brightpoint North America L.P.</partner-name>
+    <source-url>http://messagehub.brightpoint.com:9135/HttpPost</source-url>
+    <create-timestamp>20160711152127</create-timestamp>
+    <response-request>0</response-request>
+  </message-header>
+  <message-status>
+    <status-code>0</status-code>
+    <status-description>Message Successful</status-description>
+    <comments>Message Successful</comments>
+    <response-timestamp>20160711152127</response-timestamp>
+    <filename>Business Process ID = 83038280</filename>
+  </message-status>
+  <transactionInfo>
+    <eventID>0</eventID>
+  </transactionInfo>
+</message>
+
+<!--enrollment test order invoice: 64134-->
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+<message-header>
+  <message-id>0</message-id>
+  <transaction-name>sales-order-submission</transaction-name>
+  <partner-name>Brightpoint North America L.P.</partner-name>
+  <source-url>http://messagehub.brightpoint.com:9135/HttpPost</source-url>
+  <create-timestamp>20160711152240</create-timestamp>
+  <response-request>0</response-request>
+</message-header>
+<message-status>
+  <status-code>0</status-code>
+  <status-description>Message Successful</status-description>
+  <comments>Message Successful</comments>
+  <response-timestamp>20160711152240</response-timestamp>
+  <filename>Business Process ID = 82947053</filename>
+</message-status>
+<transactionInfo>
+  <eventID>0</eventID>
+</transactionInfo>
+</message>
+
+<!--trimmer test order invoice: 64117-->
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+<message-header>
+  <message-id>0</message-id>
+  <transaction-name>sales-order-submission</transaction-name>
+  <partner-name>Brightpoint North America L.P.</partner-name>
+  <source-url>http://messagehub.brightpoint.com:9135/HttpPost</source-url>
+  <create-timestamp>20160711152308</create-timestamp>
+  <response-request>0</response-request>
+</message-header>
+<message-status>
+  <status-code>0</status-code>
+  <status-description>Message Successful</status-description>
+  <comments>Message Successful</comments>
+  <response-timestamp>20160711152308</response-timestamp>
+  <filename>Business Process ID = 83040614</filename>
+</message-status>
+<transactionInfo>
+  <eventID>0</eventID>
+</transactionInfo>
+</message>
