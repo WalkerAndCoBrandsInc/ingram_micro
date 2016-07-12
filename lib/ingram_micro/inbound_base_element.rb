@@ -5,4 +5,8 @@ class IngramMicro::InboundBaseElement
     @hash = hash
   end
 
+  def ==(other)
+    self.class == other.class &&
+      @hash == other.hash
+  end
 end

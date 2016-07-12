@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'nori'
 
 describe IngramMicro::SalesOrderSuccess do
 
