@@ -1,4 +1,5 @@
 class IngramMicro::RequestProcessor
+  require 'nori'
   attr_accessor :body_xml
 
   def initialize(request)
@@ -6,6 +7,6 @@ class IngramMicro::RequestProcessor
   end
 
   def hashify
-    Hash.from_xml(@body_xml)
+    Nori.new.parse(@body_xml)
   end
 end

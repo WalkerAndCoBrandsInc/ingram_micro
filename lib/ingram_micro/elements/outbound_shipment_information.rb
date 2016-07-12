@@ -1,4 +1,4 @@
-class IngramMicro::ShipmentInformation < IngramMicro::BaseElement
+class IngramMicro::OutboundShipmentInformation < IngramMicro::BaseElement
 
   SHIPPING_METHODS = {
     'FX01' => 'FedEx Standard Overnight',
