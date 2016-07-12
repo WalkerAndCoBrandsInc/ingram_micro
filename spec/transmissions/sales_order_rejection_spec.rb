@@ -1,10 +1,11 @@
 require 'spec_helper'
-require 'active_support/core_ext/hash'
+require 'nori'
 
 describe IngramMicro::SalesOrderRejection do
 
   let(:input_xml) { File.read(IngramMicro::GEM_DIR + 'spec/input_xmls/sales_order_rejection.xml') }
-  let(:hash_from_xml) { Hash.from_xml(input_xml) }
+  let(:parser) { Nori.new }
+  let(:hash_from_xml) { parser.parse(input_xml) }
   let(:sales_order_rejection) { IngramMicro::SalesOrderRejection.new(hash_from_xml) }
 
   context 'processes sales order rejection from Ingram Micro' do

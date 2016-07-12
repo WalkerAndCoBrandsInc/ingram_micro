@@ -1,10 +1,11 @@
 require 'spec_helper'
-require 'active_support/core_ext/hash'
+require 'nori'
 
 describe IngramMicro::ShipAdvice do
 
   let(:input_xml) { File.read(IngramMicro::GEM_DIR + 'spec/input_xmls/ship_advice.xml') }
-  let(:hash_from_xml) { Hash.from_xml(input_xml) }
+  let(:parser) { Nori.new }
+  let(:hash_from_xml) { parser.parse(input_xml) }
   let(:ship_advice) { IngramMicro::ShipAdvice.new(hash_from_xml) }
   context 'processes normal ship advice' do
 
