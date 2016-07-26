@@ -73,3 +73,49 @@ end
   <eventID>0</eventID>
 </transactionInfo>
 </message>
+
+<!--trimmer test order invoice: 53 on KD laptop 160719-->
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+<message-header>
+  <message-id>0</message-id>
+  <transaction-name>sales-order-submission</transaction-name>
+  <partner-name>Brightpoint North America L.P.</partner-name>
+  <source-url>http://messagehub.brightpoint.com:9135/HttpPost</source-url>
+  <create-timestamp>20160719190226</create-timestamp>
+  <response-request>0</response-request>
+</message-header>
+<message-status>
+  <status-code>0</status-code>
+  <status-description>Message Successful</status-description>
+  <comments>Message Successful</comments>
+  <response-timestamp>20160719190226</response-timestamp>
+  <filename>Business Process ID = 85975546</filename>
+</message-status>
+<transactionInfo>
+  <eventID>0</eventID>
+</transactionInfo>
+</message>
+
+<!--enrollment test order invoice: 73 on KD laptop 160709-->
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+<message-header>
+  <message-id>0</message-id>
+  <transaction-name>sales-order-submission</transaction-name>
+  <partner-name>Brightpoint North America L.P.</partner-name>
+  <source-url>http://messagehub.brightpoint.com:9135/HttpPost</source-url>
+  <create-timestamp>20160719155130</create-timestamp>
+  <response-request>0</response-request>
+</message-header>
+<message-status>
+  <status-code>0</status-code>
+  <status-description>Message Successful</status-description>
+  <comments>Message Successful</comments>
+  <response-timestamp>20160719155130</response-timestamp>
+  <filename>Business Process ID = 85848333</filename>
+</message-status>
+<transactionInfo>
+  <eventID>0</eventID>
+</transactionInfo>
+</message>
