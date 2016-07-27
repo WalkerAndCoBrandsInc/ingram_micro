@@ -28,15 +28,18 @@ describe IngramMicro::InboundTransmissionFactory do
 
   context 'when the input string is not well-formed xml' do
     it 'raises an error' do
-      expect {
+      expect do
         IngramMicro::InboundTransmissionFactory.from_xml('>>>bork')
-      }.to raise_error 'IngramMicro::InboundTransmissionFactory received malformed XML: >>>bork'
+      end.to raise_error(
+               IngramMicro::InboundTransmissionFactory::Error,
+               /IngramMicro::InboundTransmissionFactory received malformed XML: >>>bork/
+             )
     end
   end
 
   context 'when the transaction_name is not recognized' do
     it 'raises an error' do
-      expect {
+      expect do
         IngramMicro::InboundTransmissionFactory.from_xml(%Q{
           <message>
             <message-header>
@@ -44,7 +47,10 @@ describe IngramMicro::InboundTransmissionFactory do
             </message-header>
           </message>
         })
-      }.to raise_error 'IngramMicro::InboundTransmissionFactory received unrecognized transaction-name: foo'
+      end.to raise_error(
+               IngramMicro::InboundTransmissionFactory::Error,
+               /IngramMicro::InboundTransmissionFactory received unrecognized transaction-name: foo/
+             )
     end
   end
 end

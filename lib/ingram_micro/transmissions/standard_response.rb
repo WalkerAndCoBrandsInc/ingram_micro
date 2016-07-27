@@ -14,6 +14,10 @@ class IngramMicro::StandardResponse < IngramMicro::Transmission
     @filename = options[:filename]
   end
 
+  def to_xml(opts={})
+    xml_builder.to_xml
+  end
+
   def xml_builder
     @builder ||= Nokogiri::XML::Builder.new do |builder|
       builder.message do
