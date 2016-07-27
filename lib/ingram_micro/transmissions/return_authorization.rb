@@ -1,4 +1,6 @@
 class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
+  TRANSMISSION_FILENAME = 'return-authorization'
+
   attr_accessor :customer, :credit_card_information, :order_header,
   :shipment_information, :detail, :purchase_order_information
 

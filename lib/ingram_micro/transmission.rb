@@ -19,7 +19,7 @@ class IngramMicro::Transmission
 
   def schema_valid?
     xsd = Nokogiri::XML::Schema(File.read("#{IngramMicro::GEM_DIR}/xsd/" +
-      XSD[self.transaction_name]))
+      XSD[self.class::TRANSMISSION_FILENAME]))
     valid = true
     xsd.validate(self.xml_builder.doc).each do |error|
       errors << error.message

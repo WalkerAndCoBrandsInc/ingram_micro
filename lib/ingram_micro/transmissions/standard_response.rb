@@ -1,4 +1,6 @@
 class IngramMicro::StandardResponse < IngramMicro::Transmission
+  TRANSMISSION_FILENAME = 'standard-response'
+  
   attr_accessor :status_code, :status_description, :comments,
     :response_timestamp, :filename, :transaction_name
 
