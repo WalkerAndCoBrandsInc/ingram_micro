@@ -1,4 +1,5 @@
 class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
+  TRANSMISSION_FILENAME = 'shipment-status'
 
   attr_accessor :business_name, :customer_id, :line_items
 
