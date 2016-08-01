@@ -344,7 +344,7 @@
 			<xs:documentation xml:lang="en">Country Code field for Credit Card Holder. Must be compliant with the ISO Standard for Currency Codes.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="authorized-amount" type="xs:string">
+	<xs:element name="authorized-amount" type="xs:decimal">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">The amount that has been authorized on the order as approved for fund capture.</xs:documentation>
 		</xs:annotation>
