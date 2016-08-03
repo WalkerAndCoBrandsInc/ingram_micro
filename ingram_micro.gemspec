@@ -6,7 +6,7 @@ require 'ingram_micro/version'
 Gem::Specification.new do |spec|
   spec.name          = "ingram_micro"
   spec.version       = IngramMicro::VERSION
-  spec.authors       = ["Ben Christel", "Rachel Heaton", "Colby Holliday", "Joseph Nguyen", "Shola Oyedele"]
+  spec.authors       = ["Ben Christel", "Khaaliq DeJan", "Rachel Heaton", "Colby Holliday", "Joseph Nguyen", "Shola Oyedele"]
   spec.email         = ["webops@walkerandcobrands.com"]
 
   spec.summary       = %q{Rubygem wrapper for Ingram Micro API}
