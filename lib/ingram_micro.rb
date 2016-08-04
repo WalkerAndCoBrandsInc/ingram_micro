@@ -18,6 +18,15 @@ module IngramMicro
   end
 
   def self.generate_order_number(prefix='')
-    "#{prefix}#{SecureRandom.random_number(89999) + 10000}"
+    if prefix.to_s.length == 0 || prefix.to_s.match(/^(\d)+$/)
+      return "#{prefix}#{SecureRandom.random_number(89999) + 10000}"
+    else
+      return nil
+    end
+  end
+
+  def self.extract_order_number(number)
+    return nil unless number.to_s.match(/^(\d)+$/) || number.length < 6
+    number[0...-5]
   end
 end
