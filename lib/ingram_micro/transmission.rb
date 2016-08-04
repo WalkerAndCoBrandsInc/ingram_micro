@@ -4,11 +4,11 @@ class IngramMicro::Transmission
     'sales-order-submission' => 'outbound/BPXML-SalesOrder.xsd',
     'shipment-status' => 'outbound/BPXML-ShipmentStatus.xsd',
     'return-authorization' => 'outbound/BPXML-ReturnAuthorization.xsd',
+    'standard-response' => 'outbound/BPXML-StandardResponse.xsd',
     'load-reject' => 'inbound/BPXML-LoadReject.xsd',
     'load-success' => 'inbound/BPXML-LoadSuccess.xsd',
     'return-receipt' => 'inbound/BPXML-ReturnReceipt.xsd',
-    'ship-advice' => 'inbound/BPXML-ShipAdvice.xsd',
-    'standard-response' => 'inbound/BPXML-StandardResponse.xsd',
+    'ship-advice' => 'inbound/BPXML-ShipAdvice.xsd'
   }
 
   attr_reader :errors, :transaction_name
@@ -19,7 +19,7 @@ class IngramMicro::Transmission
 
   def schema_valid?
     xsd = Nokogiri::XML::Schema(File.read("#{IngramMicro::GEM_DIR}/xsd/" +
-      XSD[self.transaction_name]))
+      XSD[self.class::TRANSMISSION_FILENAME]))
     valid = true
     xsd.validate(self.xml_builder.doc).each do |error|
       errors << error.message

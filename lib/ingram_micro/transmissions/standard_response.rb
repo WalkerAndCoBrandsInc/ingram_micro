@@ -1,15 +1,21 @@
 class IngramMicro::StandardResponse < IngramMicro::Transmission
+  TRANSMISSION_FILENAME = 'standard-response'
+  
   attr_accessor :status_code, :status_description, :comments,
-    :response_timestamp, :filename
+    :response_timestamp, :filename, :transaction_name
 
   def initialize(options={})
     super(options)
-    @transaction_name = 'standard-response'
+    @transaction_name = options[:transaction_name]
     @status_code = options[:status_code]
     @status_description = options[:status_description]
     @comments = options[:comments]
     @response_timestamp = options[:response_timestamp]
     @filename = options[:filename]
+  end
+
+  def to_xml(opts={})
+    xml_builder.to_xml
   end
 
   def xml_builder

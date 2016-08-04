@@ -11,7 +11,6 @@ class IngramMicro::CreditCardInformation < IngramMicro::BaseElement
     card_holder_state: nil,
     card_holder_post_code: nil,
     card_holder_country_code: nil,
-    authorized_amount: 0.0,
     billing_sequence_number: nil,
     billing_authorization_response: nil,
     billing_address_match: nil,

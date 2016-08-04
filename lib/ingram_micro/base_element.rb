@@ -18,13 +18,6 @@ class IngramMicro::BaseElement
     end
   end
 
-  def parse(message_hash)
-    defaults.each do |field|
-      element_name = field.to_s.gsub('_', '-')
-      @element[field] = message_hash[element_name]
-    end
-  end
-
   def self.format(field, formatter)
     @formatters ||= {}
     @formatters[field] = formatter

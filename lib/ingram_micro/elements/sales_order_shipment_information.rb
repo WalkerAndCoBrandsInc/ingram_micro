@@ -1,4 +1,4 @@
-class IngramMicro::SalesOrderShipmentInformation < IngramMicro::ShipmentInformation
+class IngramMicro::SalesOrderShipmentInformation < IngramMicro::OutboundShipmentInformation
 
   DEFAULTS = DEFAULTS.merge({ ship_no_later: nil,
                               no_ship_before: nil,

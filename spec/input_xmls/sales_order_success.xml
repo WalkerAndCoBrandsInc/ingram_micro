@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<message>
+  <message-header>
+    <message-id>481784317</message-id>
+    <transaction-name>sales-order-success</transaction-name>
+    <partner-name>cust</partner-name>
+    <source-url>http://www.brightpoint.com</source-url>
+    <create-timestamp>2014-09-23T09:04:31.836-04:00</create-timestamp>
+    <response-request>1</response-request>
+  </message-header>
+  <sales-order-success>
+    <header>
+      <customer-id>560175</customer-id>
+      <shipment-information>
+        <ship-first-name>Rachel Uchurch</ship-first-name>
+        <ship-address1>7539 VILLAGE LN</ship-address1>
+        <ship-city>SAINT THOMAS</ship-city>
+        <ship-state>PA</ship-state>
+        <ship-post-code>17252-9701</ship-post-code>
+        <ship-country-code>US</ship-country-code>
+        <ship-email>rnuchurch@gmail.com</ship-email>
+        <ship-via>GGRNDP</ship-via>
+      </shipment-information>
+      <purchase-order-information>
+        <purchase-order-number>137789</purchase-order-number>
+        <account-description/>
+        <comments></comments>
+        <comments>20140923</comments>
+      </purchase-order-information>
+      <order-header>
+        <customer-order-number>562134</customer-order-number>
+        <customer-order-date>20140922</customer-order-date>
+        <brightpoint-order-number>106334842</brightpoint-order-number>
+        <order-sub-total>0</order-sub-total>
+        <order-discount>0</order-discount>
+        <order-tax1>0</order-tax1>
+        <order-tax2>0</order-tax2>
+        <order-tax3>0</order-tax3>
+        <order-shipment-charge>0</order-shipment-charge>
+        <order-total-net>0</order-total-net>
+      </order-header>
+    </header>
+    <detail>
+      <line-item>
+        <line-no>1</line-no>
+        <brightpoint-line-no>1</brightpoint-line-no>
+        <item-code>0BKS</item-code>
+        <quantity>1</quantity>
+        <line-status>ACCEPTED</line-status>
+        <customer-order-date>20140922</customer-order-date>
+        <line-discount>0</line-discount>
+        <line-tax1>0</line-tax1>
+        <line-tax2>0</line-tax2>
+        <line-tax3>0</line-tax3>
+      </line-item>
+    </detail>
+  </sales-order-success>
+  <transactionInfo>
+    <eventID>481784317</eventID>
+  </transactionInfo>
+</message>

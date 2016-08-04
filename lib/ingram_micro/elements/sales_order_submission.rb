@@ -1,5 +1,4 @@
 class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
-
   DEFAULTS = {
     customer: nil,
     sales_order_shipment_information: nil,
@@ -9,7 +8,8 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
     line_items: [],
     customer_id: nil,
     business_name: nil,
-    carrier_name: nil
+    carrier_name: nil,
+    purchase_order_information: nil
   }
 
   def defaults
@@ -36,6 +36,11 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
       end
       builder.send('shipment-information') do
         @element[:sales_order_shipment_information].build(builder)
+      end
+      if @element[:purchase_order_information]
+        builder.send('purchase-order-information') do
+          @element[:purchase_order_information].build(builder)
+        end
       end
       builder.send('credit-card-information') do
         @element[:credit_card_information].build(builder)

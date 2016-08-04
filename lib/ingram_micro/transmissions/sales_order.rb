@@ -1,7 +1,9 @@
 class IngramMicro::SalesOrder < IngramMicro::Transmission
+  TRANSMISSION_FILENAME = 'sales-order-submission'
+
   attr_accessor :customer, :credit_card_information, :sales_order_header,
   :sales_order_shipment_information, :detail, :carrier_name, :business_name,
-  :customer_id
+  :customer_id, :purchase_order_information
 
   def initialize(options={})
     super(options)
@@ -14,6 +16,8 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
     @business_name = options[:business_name]
     @customer_id = options[:customer_id]
     @carrier_name = options[:carrier_name]
+    @purchase_order_information = options[:purchase_order_information]
+
     validate_options(options)
   end
 
@@ -46,7 +50,8 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
       customer: customer,
       sales_order_shipment_information: sales_order_shipment_information,
       sales_order_header: sales_order_header,
-      credit_card_information: credit_card_information
+      credit_card_information: credit_card_information,
+      purchase_order_information: purchase_order_information
     }
     sos = IngramMicro::SalesOrderSubmission.new(sos_options)
     builder.send('sales-order-submission') do

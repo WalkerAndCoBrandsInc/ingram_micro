@@ -41,4 +41,10 @@ describe IngramMicro::StandardResponse do
       end
     end
   end
+
+  describe 'to_xml' do
+    it 'delegates to xml builder' do
+      expect(populated_standard_response.to_xml).to have_xml('/message/message-header/transaction-name', 'standard-response')
+    end
+  end
 end

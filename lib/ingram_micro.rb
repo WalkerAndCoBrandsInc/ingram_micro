@@ -2,6 +2,7 @@ require "nokogiri"
 require "faraday"
 require "faraday_middleware"
 require "require_all"
+require "securerandom"
 require_rel 'ingram_micro/**/*.rb'
 
 module IngramMicro
@@ -14,5 +15,9 @@ module IngramMicro
   def self.configure
     yield configuration
     configuration.assert_valid
+  end
+
+  def self.generate_order_number(prefix='')
+    "#{prefix}#{SecureRandom.random_number(89999) + 10000}"
   end
 end

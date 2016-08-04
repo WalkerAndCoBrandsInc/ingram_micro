@@ -19,10 +19,10 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
   def initialize(options={})
     super
     @element[:customer] ||= IngramMicro::Customer.new
-    @element[:shipment_information] ||= IngramMicro::ShipmentInformation.new
+    @element[:shipment_information] ||= IngramMicro::OutboundShipmentInformation.new
     @element[:credit_card_information] ||= IngramMicro::CreditCardInformation.new
     @element[:order_header] ||= IngramMicro::ReturnAuthorizationOrderHeader.new
-    @element[:purchase_order_information] ||= IngramMicro::PurchaseOrderInformation.new
+    @element[:purchase_order_information] ||= IngramMicro::OutboundPurchaseOrderInformation.new
     @element[:detail] ||= IngramMicro::Detail.new
   end
 
