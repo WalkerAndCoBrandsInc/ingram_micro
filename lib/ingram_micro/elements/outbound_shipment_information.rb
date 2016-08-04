@@ -55,7 +55,7 @@ class IngramMicro::OutboundShipmentInformation < IngramMicro::BaseElement
   end
 
   def build(builder)
-    # add_ship_address2
+    add_ship_address2
     super(builder)
   end
 
