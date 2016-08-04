@@ -3,6 +3,7 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
   DEFAULTS = {
     customer: nil,
     sales_order_shipment_information: nil,
+    purchase_order_information: nil,
     credit_card_information: nil,
     sales_order_header: nil,
     detail: nil,
@@ -20,6 +21,7 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
     super
     @element[:customer] ||= IngramMicro::Customer.new
     @element[:sales_order_shipment_information] ||= IngramMicro::SalesOrderShipmentInformation.new
+    @element[:purchase_order_information] ||= IngramMicro::OutboundPurchaseOrderInformation.new
     @element[:credit_card_information] ||= IngramMicro::CreditCardInformation.new
     @element[:sales_order_header] ||= IngramMicro::SalesOrderHeader.new
     check_line_items
@@ -36,6 +38,9 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
       end
       builder.send('shipment-information') do
         @element[:sales_order_shipment_information].build(builder)
+      end
+      builder.send('purchase-order-information') do
+        @element[:purchase_order_information].build(builder)
       end
       builder.send('credit-card-information') do
         @element[:credit_card_information].build(builder)
