@@ -24,6 +24,14 @@ describe IngramMicro::SalesOrder do
       end
     end
 
+    context 'with purchase order information' do
+      let(:sales_order_purchase_order_information) { Fabricate.build(:sales_order_purchase_order_information) }
+      it 'sets the attribute' do
+        sales_order = IngramMicro::SalesOrder.new({purchase_order_information: sales_order_purchase_order_information})
+        expect(sales_order.purchase_order_information).to eq(sales_order_purchase_order_information)
+      end
+    end
+
     context 'old options passed in' do
       it 'raises for shipment information' do
         expect do
