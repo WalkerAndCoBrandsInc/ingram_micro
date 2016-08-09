@@ -8,8 +8,9 @@ class IngramMicro::InventorySync < IngramMicro::InboundBaseElement
     @hash['message']['inventory_synchronization']
   end
 
-  def details
-    @hash['message']['inventory_synchronization']['details']['line_item']
+  def detail
+    detail = @hash['message']['inventory_synchronization']['detail']
+    IngramMicro::InventorySyncDetail.new(detail)
   end
 
 end
