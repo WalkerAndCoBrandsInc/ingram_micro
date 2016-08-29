@@ -17,7 +17,7 @@ module IngramMicro
     configuration.assert_valid
   end
 
-  def self.generate_order_number(prefix='')
+  def self.generate_order_number(prefix = '')
     "#{prefix}#{SecureRandom.random_number(89999) + 10000}"
   end
 end

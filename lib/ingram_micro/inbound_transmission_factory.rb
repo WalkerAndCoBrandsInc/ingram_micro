@@ -27,16 +27,16 @@ class IngramMicro::InboundTransmissionFactory
 
   def inbound_transmission_class
     case transaction_name
-      when 'sales-order-success'
-        IngramMicro::SalesOrderSuccess
-      when 'sales-order-rejection'
-        IngramMicro::SalesOrderRejection
-      when 'ship-advice'
-        IngramMicro::ShipAdvice
-      when 'inventory-synchronization'
-        IngramMicro::InventorySync
-      else
-        raise Error, "#{self.class.name} received unrecognized transaction-name: #{transaction_name}"
+    when 'sales-order-success'
+      IngramMicro::SalesOrderStatus
+    when 'sales-order-rejection'
+      IngramMicro::SalesOrderStatus
+    when 'ship-advice'
+      IngramMicro::ShipAdvice
+    when 'inventory-synchronization'
+      IngramMicro::InventorySync
+    else
+      raise Error, "#{self.class.name} received unrecognized transaction-name: #{transaction_name}"
     end
   end
 
