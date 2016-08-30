@@ -1,0 +1,28 @@
+module IngramMicro
+  class SalesOrderLineItemNameValue < BaseElement
+    ATTRIBUTE_NAMES = [
+      "international-eccn-value",
+      "international-declared-value",
+      "warranty-item",
+      "international-country-of-origin",
+      "international-license-value",
+      "hts-code"
+    ].freeze
+
+    DEFAULTS = {
+      :name => nil,
+      :value => nil
+    }
+
+    def self.build(name, value, builder)
+      if ATTRIBUTE_NAMES.include?(name)
+        builder.send('line-name-value') do
+          builder.send('line-attribute-name', name)
+          builder.send('line-attribute-value', value)
+        end
+      else
+        raise ArgumentError, "Invalid attribute name: #{name}"
+      end
+    end
+  end
+end
