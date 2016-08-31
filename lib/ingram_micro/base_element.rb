@@ -7,7 +7,6 @@ class IngramMicro::BaseElement
       value = (options[field] ? options[field] : default)
       @element[field] = value
     end
-    @element[:customer_id] ||= IngramMicro.configuration.customer_id
   end
 
   # build goes through defaults (defined for each element that inherits from

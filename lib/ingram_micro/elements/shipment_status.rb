@@ -21,7 +21,7 @@ class IngramMicro::ShipmentStatus < IngramMicro::BaseElement
   def build(builder)
     builder.send('header') do
       builder.send('customer-information') do
-        builder.send 'customer-id', @element[:customer_id]
+        builder.send 'customer-id', IngramMicro.configuration.customer_id
         builder.send 'business-name', @element[:business_name]
       end
     end
