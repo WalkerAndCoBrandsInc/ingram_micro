@@ -1,6 +1,6 @@
 class IngramMicro::Transmission
   XSD = {
-    'sales-order-submission' => 'outbound/BPXML-SalesOrder.xsd',
+    'sales-order-submission' => 'outbound/BPXML-SalesOrder_international.xsd',
     'shipment-status' => 'outbound/BPXML-ShipmentStatus.xsd',
     'return-authorization' => 'outbound/BPXML-ReturnAuthorization.xsd',
     'standard-response' => 'outbound/BPXML-StandardResponse.xsd',
@@ -16,6 +16,11 @@ class IngramMicro::Transmission
     @errors = []
   end
 
+  # schema_valid? compares an xml document (the result of self.xml_builder) to
+  # the appropriate xsd (XML Schema Definition).
+  # NOTE: the order of the fields matters when checking against the xsd files.
+  #   So, if in the order-header of a sales order, if customer_channel_type appears
+  #   at the top of the output xml file, it will fail schema validation.
   def schema_valid?
     xsd = Nokogiri::XML::Schema(File.read("#{IngramMicro::GEM_DIR}/xsd/" +
       XSD[self.class::TRANSMISSION_FILENAME]))

@@ -22,7 +22,7 @@ class IngramMicro::SalesOrderLineItem < IngramMicro::BaseElement
     :line_tax2 => 0.0,
     :line_tax3 => 0.0,
     :special_message => nil,
-    :line_name_values => []
+    :line_name_value => []
   }
 
   def line_no
@@ -35,12 +35,24 @@ class IngramMicro::SalesOrderLineItem < IngramMicro::BaseElement
 
   def build(builder)
     super(builder)
-
+    # Expect that line_name_value will be an array of arrays, each of which
+    # contains a name and value that will translate to line-attribute-name and
+    # line-attribute-value.
+    # unless element[:line_name_value].empty?
+    #   name_value_pairs = element[:line_name_value]
+    #   name_value_pairs.each do |pair|
+    #     name, value = pair
+    #     add_line_name_value(name, value, builder)
+    #   end
+    # end
   end
 
-  # Need to decide where these are coming from. Use Defaults?
-  def line_name_value(name, value, builder)
-    IngramMicro::SalesOrderLineItemNameValue.build(name, value, builder)
+  # The <line-name-value> element in the detail of a line item of a sales order
+  # is used for information related to international shipments. There can be
+  # multiple line-name-value elements. More info in SalesOrderLineItemNameValue.
+  def add_line_name_value(name, value, builder)
+    IngramMicro::SalesOrderLineItemNameValue.new(name: name, value: value)
+      .build(builder)
   end
 
   def defaults
