@@ -30,13 +30,42 @@ describe IngramMicro::SalesOrderLineItem do
     end
 
     context 'called as part of #build' do
+      let(:blankli) { described_class.new }
+      context 'when no name-value pairs are present' do
+        it 'does not get called if no name-value pairs are present' do
+          builder = Nokogiri::XML::Builder.new
+          expect(blankli).to_not receive(:add_line_name_value)
 
-      let(:test_builder) { Nokogiri::XML::Builder.new }
-      let(:default_line_item) { described_class.new }
-      it 'does not get called if no name-value pairs are present' do
-        expect(default_line_item).to_not receive(:add_line_name_value)
+          builder.send('message') do
+            (blankli.build(builder))
+          end
+        end
+      end
 
-        default_line_item.build(test_builder)
+      # For some reason, using let(:builder) and let(:li) for this context does
+      # not work the same way as defining them in each it block.
+      # Furthermore, the expectation that li would receive :add_line_name_value
+      # appears to prevent the method from actually being called, which means
+      # the resulting xml won't appear unless it is called in a separate test.
+      context 'when at least one attribute-value pair is present' do
+        it 'gets called' do
+          li = described_class.new(line_name_value: [["international-license-value",'300.50']])
+          builder = Nokogiri::XML::Builder.new
+          expect(li).to receive(:add_line_name_value)
+          builder.send('message') do
+            li.build(builder)
+          end
+        end
+
+        it 'properly creates xml' do
+          li = described_class.new(product_name: "killerizer", line_name_value: [["international-license-value",'300.50']])
+          builder = Nokogiri::XML::Builder.new
+          builder.send('message') do
+            li.build(builder)
+          end
+          expect(builder.to_xml).to include('<line-attribute-name>international-license-value')
+          expect(builder.to_xml).to include('<line-attribute-value>300.50')
+        end
       end
     end
   end
