@@ -11,5 +11,18 @@ module IngramMicro
       special_message6: nil
     }.freeze
 
+    def build(builder)
+      el_copy = element
+      builder.send('special-message') do
+        el_copy.each do |field, value|
+          field_name = field.to_s.tr("_","-")
+          builder.send(field_name, value) unless value.nil?
+        end
+      end
+    end
+
+    def defaults
+      DEFAULTS
+    end
   end
 end
