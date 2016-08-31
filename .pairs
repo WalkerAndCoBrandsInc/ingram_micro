@@ -1,0 +1,13 @@
+pairs:
+  ch: Colby Holliday; colby@getbevel.com
+  kd: Khaaliq DeJan; khaaliq@getbevel.com
+  rh: Rachel Heaton; rachel@getbevel.com
+  jn: Joseph Nguyen; joseph@getbevel.com
+  dl: David Le; david@getbevel.com
+  so: Shola Oyedele; shola@getbevel.com
+  dh: Damon Hastings; damon@getbevel.com
+  sa: Senthil Arivudainambi; senthil@getbevel.com
+email:
+  prefix: pair
+  no_solo_prefix: true
+  global: false
