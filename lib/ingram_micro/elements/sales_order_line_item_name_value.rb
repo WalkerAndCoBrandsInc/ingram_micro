@@ -17,7 +17,6 @@ module IngramMicro
     def build(builder)
       name, value = element[:name], element[:value]
       if ATTRIBUTE_NAMES.include?(name)
-
         builder.send('line-name-value') do
           builder.send('line-attribute-name', name)
           builder.send('line-attribute-value', value)
