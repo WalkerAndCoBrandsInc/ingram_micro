@@ -1,5 +1,4 @@
 class IngramMicro::Transmission
-
   XSD = {
     'sales-order-submission' => 'outbound/BPXML-SalesOrder.xsd',
     'shipment-status' => 'outbound/BPXML-ShipmentStatus.xsd',
@@ -35,7 +34,7 @@ class IngramMicro::Transmission
   end
 
   def xml_builder
-    raise Exception('xml_builder needs to be implemented in subclass')
+    raise StandardError, 'xml_builder needs to be implemented in subclass'
   end
 
   def add_transaction_info(builder)
@@ -45,7 +44,8 @@ class IngramMicro::Transmission
   end
 
   def submit_request
-    send_request if schema_valid?
+    raise IngramMicro::XMLSchemaMismatch, 'xml did not pass schema' if !schema_valid?
+    send_request
   end
 
   def send_request
