@@ -20,4 +20,8 @@ module IngramMicro
   def self.generate_order_number(prefix = '')
     "#{prefix}#{SecureRandom.random_number(89999) + 10000}"
   end
+
+
+  class InvalidType < StandardError; end
+  class MissingField < StandardError; end
 end

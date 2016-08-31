@@ -35,7 +35,7 @@ class IngramMicro::Transmission
   end
 
   def xml_builder
-    raise Exception('xml_builder needs to be implemented in subclass')
+    raise StandardError, 'xml_builder needs to be implemented in subclass'
   end
 
   def add_transaction_info(builder)
