@@ -69,4 +69,30 @@ describe IngramMicro::SalesOrderLineItem do
       end
     end
   end
+
+  describe '#add_special_message' do
+    it 'creates a new special message object if nothing is passed in' do
+      builder = Nokogiri::XML::Builder.new
+      li = described_class.new
+      builder.send('message') do
+        li.build(builder)
+      end
+      expect(builder.to_xml).to include('<special-message/>')
+    end
+    it 'adds a special message to the xml if one is passed in' do
+      builder = Nokogiri::XML::Builder.new
+      message = IngramMicro::SalesOrderLineItemSpecialMessage.new({
+        engraving_font: 'hellavetica',
+        engraving_location: 'Santa Cruz',
+        special_message1: 'duuuude'
+        })
+      li = described_class.new(special_message: message)
+      builder.send('message') do
+        li.build(builder)
+      end
+      expect(builder.to_xml).to include('<special-message>')
+      expect(builder.to_xml).to include('<engraving-font>hellavetica')
+    end
+
+  end
 end
