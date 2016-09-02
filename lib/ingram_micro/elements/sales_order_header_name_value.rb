@@ -30,8 +30,8 @@ module IngramMicro
       if HEADER_ATTRIBUTE_NAMES.include?(element[:name])
         name, value = element[:name], element[:value]
         builder.send('header-name-value') do
-            builder.send('attribute-name', name)
-            builder.send('attribute-value', value)
+          builder.send('attribute-name', name)
+          builder.send('attribute-value', value)
         end
       else
         raise ArgumentError, "Header attribute #{name} is invalid."

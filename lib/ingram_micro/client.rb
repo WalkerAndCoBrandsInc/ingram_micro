@@ -1,9 +1,8 @@
 require 'uri'
 class IngramMicro::Client
-
   attr_reader :uri, :conn
 
-  def initialize(url=api_root)
+  def initialize(url = api_root)
     @uri = URI.parse(url)
     @conn = Faraday.new(url: uri) do |faraday|
       faraday.request  :url_encoded

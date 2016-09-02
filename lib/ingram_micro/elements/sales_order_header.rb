@@ -1,5 +1,4 @@
 class IngramMicro::SalesOrderHeader < IngramMicro::BaseElement
-
   # The defaults here will be used to populate the xml fields. The order of
   # these inputs matters, and they have been reconfigured to pass the xsd file
   # provided by IMM for internationally shipped sales orders. If needed, we
@@ -23,7 +22,7 @@ class IngramMicro::SalesOrderHeader < IngramMicro::BaseElement
     gift_flag: nil,
     packing_slip_format: nil,
     special_header_message: nil
-  }
+  }.freeze
 
   format :customer_order_date, IngramMicro::DateFormatter.new
 
@@ -34,5 +33,4 @@ class IngramMicro::SalesOrderHeader < IngramMicro::BaseElement
   def add_header_name_value(name, value, builder)
     IngramMicro::SalesOrderHeaderNameValue.new(name, value).build(builder)
   end
-
 end

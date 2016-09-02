@@ -1,5 +1,4 @@
 class IngramMicro::MessageHeaderNoPW < IngramMicro::BaseElement
-
   DEFAULTS = {
     message_id: 0,
     transaction_name: nil,
@@ -7,7 +6,7 @@ class IngramMicro::MessageHeaderNoPW < IngramMicro::BaseElement
     source_url: nil,
     create_timestamp: nil,
     response_request: 1
-  }
+  }.freeze
 
   format :create_timestamp, IngramMicro::DateTimeFormatter.new
 

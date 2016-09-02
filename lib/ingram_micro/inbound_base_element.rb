@@ -11,6 +11,6 @@ class IngramMicro::InboundBaseElement
   end
 
   def transaction_name
-    return @hash['message']['message_header']['transaction_name']
+    @hash['message']['message_header']['transaction_name']
   end
 end

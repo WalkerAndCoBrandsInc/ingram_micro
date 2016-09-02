@@ -12,7 +12,7 @@ module IngramMicro
     DEFAULTS = {
       :name => nil,
       :value => nil
-    }
+    }.freeze
 
     def build(builder)
       name, value = element[:name], element[:value]

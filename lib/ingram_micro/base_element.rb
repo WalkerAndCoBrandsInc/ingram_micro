@@ -1,9 +1,9 @@
 class IngramMicro::BaseElement
   attr_accessor :element
 
-  def initialize(options={})
+  def initialize(options = {})
     @element = {}
-    self.defaults.each do |field, default|
+    defaults.each do |field, default|
       value = (options[field] ? options[field] : default)
       @element[field] = value
     end
@@ -15,8 +15,8 @@ class IngramMicro::BaseElement
   # The fields are being added to builder, which is a Nokogiri XML Builder
   # object that can output an xml document (which gets sent to Ingram Micro).
   def build(builder)
-    self.defaults.keys.each do |field|
-      element_name = field.to_s.gsub('_', '-')
+    defaults.keys.each do |field|
+      element_name = field.to_s.tr('_', '-')
       element_value = formatted_value_of(field)
       builder.send(element_name, element_value)
     end

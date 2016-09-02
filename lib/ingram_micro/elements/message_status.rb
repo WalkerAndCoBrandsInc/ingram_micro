@@ -5,15 +5,14 @@ class IngramMicro::MessageStatus < IngramMicro::BaseElement
     comments: nil,
     response_timestamp: nil,
     filename: nil
-  }
+  }.freeze
 
   def defaults
     DEFAULTS
   end
 
-  def initialize(options={})
+  def initialize(options = {})
     super
     @element[:response_timestamp] ||= Time.now.strftime('%Y%m%d%H%M%S')
   end
-
 end

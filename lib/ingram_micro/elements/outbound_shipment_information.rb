@@ -1,5 +1,4 @@
 class IngramMicro::OutboundShipmentInformation < IngramMicro::BaseElement
-
   SHIPPING_METHODS = {
     'FX01' => 'FedEx Standard Overnight',
     'FXAM' => 'FedEx Priority Overnight',
@@ -13,8 +12,8 @@ class IngramMicro::OutboundShipmentInformation < IngramMicro::BaseElement
     'FXL1' => 'FedEx Freight Overnight (Air)',
     'FXL2' => 'FedEx Freight 2-day (Air)',
     'FXL3' => 'FedEx Freight 3-day (Air)',
-    'FXLE' => 'FedEx Freight Ground',
-   }.freeze
+    'FXLE' => 'FedEx Freight Ground'
+  }.freeze
 
   DEFAULTS = {
     ship_first_name: nil,

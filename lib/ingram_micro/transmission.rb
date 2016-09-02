@@ -12,20 +12,20 @@ class IngramMicro::Transmission
 
   attr_reader :errors, :transaction_name
 
-  def initialize(options={})
+  def initialize(options = {})
     @errors = []
   end
 
   # schema_valid? compares an xml document (the result of self.xml_builder) to
   # the appropriate xsd (XML Schema Definition).
   # NOTE: the order of the fields matters when checking against the xsd files.
-  #   So, if in the order-header of a sales order, if customer_channel_type appears
-  #   at the top of the output xml file, it will fail schema validation.
+  #   So, if in the order-header of a sales order, if customer_channel_type
+  #   appears at the top of the output xml file, it will fail schema validation.
   def schema_valid?
     xsd = Nokogiri::XML::Schema(File.read("#{IngramMicro::GEM_DIR}/xsd/" +
       XSD[self.class::TRANSMISSION_FILENAME]))
     valid = true
-    xsd.validate(self.xml_builder.doc).each do |error|
+    xsd.validate(xml_builder.doc).each do |error|
       errors << error.message
       valid = false
     end
@@ -49,12 +49,12 @@ class IngramMicro::Transmission
   end
 
   def submit_request
-    raise IngramMicro::XMLSchemaMismatch, 'xml did not pass schema' if !schema_valid?
+    raise IngramMicro::XMLSchemaMismatch, 'xml did not pass schema' unless schema_valid?
     send_request
   end
 
   def send_request
     client = IngramMicro::Client.new
-    client.post(self.xml_builder.to_xml)
+    client.post(xml_builder.to_xml)
   end
 end
