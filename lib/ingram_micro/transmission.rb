@@ -1,6 +1,6 @@
 class IngramMicro::Transmission
   XSD = {
-    'sales-order-submission' => 'outbound/BPXML-SalesOrder_international.xsd',
+    'sales-order-submission' => 'outbound/BPXML-SalesOrder.xsd',
     'shipment-status' => 'outbound/BPXML-ShipmentStatus.xsd',
     'return-authorization' => 'outbound/BPXML-ReturnAuthorization.xsd',
     'standard-response' => 'outbound/BPXML-StandardResponse.xsd',
@@ -8,7 +8,7 @@ class IngramMicro::Transmission
     'load-success' => 'inbound/BPXML-LoadSuccess.xsd',
     'return-receipt' => 'inbound/BPXML-ReturnReceipt.xsd',
     'ship-advice' => 'inbound/BPXML-ShipAdvice.xsd'
-  }
+  }.freeze
 
   attr_reader :errors, :transaction_name
 

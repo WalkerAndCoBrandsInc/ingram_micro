@@ -173,9 +173,11 @@
 				<xs:element ref="ship-request-date"/>
 				<xs:element ref="ship-no-later" minOccurs="0"/>
 				<xs:element ref="no-ship-before" minOccurs="0"/>
+				<xs:element ref="receive-no-later" minOccurs="0"/>
+				<xs:element ref="no-receive-before" minOccurs="0"/>
 				<xs:element ref="ship-request-from" minOccurs="0"/>
 				<xs:element ref="ship-request-warehouse" minOccurs="0"/>
-				
+				<xs:element ref="dock-date" minOccurs="0"/>
 				<xs:element ref="ship-to-code" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -210,6 +212,16 @@
 			<xs:documentation xml:lang="en">Earliest Date on which order is requested for shipment. In CCYYMMDD.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+	<xs:element name="receive-no-later" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Latest Date on which order is requested for receiving. In CCYYMMDD.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="no-receive-before" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Earliest Date on which order is requested for receiving. In CCYYMMDD.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 	<xs:element name="ship-request-from" type="xs:string">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">City from which Shipment is requested.</xs:documentation>
@@ -218,6 +230,11 @@
 	<xs:element name="ship-request-warehouse" type="xs:string">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Virtual Warehouse (Site) from which Shipment is requested.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dock-date" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Requested Date on which order should be on dock. In CCYYMMDD.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="ship-to-code" type="xs:string">
@@ -264,7 +281,7 @@
 			<xs:documentation xml:lang="en">
         This element contains all credit card related information for the order.  Please note that due to PCI compliance issues, we can
         only accept the last four digits of a credit card number.  The prior digits must be replaced with X characters.
-      </xs:documentation>
+			</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
@@ -406,6 +423,7 @@
 				<xs:element ref="gift-flag" minOccurs="0"/>
 				<xs:element ref="packing-slip-format" minOccurs="0"/>
 				<xs:element ref="special-header-message" minOccurs="0"/>
+				<xs:element ref="header-name-value" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -520,6 +538,7 @@
 				<xs:element ref="special-header-message3" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="special-header-message4" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="special-header-message5" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="special-header-message6" minOccurs="0" maxOccurs="1"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -546,6 +565,50 @@
 	<xs:element name="special-header-message5" type="xs:string">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Special Header Message 5.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="special-header-message6" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Special Header Message 6.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="header-name-value">
+		<xs:annotation>
+			<xs:documentation>Customer specific name value attributes for International Frieght </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="attribute-name" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="attribute-value" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="attribute-name">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Header International Frieght Attribute Name(s).</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="international-duties-and-taxes-billing-to" />
+				<xs:enumeration value="international-freight-billing-to" />
+				<xs:enumeration value="international-freight-account" />
+				<xs:enumeration value="international-incoterm" />
+				<xs:enumeration value="international-importer-of-record-email" />
+				<xs:enumeration value="international-importer-of-record-phone-number" />
+				<xs:enumeration value="international-importer-of-record-country-code" />
+				<xs:enumeration value="international-importer-of-record-zipcode" />
+				<xs:enumeration value="international-importer-of-record-state" />
+				<xs:enumeration value="international-importer-of-record-city" />
+				<xs:enumeration value="international-importer-of-record-address3" />
+				<xs:enumeration value="international-importer-of-record-address2" />
+				<xs:enumeration value="international-importer-of-record-address1" />
+				<xs:enumeration value="international-importer-of-record-name" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="attribute-value" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Header International Frieght Attribute Value(s).</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="detail">
@@ -583,7 +646,8 @@
 				<xs:element ref="line-tax2" minOccurs="0"/>
 				<xs:element ref="line-tax3" minOccurs="0"/>
 				<xs:element ref="ownership-flag" minOccurs="0"/>
-                <xs:element ref="special-message" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="special-message" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="line-name-value" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -699,6 +763,8 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
+			  <xs:element ref="engraving-location" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="engraving-font" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="special-message1" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="special-message2" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="special-message3" minOccurs="0" maxOccurs="1"/>
@@ -707,6 +773,17 @@
 				<xs:element ref="special-message6" minOccurs="0" maxOccurs="1"/>
 			</xs:sequence>
 		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="engraving-location" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Engraving location.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="engraving-font" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Engraving font.</xs:documentation>
+		</xs:annotation>
 	</xs:element>
 	<xs:element name="special-message1" type="xs:string">
 		<xs:annotation>
@@ -736,6 +813,37 @@
 	<xs:element name="special-message6" type="xs:string">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">Special Message 6.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="line-name-value">
+		<xs:annotation>
+			<xs:documentation>Customer specific line level name value attributes</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="line-attribute-name" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="line-attribute-value" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="line-attribute-name">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Line Level International Freight Attribute Name.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="international-eccn-value" />
+				<xs:enumeration value="international-declared-value" />
+				<xs:enumeration value="warranty-item" />
+				<xs:enumeration value="international-country-of-origin" />
+				<xs:enumeration value="international-license-value" />
+				<xs:enumeration value="hts-code" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="line-attribute-value" type="xs:string">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Line Level International Freight Attribute Value.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 	<xs:element name="transactionInfo">
