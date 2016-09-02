@@ -1,9 +1,9 @@
 class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
-  TRANSMISSION_FILENAME = 'shipment-status'
+  TRANSMISSION_FILENAME = 'shipment-status'.freeze
 
   attr_accessor :business_name, :customer_id, :line_items
 
-  def initialize(options={})
+  def initialize(options = {})
     super
     @transaction_name = 'shipment-status'
     @business_name = options[:business_name]
@@ -22,9 +22,10 @@ class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
   end
 
   def add_message_header(builder)
-    message_header = IngramMicro::MessageHeaderNoPW.new({
+    message_header = IngramMicro::MessageHeaderNoPW.new(
       partner_name: IngramMicro.configuration.partner_name,
-      transaction_name: transaction_name})
+      transaction_name: transaction_name
+    )
     builder.send('message-header') do
       message_header.build(builder)
     end
