@@ -6,14 +6,7 @@ class IngramMicro::OutboundPurchaseOrderInformation < IngramMicro::BaseElement
     purchase_order_event: nil,
     currency_code: nil,
     comments: nil
-  }
-
-  def initialize(options = {})
-    super(options)
-
-    # customer_id is always set by BaseElement, but we don't need it here
-    self.element.delete(:customer_id)
-  end
+  }.freeze
 
   def defaults
     DEFAULTS

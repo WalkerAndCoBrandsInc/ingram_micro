@@ -1,18 +1,17 @@
 class IngramMicro::ShipmentStatusLineItem < IngramMicro::BaseElement
-
   DEFAULTS = {
-    :line_no => nil,
-    :transaction_document_number => nil,
-    :bill_of_lading => nil,
-    :customer_order_number => nil,
-    :brightpoint_order_number =>  nil,
-    :status_code => nil,
-    :status_date => nil,
-    :reason_code => nil,
-    :signed_by => nil,
-    :status_timestamp => nil,
-    :comments => nil
-  }
+    line_no: nil,
+    transaction_document_number: nil,
+    bill_of_lading: nil,
+    customer_order_number: nil,
+    brightpoint_order_number:  nil,
+    status_code: nil,
+    status_date: nil,
+    reason_code: nil,
+    signed_by: nil,
+    status_timestamp: nil,
+    comments: nil
+  }.freeze
 
   def line_no
     @element[:line_no]

@@ -1,8 +1,7 @@
 class IngramMicro::Detail < IngramMicro::BaseElement
-
   DEFAULTS = {
     line_items: []
-  }
+  }.freeze
 
   def defaults
     DEFAULTS
