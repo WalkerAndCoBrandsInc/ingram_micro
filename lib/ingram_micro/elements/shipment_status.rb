@@ -14,7 +14,6 @@ module IngramMicro
     def initialize(options = {})
       super
       @element[:order_header] ||= SalesOrderHeader.new
-      check_line_items
       @element[:detail] ||= Detail.new(line_items: @element[:line_items])
     end
 
@@ -27,13 +26,6 @@ module IngramMicro
       end
       builder.send('detail') do
         @element[:detail].build(builder)
-      end
-    end
-
-    def check_line_items
-      if @element[:line_items].empty?
-        ss_line_item = ShipmentStatusLineItem.new
-        @element[:line_items] << ss_line_item
       end
     end
 

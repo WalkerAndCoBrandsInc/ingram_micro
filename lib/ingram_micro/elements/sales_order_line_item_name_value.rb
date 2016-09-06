@@ -1,6 +1,6 @@
 module IngramMicro
   class SalesOrderLineItemNameValue < BaseElement
-    ATTRIBUTE_NAMES = [
+    ACCEPTABLE_ATTRIBUTE_NAMES = [
       "international-eccn-value",
       "international-declared-value",
       "warranty-item",
@@ -16,7 +16,7 @@ module IngramMicro
 
     def build(builder)
       name, value = element[:name], element[:value]
-      if ATTRIBUTE_NAMES.include?(name)
+      if ACCEPTABLE_ATTRIBUTE_NAMES.include?(name)
         builder.send('line-name-value') do
           builder.send('line-attribute-name', name)
           builder.send('line-attribute-value', value)

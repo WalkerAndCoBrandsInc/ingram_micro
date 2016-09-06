@@ -2,9 +2,8 @@ require 'spec_helper'
 require 'pry'
 
 describe IngramMicro::SalesOrderLineItem do
-  # let(:populated_sales_order) { Fabricate.build(:sales_order) }
-  # let(:line_item_1) { populated_sales_order.detail.element[:line_items].first }
   let(:line_item) { Fabricate.build(:sales_order_line_item) }
+
   describe '#line_no and #line_no=' do
     it 'Gets the line_no' do
       expect(line_item.line_no).to eq 1
@@ -20,6 +19,7 @@ describe IngramMicro::SalesOrderLineItem do
   describe '#add_line_name_value' do
     let(:line_attr_name) { 'international-declared-value' }
     let(:line_attr_value) { '1999' }
+
     context 'called explicitly' do
       let(:builder) { Nokogiri::XML::Builder.new }
       let!(:line_name_value_xml) { line_item.add_line_name_value(line_attr_name, line_attr_value, builder).build }
@@ -81,11 +81,11 @@ describe IngramMicro::SalesOrderLineItem do
     end
     it 'adds a special message to the xml if one is passed in' do
       builder = Nokogiri::XML::Builder.new
-      message = IngramMicro::SalesOrderLineItemSpecialMessage.new({
+      message = IngramMicro::SalesOrderLineItemSpecialMessage.new(
         engraving_font: 'hellavetica',
         engraving_location: 'Santa Cruz',
         special_message1: 'duuuude'
-        })
+      )
       li = described_class.new(special_message: message)
       builder.send('message') do
         li.build(builder)
@@ -93,6 +93,5 @@ describe IngramMicro::SalesOrderLineItem do
       expect(builder.to_xml).to include('<special-message>')
       expect(builder.to_xml).to include('<engraving-font>hellavetica')
     end
-
   end
 end

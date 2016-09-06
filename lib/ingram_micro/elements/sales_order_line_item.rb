@@ -52,7 +52,7 @@ module IngramMicro
       # Expect that line_name_value will be an array of arrays, each of which
       # contains a name and value that will translate to line-attribute-name and
       # line-attribute-value.
-      unless element[:line_name_value].nil?
+      if element[:line_name_value]
         element[:line_name_value].each do |pair|
           attr_name, attr_value = pair
           add_line_name_value(attr_name, attr_value, builder)
@@ -73,7 +73,7 @@ module IngramMicro
     # initialization to make this work.
     def add_special_message(builder)
       message = element[:special_message]
-      message.build(builder) unless message.nil?
+      message.build(builder) if message
     end
   end
 end

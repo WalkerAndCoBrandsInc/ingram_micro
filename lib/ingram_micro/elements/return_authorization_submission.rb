@@ -48,16 +48,8 @@ module IngramMicro
           @element[:order_header].build(builder)
         end
       end
-      check_line_items
       builder.send('detail') do
         @element[:detail].build(builder)
-      end
-    end
-
-    def check_line_items
-      if @element[:detail].element[:line_items].empty?
-        line_item = ReturnAuthorizationLineItem.new
-        @element[:detail].element[:line_items] << line_item
       end
     end
 

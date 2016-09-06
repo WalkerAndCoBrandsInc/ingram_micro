@@ -48,8 +48,14 @@ describe IngramMicro::SalesOrder do
   end
 
   describe '#schema_valid?' do
-    context 'with data passed in' do
-      it 'validates output xml using SalesOrder schema' do
+    context 'with no data passed in' do
+      it 'returns false' do
+        expect(empty_sales_order.schema_valid?).to be false
+      end
+    end
+
+    context 'with valid data passed in' do
+      it 'returns true' do
         expect(populated_sales_order.schema_valid?).to be true
       end
     end

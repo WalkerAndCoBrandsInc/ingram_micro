@@ -22,7 +22,6 @@ module IngramMicro
       @element[:sales_order_shipment_information] ||= SalesOrderShipmentInformation.new
       @element[:credit_card_information] ||= CreditCardInformation.new
       @element[:sales_order_header] ||= SalesOrderHeader.new
-      check_line_items
       @element[:detail] ||= Detail.new({line_items: @element[:line_items]})
     end
 
@@ -51,13 +50,6 @@ module IngramMicro
       end
       builder.send('detail') do
         @element[:detail].build(builder)
-      end
-    end
-
-    def check_line_items
-      if @element[:line_items].empty?
-        line_item = SalesOrderLineItem.new
-        @element[:line_items] << line_item
       end
     end
 

@@ -1,8 +1,6 @@
 require 'spec_helper'
-require 'pry'
 
 describe IngramMicro::SalesOrderLineItemSpecialMessage do
-
   context 'without any information passed in' do
     it "produces a 'special-message' xml field" do
       special_message = described_class.new
