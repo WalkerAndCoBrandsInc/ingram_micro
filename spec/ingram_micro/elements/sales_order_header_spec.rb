@@ -35,9 +35,6 @@ describe IngramMicro::SalesOrderHeader do
         expect(builder.to_xml).to include('<customer-order-date>20160615</customer-order-date>')
       end
     end
-
-
-
   end
 
   describe "#add_header_name_values" do

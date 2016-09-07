@@ -23,7 +23,7 @@ module IngramMicro
       gift_flag: nil,
       packing_slip_format: nil,
       special_header_message: nil,
-      header_name_values: nil
+      header_name_values: []
     }.freeze
 
     format :customer_order_date, IngramMicro::DateFormatter.new
@@ -47,11 +47,9 @@ module IngramMicro
     # Assume that element[:header_name_values] will be an array of arrays, with
     # each inner array a pair of strings, [name, value].
     def add_header_name_values(builder)
-      if element[:header_name_values]
-        element[:header_name_values].each do |pair|
-          name, value = pair
-          SalesOrderHeaderNameValue.new(name: name, value: value).build(builder)
-        end
+      element[:header_name_values].each do |pair|
+        name, value = pair
+        SalesOrderHeaderNameValue.new(name: name, value: value).build(builder)
       end
     end
   end
