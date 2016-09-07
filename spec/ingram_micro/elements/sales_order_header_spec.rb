@@ -42,7 +42,7 @@ describe IngramMicro::SalesOrderHeader do
       soh_options = {
         customer_order_number: 2083648614,
         order_total_net: 39.46,
-        header_name_values: [["international-importer-of-record-email", "email@canada.ca"]]
+        header_name_value: [["international-importer-of-record-email", "email@canada.ca"]]
       }
       soh_builder = Nokogiri::XML::Builder.new do |builder|
         builder.send('message') do

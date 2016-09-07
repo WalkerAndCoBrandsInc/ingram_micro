@@ -7,7 +7,7 @@ Fabricator(:sales_order_header, class_name: IngramMicro::SalesOrderHeader) do
     order_tax1: Faker::Commerce.price,
     order_tax2: Faker::Commerce.price,
     order_tax3: Faker::Commerce.price,
-    header_name_values: [
+    header_name_value: [
       ["international-incoterm","DDP"],
       ["international-importer-of-record-city","Vancouver"]
     ]

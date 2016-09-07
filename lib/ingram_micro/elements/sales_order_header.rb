@@ -23,7 +23,7 @@ module IngramMicro
       gift_flag: nil,
       packing_slip_format: nil,
       special_header_message: nil,
-      header_name_values: []
+      header_name_value: []
     }.freeze
 
     format :customer_order_date, IngramMicro::DateFormatter.new
@@ -33,10 +33,10 @@ module IngramMicro
     end
 
     # Build similar to BaseElement except that we want to handle the
-    # :header_name_values differently from other items.
+    # :header_name_value differently from other items.
     def build(builder)
       defaults.keys.each do |field|
-        next if field == :header_name_values
+        next if field == :header_name_value
         element_name = field.to_s.tr('_', '-')
         element_value = formatted_value_of(field)
         builder.send(element_name, element_value)
@@ -44,10 +44,10 @@ module IngramMicro
       add_header_name_values(builder)
     end
 
-    # Assume that element[:header_name_values] will be an array of arrays, with
+    # Assume that element[:header_name_value] will be an array of arrays, with
     # each inner array a pair of strings, [name, value].
     def add_header_name_values(builder)
-      element[:header_name_values].each do |pair|
+      element[:header_name_value].each do |pair|
         name, value = pair
         SalesOrderHeaderNameValue.new(name: name, value: value).build(builder)
       end
