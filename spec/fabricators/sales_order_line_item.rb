@@ -18,6 +18,7 @@ Fabricator(:sales_order_line_item, class_name: IngramMicro::SalesOrderLineItem) 
              line_discount: Faker::Commerce.price,
              line_tax1: Faker::Commerce.price,
              line_tax2: Faker::Commerce.price,
-             line_tax3: Faker::Commerce.price
+             line_tax3: Faker::Commerce.price,
+             line_name_value: [["international-eccn-value", "3E001"]]
              }}
 end

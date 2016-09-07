@@ -22,7 +22,7 @@ module IngramMicro
       line_tax2: 0.0,
       line_tax3: 0.0,
       special_message: nil,
-      line_name_value: nil
+      line_name_value: []
     }.freeze
 
     attr_reader :line_name_value
@@ -43,7 +43,7 @@ module IngramMicro
       # Similar to BaseElement except we want to skip special_message and
       # line_name_value and handle them differently.
       defaults.keys.each do |field|
-        next if field == (:special_message || :line_name_value)
+        next if [:special_message, :line_name_value].include?(field)
         element_name = field.to_s.tr('_', '-')
         element_value = formatted_value_of(field)
         builder.send(element_name, element_value)
@@ -52,11 +52,9 @@ module IngramMicro
       # Expect that line_name_value will be an array of arrays, each of which
       # contains a name and value that will translate to line-attribute-name and
       # line-attribute-value.
-      if element[:line_name_value]
-        element[:line_name_value].each do |pair|
-          attr_name, attr_value = pair
-          add_line_name_value(attr_name, attr_value, builder)
-        end
+      element[:line_name_value].each do |pair|
+        attr_name, attr_value = pair
+        add_line_name_value(attr_name, attr_value, builder)
       end
     end
 
