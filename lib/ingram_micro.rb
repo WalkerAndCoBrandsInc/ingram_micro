@@ -17,6 +17,10 @@ module IngramMicro
     configuration.assert_valid
   end
 
+  def self.domestic_shipping?
+    IngramMicro.configuration.domestic || true
+  end
+
   def self.generate_order_number(prefix = '')
     "#{prefix}#{SecureRandom.random_number(89999) + 10000}"
   end

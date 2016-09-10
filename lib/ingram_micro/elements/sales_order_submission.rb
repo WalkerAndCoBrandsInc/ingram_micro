@@ -21,9 +21,11 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
     @element[:customer] ||= IngramMicro::Customer.new
     @element[:sales_order_shipment_information] ||= IngramMicro::SalesOrderShipmentInformation.new
     @element[:credit_card_information] ||= IngramMicro::CreditCardInformation.new
-    @element[:sales_order_header] ||= IngramMicro::SalesOrderHeader.new
-    check_line_items
-    @element[:detail] ||= IngramMicro::Detail.new({line_items: @element[:line_items]})
+    if IngramMicro.domestic_shipping?
+      @element[:sales_order_header] ||= IngramMicro::SalesOrderHeader.new
+      check_line_items
+      @element[:detail] ||= IngramMicro::Detail.new({line_items: @element[:line_items]})
+    end
   end
 
   def build(builder)

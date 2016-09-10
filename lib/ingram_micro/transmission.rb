@@ -1,6 +1,7 @@
 class IngramMicro::Transmission
   XSD = {
-    'sales-order-submission' => 'outbound/BPXML-SalesOrder.xsd',
+    'sales-order-submission' => 'outbound/BPXML-SalesOrderDomestic.xsd',
+    'sales-order-international' => 'outbound/BPXML-SalesOrderInternational.xsd',
     'shipment-status' => 'outbound/BPXML-ShipmentStatus.xsd',
     'return-authorization' => 'outbound/BPXML-ReturnAuthorization.xsd',
     'standard-response' => 'outbound/BPXML-StandardResponse.xsd',
