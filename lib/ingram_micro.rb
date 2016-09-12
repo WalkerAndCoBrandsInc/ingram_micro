@@ -18,7 +18,7 @@ module IngramMicro
   end
 
   def self.domestic_shipping?
-    IngramMicro.configuration.domestic || true
+    IngramMicro.configuration.international ? false : true
   end
 
   def self.generate_order_number(prefix = '')

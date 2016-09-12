@@ -28,4 +28,36 @@ describe IngramMicro do
       end
     end
   end
+
+  describe "#self.domestic_shipping?" do
+    context "when no international setting is passed in" do
+      it "returns true" do
+        IngramMicro.configure do |config|
+          config.api_root = "https://ingram.com/foo"
+        end
+
+        expect(IngramMicro.domestic_shipping?).to be true
+      end
+    end
+    context "when international is set to true" do
+      it "returns false" do
+        IngramMicro.configure do |config|
+          config.api_root = "https://ingram.com/foo"
+          config.international = true
+        end
+
+        expect(IngramMicro.domestic_shipping?).to be false
+      end
+    end
+    context "when international is set to false" do
+      it "returns true" do
+        IngramMicro.configure do |config|
+          config.api_root = "https://ingram.com/foo"
+          config.international = false
+        end
+
+        expect(IngramMicro.domestic_shipping?).to be true
+      end
+    end
+  end
 end
