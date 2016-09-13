@@ -1,6 +1,27 @@
 require 'spec_helper'
 
 describe IngramMicro::SalesOrderHeader do
+
+  describe '#defaults' do
+    let(:config) { IngramMicro::Configuration.new }
+    context 'when using the domestic schema' do
+      it "returns the correct default values hash" do
+        so_defaults = IngramMicro::SalesOrderHeader.new.defaults
+
+        expect(so_defaults.keys.count).to eq 12
+      end
+    end
+    context 'when using the international schema' do
+
+      it "returns the international default values hash" do
+        IngramMicro.configuration.international = true
+        so_defaults = IngramMicro::SalesOrderHeader.new.defaults
+
+        expect(so_defaults.keys.count).to eq 18
+      end
+    end
+  end
+
   it 'formats the customer_order_date as YYYYMMDD' do
     Nokogiri::XML::Builder.new do |builder|
       builder.send('message') do

@@ -17,6 +17,15 @@ module IngramMicro
     configuration.assert_valid
   end
 
+  # This method checks the shipping configuration of the gem. If the user of the
+  # gem is using international shipping, then this method will return false and
+  # vice versa. This configuration determines which sales order submission
+  # schema is used when submitting sales order submission requests to Ingram
+  # Micro.
+  #
+  # Returns:
+  #   true if configured for domestic shipping
+  #   false if configured for international shipping
   def self.domestic_shipping?
     IngramMicro.configuration.international ? false : true
   end
