@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 describe IngramMicro::SalesOrder do
 
   let(:empty_sales_order) { IngramMicro::SalesOrder.new({partner_name: Faker::Company.name}) }
