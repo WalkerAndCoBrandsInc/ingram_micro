@@ -15,7 +15,7 @@ class IngramMicro::ReturnAuthorizationOrderHeader < IngramMicro::BaseElement
     order_status: nil,
     order_type: nil,
     return_request_expiration_date: nil
-  }
+  }.freeze
 
   def defaults
     DEFAULTS

@@ -1,6 +1,7 @@
 class IngramMicro::SalesOrder < IngramMicro::Transmission
-  # This is the default SalesOrder class, which uses the domestic-only schema.
-  # SalesOrderInternational inherits from this and overwrites the TRANSMISSION_FILENAME
+  # This class uses the domestic-only schema by default. When
+  # configuration.international is set to true, the parent class (Transmission),
+  # knows to use the international-enabled schema instead.
   TRANSMISSION_FILENAME = 'sales-order-submission'
 
   attr_accessor :customer, :credit_card_information, :sales_order_header,

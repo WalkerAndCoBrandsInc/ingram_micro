@@ -5,7 +5,7 @@ class IngramMicro::ShipmentStatus < IngramMicro::BaseElement
     business_name: nil,
     detail: nil,
     line_items: []
-  }
+  }.freeze
 
   def defaults
     DEFAULTS

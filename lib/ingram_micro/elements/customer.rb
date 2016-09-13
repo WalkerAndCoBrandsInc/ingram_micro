@@ -15,7 +15,7 @@ class IngramMicro::Customer < IngramMicro::BaseElement
     customer_phone2: nil,
     customer_fax: nil,
     customer_email: nil
-  }
+  }.freeze
 
   def defaults
     DEFAULTS

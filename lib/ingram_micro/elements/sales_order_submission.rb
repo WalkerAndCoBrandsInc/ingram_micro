@@ -10,7 +10,7 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
     business_name: nil,
     carrier_name: nil,
     purchase_order_information: nil
-  }
+  }.freeze
 
   def defaults
     DEFAULTS

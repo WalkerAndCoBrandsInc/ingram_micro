@@ -7,7 +7,7 @@ class IngramMicro::MessageHeaderNoPW < IngramMicro::BaseElement
     source_url: nil,
     create_timestamp: nil,
     response_request: 1
-  }
+  }.freeze
 
   format :create_timestamp, IngramMicro::DateTimeFormatter.new
 
@@ -16,8 +16,12 @@ class IngramMicro::MessageHeaderNoPW < IngramMicro::BaseElement
   end
 
   def valid?
-    raise IngramMicro::InvalidType.new('message_id must be a number') unless integer?(@element[:message_id])
-    raise IngramMicro::MissingField.new('partner_name must be present') unless @element[:partner_name]
+    unless integer?(@element[:message_id])
+      raise IngramMicro::InvalidType.new('message_id must be a number')
+    end
+    unless @element[:partner_name]
+      raise IngramMicro::MissingField.new('partner_name must be present')
+    end
     true
   end
 end

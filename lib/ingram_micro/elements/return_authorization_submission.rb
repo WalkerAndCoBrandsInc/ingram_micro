@@ -10,7 +10,7 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
     customer_id: nil,
     business_name: nil,
     carrier_name: nil
-  }
+  }.freeze
 
   def defaults
     DEFAULTS
