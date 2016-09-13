@@ -1,6 +1,5 @@
 module IngramMicro
   class SalesOrderLineItem < BaseElement
-    attr_reader :line_name_value
 
     DEFAULTS = {
       :line_no => nil,
@@ -66,6 +65,7 @@ module IngramMicro
       # Similar to BaseElement except we want to skip special_message and
       # line_name_value and handle them differently.
       defaults.keys.each do |field|
+
         next if [:special_message, :line_name_value].include?(field)
         element_name = field.to_s.tr('_', '-')
         element_value = formatted_value_of(field)

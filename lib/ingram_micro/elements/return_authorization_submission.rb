@@ -28,7 +28,7 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
 
   def build(builder)
     builder.send('header') do
-      builder.send 'customer-id', @element[:customer_id]
+      builder.send 'customer-id', IngramMicro.configuration.customer_id
       builder.send 'business-name', @element[:business_name]
       builder.send 'carrier-name', @element[:carrier_name]
       builder.send('customer-information') do
@@ -58,10 +58,5 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
       line_item = IngramMicro::ReturnAuthorizationLineItem.new
       @element[:detail].element[:line_items] << line_item
     end
-  end
-
-  def valid?
-    raise IngramMicro::InvalidType.new('customer_id must be a number') unless integer?(@element[:customer_id])
-    true
   end
 end

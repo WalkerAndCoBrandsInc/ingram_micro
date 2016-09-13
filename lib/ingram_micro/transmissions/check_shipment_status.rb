@@ -7,7 +7,7 @@ class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
     super
     @transaction_name = 'shipment-status'
     @business_name = options[:business_name]
-    @customer_id = options[:customer_id]
+    @customer_id = IngramMicro.configuration.customer_id
     @line_items = options[:line_items]
   end
 
@@ -41,6 +41,5 @@ class IngramMicro::CheckShipmentStatus < IngramMicro::Transmission
     builder.send('shipment-status') do
       ss.build(builder)
     end
-    ss.valid?
   end
 end

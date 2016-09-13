@@ -19,15 +19,6 @@ describe IngramMicro::SalesOrderLineItem do
     let(:line_attr_name) { 'international-declared-value' }
     let(:line_attr_value) { '1999' }
 
-    context 'called explicitly' do
-      let(:builder) { Nokogiri::XML::Builder.new }
-      let!(:line_name_value_xml) { line_item.add_line_name_value(line_attr_name, line_attr_value, builder).build }
-      it "passes information to the line-name-value" do
-        expect(builder.to_xml).to include('<line-attribute-name>international-declared')
-        expect(builder.to_xml).to include('<line-attribute-value>1999</line-attribute-value>')
-      end
-    end
-
     context 'called as part of #build' do
       let(:blankli) { described_class.new }
       context 'when no name-value pairs are present' do
@@ -46,24 +37,32 @@ describe IngramMicro::SalesOrderLineItem do
       # Furthermore, the expectation that li would receive :add_line_name_value
       # appears to prevent the method from actually being called, which means
       # the resulting xml won't appear unless it is called in a separate test.
-      context 'when at least one attribute-value pair is present' do
-        it 'gets called' do
-          li = described_class.new(line_name_value: [["international-license-value",'300.50']])
-          builder = Nokogiri::XML::Builder.new
-          expect(li).to receive(:add_line_name_value)
-          builder.send('message') do
-            li.build(builder)
-          end
+      context 'when shipping using the international schema' do
+        before do
+          IngramMicro.configuration.international = true
         end
 
-        it 'properly creates xml' do
-          li = described_class.new(product_name: "killerizer", line_name_value: [["international-license-value",'300.50']])
-          builder = Nokogiri::XML::Builder.new
-          builder.send('message') do
-            li.build(builder)
+        context 'when at least one attribute-value pair is present' do
+          it 'gets called' do
+            li = described_class.new(line_name_value: [["international-license-value",'300.50']])
+            builder = Nokogiri::XML::Builder.new
+
+            expect(li).to receive(:add_line_name_value)
+            builder.send('message') do
+              li.build(builder)
+            end
           end
-          expect(builder.to_xml).to include('<line-attribute-name>international-license-value')
-          expect(builder.to_xml).to include('<line-attribute-value>300.50')
+
+          it 'properly creates xml' do
+            li = described_class.new(product_name: "killerizer", line_name_value: [["international-license-value",'300.50']])
+            builder = Nokogiri::XML::Builder.new
+            builder.send('message') do
+              li.build(builder)
+            end
+
+            expect(builder.to_xml).to include('<line-attribute-name>international-license-value')
+            expect(builder.to_xml).to include('<line-attribute-value>300.50')
+          end
         end
       end
     end
@@ -76,6 +75,7 @@ describe IngramMicro::SalesOrderLineItem do
       builder.send('message') do
         li.build(builder)
       end
+
       expect(builder.to_xml).to_not include('<special-message/>')
     end
     it 'adds a special message to the xml if one is passed in' do
@@ -89,6 +89,7 @@ describe IngramMicro::SalesOrderLineItem do
       builder.send('message') do
         li.build(builder)
       end
+
       expect(builder.to_xml).to include('<special-message>')
       expect(builder.to_xml).to include('<engraving-font>hellavetica')
     end

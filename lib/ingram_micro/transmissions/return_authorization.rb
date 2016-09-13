@@ -47,6 +47,5 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
     builder.send('return-authorization-submission') do
       ras.build(builder)
     end
-    ras.valid?
   end
 end
