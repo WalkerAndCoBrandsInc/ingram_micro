@@ -9,6 +9,8 @@ describe IngramMicro::ReturnAuthorization do
 
     context 'with data entered' do
       it 'raises an error' do
+        require 'pry'
+        binding.pry
         expect(return_auth_with_info.schema_valid?).to be true
       end
     end

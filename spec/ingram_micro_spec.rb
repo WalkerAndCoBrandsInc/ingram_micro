@@ -32,23 +32,21 @@ describe IngramMicro do
   describe "#self.domestic_shipping?" do
     context "when no international setting is passed in" do
       it "returns true" do
+        allow(IngramMicro.configuration).to receive(:international).and_return nil
+
         expect(IngramMicro.domestic_shipping?).to be true
       end
     end
     context "when international is set to true" do
       it "returns false" do
-        IngramMicro.configure do |config|
-          config.international = true
-        end
+        allow(IngramMicro.configuration).to receive(:international).and_return true
 
         expect(IngramMicro.domestic_shipping?).to be false
       end
     end
     context "when international is set to false" do
       it "returns true" do
-        IngramMicro.configure do |config|
-          config.international = false
-        end
+        allow(IngramMicro.configuration).to receive(:international).and_return false
 
         expect(IngramMicro.domestic_shipping?).to be true
       end
