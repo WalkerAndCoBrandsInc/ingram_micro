@@ -5,7 +5,7 @@ class IngramMicro::MessageStatus < IngramMicro::BaseElement
     comments: nil,
     response_timestamp: nil,
     filename: nil
-  }
+  }.freeze
 
   def defaults
     DEFAULTS

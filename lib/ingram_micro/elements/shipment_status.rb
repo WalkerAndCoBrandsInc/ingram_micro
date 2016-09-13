@@ -5,7 +5,7 @@ class IngramMicro::ShipmentStatus < IngramMicro::BaseElement
     business_name: nil,
     detail: nil,
     line_items: []
-  }
+  }.freeze
 
   def defaults
     DEFAULTS
@@ -21,7 +21,7 @@ class IngramMicro::ShipmentStatus < IngramMicro::BaseElement
   def build(builder)
     builder.send('header') do
       builder.send('customer-information') do
-        builder.send 'customer-id', @element[:customer_id]
+        builder.send 'customer-id', IngramMicro.configuration.customer_id
         builder.send 'business-name', @element[:business_name]
       end
     end
@@ -35,10 +35,5 @@ class IngramMicro::ShipmentStatus < IngramMicro::BaseElement
       ss_line_item = IngramMicro::ShipmentStatusLineItem.new
       @element[:line_items] << ss_line_item
     end
-  end
-
-  def valid?
-      raise IngramMicro::InvalidType.new('customer_id must be a number') unless integer?(@element[:customer_id])
-    true
   end
 end

@@ -17,7 +17,7 @@ class IngramMicro::CreditCardInformation < IngramMicro::BaseElement
     billing_zip_match: nil,
     avs_hold: nil,
     merchant_name: nil
-  }
+  }.freeze
 
   def defaults
     DEFAULTS

@@ -32,10 +32,10 @@ Modify the spec_helper.rb and provide a api_root. You can create one on requestb
 
 ## Usage
 
-The `example.rb` script demonstrates how to use this gem. When 
+The `example.rb` script demonstrates how to use this gem. When
 configured, it creates a sales order with Ingram Micro.
 
-To see configuration options see `lib/ingram_micro/configuration.rb` 
+To see configuration options see `lib/ingram_micro/configuration.rb`
 
 ```
   IngramMicro.configure do |config|
@@ -48,26 +48,35 @@ To see configuration options see `lib/ingram_micro/configuration.rb`
 ```
 
 The `IngramMicro::Client` class creates the connection to the Brightpoint API
-using the Faraday gem. The `Transmission` super class has subclasses (i.e. `SalesOrder`)
-that correspond to different uses of the API.
+using the Faraday gem. The `Transmission` super class has subclasses (i.e.
+`SalesOrder`) that correspond to different uses of the API.
 
 These subclasses create XML files, tackling one element at a time. Hence the
-`BaseElement` class and its subclasses for each element found in the forms. These
-elements are designed to create XML elements that are empty or containing a
-default value (hence the `DEFAULTS` hash constant) if no values are provided,
-which is why the RSpec tests can create a new SalesOrder without providing any
+`BaseElement` class and its subclasses for each element found in the forms.
+These elements are designed to create XML elements that are empty or containing
+a default value (hence the `DEFAULTS` hash constant) if no values are provided,
+which is why the RSpec tests can create a new `SalesOrder` without providing any
 information.
 
-XML files are validated against the XSD schemas from the API docs and then
-sent the request to the API.
+**Note about Sales Orders:** there are two different schemas for sales order
+submissions, one that is only for domestic orders and another that is for
+domestic or international orders. If you are using the international-enabled
+schema, you must set `international` to `true` in your configuration
+(`config.international = true`). If you pass nothing in or set it to `false`,
+the domestic-only schema will be used by default. Discuss with IMM to determine
+which schema you will use.
+
+XML files are validated against the XSD schemas from the API docs and then sent
+the request to the API.
 
 More detailed instructions for use will be provided once we have tested and
 calibrated this gem to work properly with the API.
 
 ## For sites hosted in the cloud :cloud:
 
-You may not be able to get a range of IPs for Ingram Micro to whitelist. 
-To get around this, you can route requests through [tinyproxy](https://github.com/tinyproxy/tinyproxy). 
+You may not be able to get a range of IPs for Ingram Micro to whitelist.
+To get around this, you can route requests through
+[tinyproxy](https://github.com/tinyproxy/tinyproxy).
 
 Make sure to allow the ports that IngramMicro gives you to connect to e.g.
 

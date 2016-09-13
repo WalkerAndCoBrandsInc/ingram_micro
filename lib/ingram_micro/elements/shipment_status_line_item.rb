@@ -12,7 +12,7 @@ class IngramMicro::ShipmentStatusLineItem < IngramMicro::BaseElement
     :signed_by => nil,
     :status_timestamp => nil,
     :comments => nil
-  }
+  }.freeze
 
   def line_no
     @element[:line_no]
