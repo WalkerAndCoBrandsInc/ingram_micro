@@ -1,33 +1,34 @@
 module IngramMicro
   class SalesOrderLineItemNameValue < BaseElement
-    ACCEPTABLE_ATTRIBUTE_NAMES = [
-      "international-eccn-value",
-      "international-declared-value",
-      "warranty-item",
-      "international-country-of-origin",
-      "international-license-value",
-      "hts-code"
-    ].freeze
 
+    # Each key in DEFAULTS maps to a valid line-attribute-name for this element.
+    # Values are passed in via the options hash.
+    # For example, if the options include {warranty_item: 'true'}, you'll get:
+    # <line-name-value>
+    #   <line-attribute-name>warranty-item</line-attribute-name>
+    #   <line-attribute-value>true</line-attribute-value>
+    # </line-name-value>
     DEFAULTS = {
-      :name => nil,
-      :value => nil
-    }.freeze
-
-    def build(builder)
-      name, value = element[:name], element[:value]
-      if ACCEPTABLE_ATTRIBUTE_NAMES.include?(name)
-        builder.send('line-name-value') do
-          builder.send('line-attribute-name', name)
-          builder.send('line-attribute-value', value)
-        end
-      else
-        raise ArgumentError, "Invalid attribute name: #{name}"
-      end
-    end
+      international_eccn_value: nil,
+      international_declared_value: nil,
+      warranty_item: nil,
+      international_country_of_origin: nil,
+      international_license_value: nil,
+      hts_code: nil
+    }
 
     def defaults
       DEFAULTS
+    end
+
+    def build(builder)
+      element.each do |field, value|
+        xml_name = field.to_s.tr("_","-")
+        builder.send('line-name-value') do
+          builder.send('line-attribute-name', xml_name)
+          builder.send('line-attribute-value', value)
+        end
+      end
     end
   end
 end

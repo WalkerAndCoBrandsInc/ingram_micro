@@ -40,7 +40,7 @@ module IngramMicro
       gift_flag: nil,
       packing_slip_format: nil,
       special_header_message: nil,
-      header_name_value: []
+      header_name_value: {}
     }.freeze
 
     def defaults
@@ -56,16 +56,15 @@ module IngramMicro
         element_value = formatted_value_of(field)
         builder.send(element_name, element_value)
       end
-      add_header_name_values(builder) unless IngramMicro.domestic_shipping?
+      add_header_name_value(builder) unless IngramMicro.domestic_shipping?
     end
 
-    # Assume that element[:header_name_value] will be an array of arrays, with
-    # each inner array a pair of strings, [name, value].
-    def add_header_name_values(builder)
-      element[:header_name_value].each do |pair|
-        name, value = pair
-        SalesOrderHeaderNameValue.new(name: name, value: value).build(builder)
-      end
+    # Assume that element[:header_name_value] will be a hash with options to be
+    # passed to the header-name-value element. See SalesOrderHeaderNameValue
+    # for more information.
+    def add_header_name_value(builder)
+      options = element[:header_name_value] || {}
+      header_name_value = SalesOrderHeaderNameValue.new(options).build(builder)
     end
   end
 end
