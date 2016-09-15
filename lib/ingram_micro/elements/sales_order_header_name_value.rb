@@ -1,25 +1,29 @@
 module IngramMicro
   class SalesOrderHeaderNameValue < BaseElement
-    HEADER_ATTRIBUTE_NAMES = [
-      "international-duties-and-taxes-billing-to",
-      "international-freight-billing-to",
-      "international-freight-account",
-      "international-incoterm",
-      "international-importer-of-record-email",
-      "international-importer-of-record-phone-number",
-      "international-importer-of-record-country-code",
-      "international-importer-of-record-zipcode",
-      "international-importer-of-record-state",
-      "international-importer-of-record-city",
-      "international-importer-of-record-address3",
-      "international-importer-of-record-address2",
-      "international-importer-of-record-address1",
-      "international-importer-of-record-name"
-    ].freeze
+
+    # Each key in DEFAULTS maps to a valid attribute-name for this element.
+    # Values are passed in via the options hash.
+    # For example, if the options include {international_incoterm: 'ABC'}, you'll get:
+    # <header-name-value>
+    #   <attribute-name>international-incoterm</attribute-name>
+    #   <attribute-value>'ABC'</attribute-value>
+    # </header-name-value>
 
     DEFAULTS = {
-      name: nil,
-      value: nil
+      international_duties_and_taxes_billing_to: nil,
+      international_freight_billing_to: nil,
+      international_freight_account: nil,
+      international_incoterm: nil,
+      international_importer_of_record_email: nil,
+      international_importer_of_record_phone_number: nil,
+      international_importer_of_record_country_code: nil,
+      international_importer_of_record_zipcode: nil,
+      international_importer_of_record_state: nil,
+      international_importer_of_record_city: nil,
+      international_importer_of_record_address3: nil,
+      international_importer_of_record_address2: nil,
+      international_importer_of_record_address1: nil,
+      international_importer_of_record_name: nil
     }.freeze
 
     def defaults
@@ -27,14 +31,12 @@ module IngramMicro
     end
 
     def build(builder)
-      if HEADER_ATTRIBUTE_NAMES.include?(element[:name])
-        name, value = element[:name], element[:value]
+      element.each do |field, value|
+        xml_name = field.to_s.tr("_","-")
         builder.send('header-name-value') do
-          builder.send('attribute-name', name)
+          builder.send('attribute-name', xml_name)
           builder.send('attribute-value', value)
         end
-      else
-        raise ArgumentError, "Header attribute #{name} is invalid."
       end
     end
   end

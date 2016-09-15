@@ -19,13 +19,13 @@ Fabricator(:sales_order_line_item_international, class_name: IngramMicro::SalesO
              line_tax1: Faker::Commerce.price,
              line_tax2: Faker::Commerce.price,
              line_tax3: Faker::Commerce.price,
-             line_name_value: [
-               ["international-eccn-value", "1A001"],
-               ["international-declared-value", Faker::Commerce.price],
-               ["warranty-item", "false"],
-               ["international-country-of-origin", Faker::Address.country_code],
-               ["international-license-value", Faker::Commerce.price],
-               ["hts-code", "0000.00000.00"]
-             ]
+             line_name_value: {
+               international_eccn_value: "1A001",
+               international_declared_value: Faker::Commerce.price,
+               warranty_item: "false",
+               international_country_of_origin: Faker::Address.country_code,
+               international_license_value: Faker::Commerce.price,
+               hts_code: "0000.00000.00"
+             }
               }}
 end
