@@ -1,53 +1,32 @@
 module IngramMicro
   class SalesOrderLineItem < BaseElement
-
     DEFAULTS = {
-      line_no: nil,
-      item_code: nil,
+      line_no:                nil,
+      item_code:              nil,
       universal_product_code: nil,
-      product_name: nil,
-      comments: nil,
-      quantity: 1.0,
-      unit_of_measure: nil,
-      sid: nil,
-      esn: nil,
-      min: nil,
-      mdn: nil,
-      irdb: nil,
-      imei: nil,
-      market_id: nil,
-      line_status: nil,
-      base_price: 0.0,
-      line_discount: 0.0,
-      line_tax1: 0.0,
-      line_tax2: 0.0,
-      line_tax3: 0.0
+      product_name:           nil,
+      comments:               nil,
+      quantity:               1.0,
+      unit_of_measure:        nil,
+      sid:                    nil,
+      esn:                    nil,
+      min:                    nil,
+      mdn:                    nil,
+      irdb:                   nil,
+      imei:                   nil,
+      market_id:              nil,
+      line_status:            nil,
+      base_price:             0.0,
+      line_discount:          0.0,
+      line_tax1:              0.0,
+      line_tax2:              0.0,
+      line_tax3:              0.0
     }.freeze
 
     INTL_DEFAULTS = {
-      line_no: nil,
-      item_code: nil,
-      universal_product_code: nil,
-      product_name: nil,
-      comments: nil,
-      quantity: 1.0,
-      unit_of_measure: nil,
-      sid: nil,
-      esn: nil,
-      min: nil,
-      mdn: nil,
-      irdb: nil,
-      imei: nil,
-      market_id: nil,
-      line_status: nil,
-      base_price: 0.0,
-      line_discount: 0.0,
-      line_tax1: 0.0,
-      line_tax2: 0.0,
-      line_tax3: 0.0,
       special_message: nil,
       line_name_value: {}
-    }.freeze
+    }.merge(DEFAULTS).freeze
 
     def line_no
       @element[:line_no]
@@ -70,7 +49,9 @@ module IngramMicro
         element_value = formatted_value_of(field)
         builder.send(element_name, element_value)
       end
+
       add_special_message(builder) if element[:special_message]
+
       # If this is an international shipment, then we need to add line-name-value
       # to the xml. Otherwise we can skip that.
       add_line_name_value(builder) unless IngramMicro.domestic_schema?

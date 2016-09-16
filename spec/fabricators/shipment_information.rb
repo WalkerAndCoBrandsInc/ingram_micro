@@ -9,5 +9,5 @@ Fabricator(:shipment_information, class_name: IngramMicro::OutboundShipmentInfor
              ship_country_code: Faker::Address.country_code,
              ship_phone1: Faker::PhoneNumber.phone_number,
              ship_email: Faker::Internet.email,
-             ship_via: IngramMicro::OutboundShipmentInformation::SHIPPING_METHODS.keys.sample }}
+             ship_via: IngramMicro::SHIPPING_METHODS.keys.sample }}
 end

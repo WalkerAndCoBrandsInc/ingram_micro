@@ -1,42 +1,6 @@
 module IngramMicro
   class ReturnAuthorizationShipmentInformation < BaseElement
-
-    SHIPPING_METHODS = {
-      'FX01' => 'FedEx Standard Overnight',
-      'FXAM' => 'FedEx Priority Overnight',
-      'FX2D' => 'FedEx Second Day',
-      'FXSP' => 'FedEx Smart Post',
-      'FXIE' => 'FedEx International Economy',
-      'FXIP' => 'FedEx International Priority',
-      'FXSV' => 'FedEx Express saver (3 day)',
-      'USPP' => 'Postal Priority',
-      'GGRNDP' => 'Ground shipping',
-      'FXL1' => 'FedEx Freight Overnight (Air)',
-      'FXL2' => 'FedEx Freight 2-day (Air)',
-      'FXL3' => 'FedEx Freight 3-day (Air)',
-      'FXLE' => 'FedEx Freight Ground',
-    }.freeze
-
-    DEFAULTS = {
-      ship_first_name: nil,
-      ship_last_name: nil,
-      ship_middle_initial: nil,
-      ship_address1: nil,
-      ship_address2: nil,
-      ship_address3: nil,
-      ship_city: nil,
-      ship_state: nil,
-      ship_post_code: nil,
-      ship_country_code: nil,
-      ship_phone1: nil,
-      ship_phone2: nil,
-      ship_fax: nil,
-      ship_email: nil,
-      ship_via: nil,
-      ship_request_date: nil,
-      ship_request_from: nil,
-      ship_request_warehouse: nil
-    }.freeze
+    DEFAULTS = IngramMicro::OutboundShipmentInformation::DEFAULTS
 
     def defaults
       DEFAULTS
@@ -44,12 +8,12 @@ module IngramMicro
 
     def valid_shipping_methods?
       shipping_method = element[:ship_via]
-      !!SHIPPING_METHODS[shipping_method]
+      !!(::IngramMicro::SHIPPING_METHODS[shipping_method])
     end
 
     def shipping_method_name
       if valid_shipping_methods?
-        SHIPPING_METHODS[element[:ship_via]]
+        ::IngramMicro::SHIPPING_METHODS[element[:ship_via]]
       else
         'Invalid shipping code'
       end

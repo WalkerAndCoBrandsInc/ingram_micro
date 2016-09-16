@@ -1,11 +1,10 @@
 class IngramMicro::MessageHeaderPW < IngramMicro::BaseElement
-
   DEFAULTS = {
-    message_id: 0,
+    message_id:       0,
     transaction_name: nil,
-    partner_name: nil,
+    partner_name:     nil,
     partner_password: nil,
-    source_url: nil,
+    source_url:       nil,
     create_timestamp: nil,
     response_request: 1
   }.freeze
@@ -17,12 +16,14 @@ class IngramMicro::MessageHeaderPW < IngramMicro::BaseElement
   end
 
   def valid?
-    unless integer?(@element[:message_id])
+    if !integer?(@element[:message_id])
       raise IngramMicro::InvalidType.new('message_id must be a number')
     end
-    unless @element[:partner_name]
+
+    if !@element[:partner_name]
       raise IngramMicro::MissingField.new('partner_name must be present')
     end
+
     true
   end
 end

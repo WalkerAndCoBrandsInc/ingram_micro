@@ -36,4 +36,20 @@ module IngramMicro
   class InvalidType < StandardError; end
   class MissingField < StandardError; end
   class XMLSchemaMismatch < StandardError; end
+
+  SHIPPING_METHODS = {
+    'FX01'   => 'FedEx Standard Overnight',
+    'FXAM'   => 'FedEx Priority Overnight',
+    'FX2D'   => 'FedEx Second Day',
+    'FXSP'   => 'FedEx Smart Post',
+    'FXIE'   => 'FedEx International Economy',
+    'FXIP'   => 'FedEx International Priority',
+    'FXSV'   => 'FedEx Express saver (3 day)',
+    'USPP'   => 'Postal Priority',
+    'FXL1'   => 'FedEx Freight Overnight (Air)',
+    'FXL2'   => 'FedEx Freight 2-day (Air)',
+    'FXL3'   => 'FedEx Freight 3-day (Air)',
+    'FXLE'   => 'FedEx Freight Ground',
+    'GGRNDP' => 'Ground shipping',
+   }.freeze
 end
