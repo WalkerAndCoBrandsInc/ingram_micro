@@ -65,7 +65,7 @@ class IngramMicro::OutboundShipmentInformation < IngramMicro::BaseElement
   }.freeze
 
   def defaults
-    IngramMicro.domestic_shipping? ? DEFAULTS : INTL_DEFAULTS
+    IngramMicro.domestic_schema? ? DEFAULTS : INTL_DEFAULTS
   end
 
   def valid_shipping_methods?

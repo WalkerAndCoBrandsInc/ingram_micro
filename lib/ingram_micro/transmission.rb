@@ -35,7 +35,7 @@ class IngramMicro::Transmission
   def load_schema
     transmission_name = self.class::TRANSMISSION_FILENAME
     if transmission_name == 'sales-order-submission' &&
-      !IngramMicro.domestic_shipping?
+      !IngramMicro.domestic_schema?
       transmission_name = 'sales-order-international'
     end
     Nokogiri::XML::Schema(File.read("#{IngramMicro::GEM_DIR}/xsd/" +

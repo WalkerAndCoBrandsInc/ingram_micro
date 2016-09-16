@@ -39,7 +39,7 @@ describe IngramMicro::SalesOrderLineItem do
       # the resulting xml won't appear unless it is called in a separate test.
       context 'when shipping using the international schema' do
         before do
-          IngramMicro.configuration.international = true
+          IngramMicro.configuration.international_schema = true
         end
 
         context 'when at least one attribute-value pair is present' do

@@ -58,7 +58,7 @@ module IngramMicro
     end
 
     def defaults
-      IngramMicro.domestic_shipping? ? DEFAULTS : INTL_DEFAULTS
+      IngramMicro.domestic_schema? ? DEFAULTS : INTL_DEFAULTS
     end
 
     def build(builder)
@@ -73,7 +73,7 @@ module IngramMicro
       add_special_message(builder) if element[:special_message]
       # If this is an international shipment, then we need to add line-name-value
       # to the xml. Otherwise we can skip that.
-      add_line_name_value(builder) unless IngramMicro.domestic_shipping?
+      add_line_name_value(builder) unless IngramMicro.domestic_schema?
     end
 
     # The <line-name-value> element in the detail of a sales order line item

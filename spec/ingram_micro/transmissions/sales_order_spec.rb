@@ -1,7 +1,10 @@
 require 'spec_helper'
-describe IngramMicro::SalesOrder do
 
-  let(:empty_sales_order) { IngramMicro::SalesOrder.new({partner_name: Faker::Company.name}) }
+describe IngramMicro::SalesOrder do
+  let(:empty_sales_order) do
+    IngramMicro::SalesOrder.new({partner_name: Faker::Company.name})
+  end
+
   let(:populated_sales_order) { Fabricate.build(:sales_order) }
 
   describe '#initialize' do
@@ -49,9 +52,7 @@ describe IngramMicro::SalesOrder do
   context "configured for domestic shipping" do
 
     before(:each) do
-      IngramMicro.configure do |config|
-        config.international = false
-      end
+      IngramMicro.configure { |config| config.international_schema = false }
     end
 
     describe '#schema_valid?' do
@@ -89,12 +90,10 @@ describe IngramMicro::SalesOrder do
     end
   end
 
-  context "configured for international shipping" do
+  context "configured for international schema" do
 
     before(:each) do
-      IngramMicro.configure do |config|
-        config.international = true
-      end
+      IngramMicro.configure { |config| config.international_schema = false }
     end
 
     let!(:international_sales_order) { Fabricate.build(:sales_order_international) }
@@ -133,5 +132,4 @@ describe IngramMicro::SalesOrder do
       end
     end
   end
-
 end

@@ -6,7 +6,7 @@ describe IngramMicro::SalesOrderHeader do
 
     context 'when using the domestic schema' do
       it "returns the correct default values hash" do
-        IngramMicro.configuration.international = false
+        IngramMicro.configuration.international_schema = false
         so_defaults = IngramMicro::SalesOrderHeader.new.defaults
 
         expect(so_defaults.keys.count).to eq 12
@@ -15,7 +15,7 @@ describe IngramMicro::SalesOrderHeader do
 
     context 'when using the international schema' do
       it "returns the international default values hash" do
-        IngramMicro.configuration.international = true
+        IngramMicro.configuration.international_schema = true
         so_defaults = IngramMicro::SalesOrderHeader.new.defaults
 
         expect(so_defaults.keys.count).to eq 18
@@ -60,13 +60,13 @@ describe IngramMicro::SalesOrderHeader do
   end
 
   describe "#add_header_name_values" do
-    IngramMicro.configuration.international = true
+    before { IngramMicro.configuration.international_schema = true }
+
     it 'allows header-name-value to be passed in' do
       soh_options = {
         customer_order_number: 2083648614,
         order_total_net: 39.46,
         header_name_value: {international_importer_of_record_email: "email@canada.ca"}
-        # header_name_value: [["international-importer-of-record-email", "email@canada.ca"]]
       }
       soh_builder = Nokogiri::XML::Builder.new do |builder|
         builder.send('message') do

@@ -41,13 +41,13 @@ describe IngramMicro::Configuration do
   end
 
   it "allows international to be nil" do
-    expect(config.international).to be nil
+    expect(config.international_schema).to be nil
   end
 
   it "sets international" do
-    config.international = true
+    config.international_schema = true
 
-    expect(config.international).to be true
+    expect(config.international_schema).to be true
   end
 
   it "sets customer id" do

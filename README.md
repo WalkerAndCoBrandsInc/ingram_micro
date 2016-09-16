@@ -61,10 +61,10 @@ information.
 **Note about Sales Orders:** there are two different schemas for sales order
 submissions, one that is only for domestic orders and another that is for
 domestic or international orders. If you are using the international-enabled
-schema, you must set `international` to `true` in your configuration
-(`config.international = true`). If you pass nothing in or set it to `false`,
-the domestic-only schema will be used by default. Discuss with IMM to determine
-which schema you will use.
+schema, you must set `international_schema` to `true` in your configuration
+(`config.international_schema = true`). If you pass nothing in or set it to
+`false`, the domestic-only schema will be used by default. Discuss with IMM to
+determine which schema you will use.
 
 XML files are validated against the XSD schemas from the API docs and then sent
 the request to the API.

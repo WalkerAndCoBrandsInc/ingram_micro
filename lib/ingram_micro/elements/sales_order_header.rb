@@ -44,7 +44,7 @@ module IngramMicro
     }.freeze
 
     def defaults
-      IngramMicro.domestic_shipping? ? DEFAULTS : INTL_DEFAULTS
+      IngramMicro.domestic_schema? ? DEFAULTS : INTL_DEFAULTS
     end
 
     # Build similar to BaseElement except that we want to handle the
@@ -56,7 +56,8 @@ module IngramMicro
         element_value = formatted_value_of(field)
         builder.send(element_name, element_value)
       end
-      add_header_name_value(builder) unless IngramMicro.domestic_shipping?
+
+      add_header_name_value(builder) unless IngramMicro.domestic_schema?
     end
 
     # Assume that element[:header_name_value] will be a hash with options to be

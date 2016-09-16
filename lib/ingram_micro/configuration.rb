@@ -3,7 +3,7 @@ require 'yaml'
 module IngramMicro
   class Configuration
     attr_accessor :api_root, :debug, :logger,
-      :partner_name, :partner_password, :international,
+      :partner_name, :partner_password, :international_schema,
       :log_request_body, :customer_id, :proxy
 
     def assert_valid
