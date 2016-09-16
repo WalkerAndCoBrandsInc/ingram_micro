@@ -24,7 +24,6 @@ Fabricator(:sales_order_line_item_international, class_name: IngramMicro::SalesO
                international_declared_value: Faker::Commerce.price,
                warranty_item: "false",
                international_country_of_origin: Faker::Address.country_code,
-               international_license_value: Faker::Commerce.price,
                hts_code: "0000.00000.00"
              }
               }}

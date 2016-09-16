@@ -13,7 +13,6 @@ module IngramMicro
       international_declared_value: nil,
       warranty_item: nil,
       international_country_of_origin: nil,
-      international_license_value: nil,
       hts_code: nil
     }
 

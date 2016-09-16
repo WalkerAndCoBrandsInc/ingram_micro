@@ -44,7 +44,7 @@ describe IngramMicro::SalesOrderLineItem do
 
         context 'when at least one attribute-value pair is present' do
           it 'gets called' do
-            li = described_class.new(line_name_value: {international_license_value: '300.50'})
+            li = described_class.new(line_name_value: {warranty_item: 'true'})
             builder = Nokogiri::XML::Builder.new
 
             expect(li).to receive(:add_line_name_value)
@@ -54,14 +54,14 @@ describe IngramMicro::SalesOrderLineItem do
           end
 
           it 'properly creates xml' do
-            li = described_class.new(product_name: "killerizer", line_name_value: {international_license_value: '300.50'})
+            li = described_class.new(product_name: "killerizer", line_name_value: {warranty_item: 'true'})
             builder = Nokogiri::XML::Builder.new
             builder.send('message') do
               li.build(builder)
             end
 
-            expect(builder.to_xml).to include('<line-attribute-name>international-license-value')
-            expect(builder.to_xml).to include('<line-attribute-value>300.50')
+            expect(builder.to_xml).to include('<line-attribute-name>warranty-item')
+            expect(builder.to_xml).to include('<line-attribute-value>true')
           end
         end
       end
