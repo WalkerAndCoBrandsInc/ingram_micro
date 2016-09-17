@@ -1,4 +1,7 @@
 class IngramMicro::SalesOrder < IngramMicro::Transmission
+  # This class uses the domestic-only schema by default. When
+  # configuration.international is set to true, the parent class (Transmission),
+  # knows to use the international-enabled schema instead.
   TRANSMISSION_FILENAME = 'sales-order-submission'
 
   attr_accessor :customer, :credit_card_information, :sales_order_header,
@@ -14,7 +17,7 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
     @sales_order_header = options[:sales_order_header]
     @detail = options[:detail]
     @business_name = options[:business_name]
-    @customer_id = options[:customer_id]
+    @customer_id = IngramMicro.configuration.customer_id
     @carrier_name = options[:carrier_name]
     @purchase_order_information = options[:purchase_order_information]
 

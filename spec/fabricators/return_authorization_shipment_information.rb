@@ -1,4 +1,4 @@
-Fabricator(:shipment_information, class_name: IngramMicro::OutboundShipmentInformation) do
+Fabricator(:return_authorization_shipment_information, class_name: IngramMicro::ReturnAuthorizationShipmentInformation) do
   element {{ ship_first_name: Faker::Name.first_name,
              ship_last_name: Faker::Name.last_name,
              ship_middle_initial: ("A".."Z").to_a.sample,

@@ -6,7 +6,7 @@ class IngramMicro::OutboundPurchaseOrderInformation < IngramMicro::BaseElement
     purchase_order_event: nil,
     currency_code: nil,
     comments: nil
-  }
+  }.freeze
 
   def initialize(options = {})
     super(options)

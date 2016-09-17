@@ -23,7 +23,7 @@ class IngramMicro::ReturnAuthorizationLineItem < IngramMicro::BaseElement
     ship_date: nil,
     failure_date: nil,
     failure_description: nil
-  }
+  }.freeze
 
   def line_no
     @element[:line_no]

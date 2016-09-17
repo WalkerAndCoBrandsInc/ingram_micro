@@ -28,4 +28,28 @@ describe IngramMicro do
       end
     end
   end
+
+  describe "#self.domestic_schema?" do
+    context "when no international setting is passed in" do
+      it "returns true" do
+        allow(IngramMicro.configuration).to receive(:international_schema).and_return nil
+
+        expect(IngramMicro.domestic_schema?).to be true
+      end
+    end
+    context "when international is set to true" do
+      it "returns false" do
+        allow(IngramMicro.configuration).to receive(:international_schema).and_return true
+
+        expect(IngramMicro.domestic_schema?).to be false
+      end
+    end
+    context "when international is set to false" do
+      it "returns true" do
+        allow(IngramMicro.configuration).to receive(:international_schema).and_return false
+
+        expect(IngramMicro.domestic_schema?).to be true
+      end
+    end
+  end
 end

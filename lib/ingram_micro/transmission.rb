@@ -1,6 +1,7 @@
 class IngramMicro::Transmission
   XSD = {
-    'sales-order-submission' => 'outbound/BPXML-SalesOrder.xsd',
+    'sales-order-submission' => 'outbound/BPXML-SalesOrderDomestic.xsd',
+    'sales-order-international' => 'outbound/BPXML-SalesOrderInternational.xsd',
     'shipment-status' => 'outbound/BPXML-ShipmentStatus.xsd',
     'return-authorization' => 'outbound/BPXML-ReturnAuthorization.xsd',
     'standard-response' => 'outbound/BPXML-StandardResponse.xsd',
@@ -17,8 +18,7 @@ class IngramMicro::Transmission
   end
 
   def schema_valid?
-    xsd = Nokogiri::XML::Schema(File.read("#{IngramMicro::GEM_DIR}/xsd/" +
-      XSD[self.class::TRANSMISSION_FILENAME]))
+    xsd = load_schema
     valid = true
     xsd.validate(self.xml_builder.doc).each do |error|
       errors << error.message
@@ -26,6 +26,20 @@ class IngramMicro::Transmission
     end
     errors.each { |error| puts 'XML VALIDATION ERROR: ' + error }
     valid
+  end
+
+  # This will find the appropriate xsd file and return it for use in xml
+  # validation. For sales-order-submission, there are two different schemas,
+  # and which one to load depends on whether you need the one configured for
+  # domestic-only use or the one for mixed domestic and internatinal use.
+  def load_schema
+    transmission_name = self.class::TRANSMISSION_FILENAME
+    if transmission_name == 'sales-order-submission' &&
+      !IngramMicro.domestic_schema?
+      transmission_name = 'sales-order-international'
+    end
+    Nokogiri::XML::Schema(File.read("#{IngramMicro::GEM_DIR}/xsd/" +
+      XSD[transmission_name]))
   end
 
   def order_builder

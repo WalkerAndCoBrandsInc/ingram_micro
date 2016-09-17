@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe IngramMicro::OutboundShipmentInformation do
-
   let(:empty_shipment_info) { IngramMicro::OutboundShipmentInformation.new }
   let(:shipment_info) { Fabricate.build(:shipment_information)}
   let(:ship_info_bad_shipping_method) { IngramMicro::OutboundShipmentInformation.new({ship_via: 'ABCD'})}
@@ -71,7 +70,7 @@ describe IngramMicro::OutboundShipmentInformation do
 
     context 'with valid shipping_method value passed in' do
       it 'should return the shipping method associated with the code' do
-        expect(IngramMicro::OutboundShipmentInformation::SHIPPING_METHODS.values).to include(shipment_info.shipping_method_name)
+        expect(IngramMicro::SHIPPING_METHODS.values).to include(shipment_info.shipping_method_name)
       end
     end
   end

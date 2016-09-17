@@ -40,6 +40,16 @@ describe IngramMicro::Configuration do
     expect(config.partner_password).to eq "password"
   end
 
+  it "allows international to be nil" do
+    expect(config.international_schema).to be nil
+  end
+
+  it "sets international" do
+    config.international_schema = true
+
+    expect(config.international_schema).to be true
+  end
+
   it "sets customer id" do
     config.customer_id = "123"
 
