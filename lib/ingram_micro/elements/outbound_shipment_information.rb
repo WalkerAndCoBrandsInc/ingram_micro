@@ -1,5 +1,8 @@
 class IngramMicro::OutboundShipmentInformation < IngramMicro::BaseElement
-  DEFAULTS = {
+  # COMMON contains keys between DEFAULTS and INTL_DEFAULTS.
+  #
+  # NOTE, the order of keys matters when doing XSD validations.
+  COMMON = {
 		ship_first_name:        nil,
 		ship_last_name:         nil,
 		ship_middle_initial:    nil,
@@ -16,18 +19,23 @@ class IngramMicro::OutboundShipmentInformation < IngramMicro::BaseElement
 		ship_email:             nil,
 		ship_via:               nil,
 		ship_request_date:      nil,
-		ship_request_from:      nil,
-		ship_request_warehouse: nil
   }
 
-  INTL_DEFAULTS = {
-    ship_no_later:     nil,
-    no_ship_before:    nil,
-    receive_no_later:  nil,
-    no_receive_before: nil,
-    dock_date:         nil,
-    ship_to_code:      nil
-  }.merge(DEFAULTS).freeze
+  DEFAULTS = COMMON.merge({
+		ship_request_from:      nil,
+		ship_request_warehouse: nil
+  })
+
+  INTL_DEFAULTS = COMMON.merge({
+    ship_no_later:          nil,
+    no_ship_before:         nil,
+    receive_no_later:       nil,
+    no_receive_before:      nil,
+    ship_request_from:      nil,
+    ship_request_warehouse: nil,
+    dock_date:              nil,
+    ship_to_code:           nil
+  }).freeze
 
   def defaults
     IngramMicro.domestic_schema? ? DEFAULTS : INTL_DEFAULTS
