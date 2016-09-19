@@ -23,10 +23,11 @@ module IngramMicro
       line_tax3:              0.0
     }.freeze
 
-    INTL_DEFAULTS = {
+    # NOTE, the order of keys matters when doing XSD validations.
+    INTL_DEFAULTS = DEFAULTS.merge({
       special_message: nil,
       line_name_value: {}
-    }.merge(DEFAULTS).freeze
+    }).freeze
 
     def line_no
       @element[:line_no]
