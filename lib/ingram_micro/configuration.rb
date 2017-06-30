@@ -4,7 +4,7 @@ module IngramMicro
   class Configuration
     attr_accessor :api_root, :debug, :logger,
       :partner_name, :partner_password, :international_schema,
-      :log_request_body, :customer_id, :proxy
+      :log_request_body, :customer_id, :proxy, :timeout, :open_timeout
 
     def assert_valid
       assert_present :partner_name

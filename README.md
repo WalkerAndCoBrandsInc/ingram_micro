@@ -44,6 +44,8 @@ To see configuration options see `lib/ingram_micro/configuration.rb`
     config.partner_password = 'password'
     config.debug = true
     config.logger = Rails.logger
+    config.timeout = 60         # open/read timeout in seconds
+    config.open_timeout = 60    # connection open timeout in seconds
   end
 ```
 
