@@ -22,6 +22,8 @@ class IngramMicro::Client
       req.url uri.request_uri
       req.headers['Content-Type'] = 'application/xml'
       req.body = data
+      req.options.timeout = configuration.timeout
+      req.options.open_timeout = configuration.open_timeout
     end
   end
 
