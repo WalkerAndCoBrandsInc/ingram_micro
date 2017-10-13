@@ -8,6 +8,9 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
   :sales_order_shipment_information, :detail, :carrier_name, :business_name,
   :customer_id, :purchase_order_information
 
+  # Parameters:
+  #   options
+  #     customer_id - Integer
   def initialize(options={})
     super(options)
     @transaction_name = 'sales-order-submission'
@@ -17,7 +20,7 @@ class IngramMicro::SalesOrder < IngramMicro::Transmission
     @sales_order_header = options[:sales_order_header]
     @detail = options[:detail]
     @business_name = options[:business_name]
-    @customer_id = IngramMicro.configuration.customer_id
+    @customer_id = options[:customer_id] || IngramMicro.configuration.customer_id
     @carrier_name = options[:carrier_name]
     @purchase_order_information = options[:purchase_order_information]
 
