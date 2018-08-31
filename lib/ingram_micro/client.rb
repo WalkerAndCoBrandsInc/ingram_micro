@@ -5,7 +5,7 @@ class IngramMicro::Client
 
   def initialize(url=api_root)
     @uri = URI.parse(url)
-    @conn = Faraday.new(url: uri) do |faraday|
+    @conn = Faraday.new(faraday_initializer_args) do |faraday|
       faraday.request  :url_encoded
       faraday.response :logger, logger, bodies: log_request_body
       faraday.adapter  Faraday.default_adapter
@@ -28,6 +28,14 @@ class IngramMicro::Client
   end
 
   private
+
+  def faraday_initializer_args
+    {
+      url: uri,
+    }.tap do |hash|
+      hash[:ssl] = configuration.ssl_options if configuration.ssl_options
+    end
+  end
 
   def api_root
     configuration.api_root

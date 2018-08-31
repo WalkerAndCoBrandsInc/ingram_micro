@@ -3,7 +3,12 @@ require "faraday"
 require "faraday_middleware"
 require "require_all"
 require "securerandom"
-require_rel 'ingram_micro/**/*.rb'
+require "ingram_micro/version"
+require_rel 'ingram_micro/*.rb'
+require_rel 'ingram_micro/elements/*.rb'
+require_rel 'ingram_micro/inbound_elements/*.rb'
+require 'ingram_micro/transmissions/standard_response'
+require_rel 'ingram_micro/transmissions/*.rb'
 
 module IngramMicro
   GEM_DIR = (File.dirname(__FILE__) + '/../').freeze
