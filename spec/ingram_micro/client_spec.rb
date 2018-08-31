@@ -34,6 +34,22 @@ describe IngramMicro::Client do
           expect(proxy.uri.to_s).to eq(IngramMicro.configuration.proxy)
         end
       end
+
+      context "when passing ssl options" do
+        before do
+          IngramMicro.configuration.ssl_options = {
+            certificate: file
+          }
+        end
+
+        let(:file) { double(File) }
+
+        it 'builds a connection with ssl' do
+          ssl = client.conn.ssl
+          expect(ssl).to_not be_nil
+          expect(ssl.certificate).to eq(file)
+        end
+      end
     end
   end
 end
