@@ -1,13 +1,12 @@
 require 'spec_helper'
 
 describe IngramMicro::ShipAdvice do
-
   let(:input_xml) { File.read(IngramMicro::GEM_DIR + 'spec/input_xmls/ship_advice.xml') }
   let(:parser) { Nori.new }
   let(:hash_from_xml) { parser.parse(input_xml) }
   let(:ship_advice) { IngramMicro::ShipAdvice.new(hash_from_xml) }
-  context 'processes normal ship advice' do
 
+  context 'processes normal ship advice' do
     it 'gets the customer id from received xml' do
       expect(ship_advice.customer_id).to eq '308524'
     end
@@ -77,5 +76,3 @@ describe IngramMicro::ShipAdvice do
     end
   end
 end
-
-

@@ -35,6 +35,8 @@ class IngramMicro::InboundTransmissionFactory
       IngramMicro::ShipAdvice
     when 'inventory-synchronization'
       IngramMicro::InventorySync
+    when 'return-receipt'
+      IngramMicro::ReturnReceipt
     else
       raise Error, "#{self.class.name} received unrecognized transaction-name: #{transaction_name}"
     end

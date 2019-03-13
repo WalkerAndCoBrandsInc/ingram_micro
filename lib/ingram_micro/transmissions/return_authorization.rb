@@ -5,7 +5,7 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
   :shipment_information, :detail, :purchase_order_information
 
   def initialize(options={})
-    super
+    super(options)
     @transaction_name = 'return-authorization'
     @customer = options[:customer]
     @shipment_information = options[:shipment_information]
@@ -27,7 +27,8 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
   def add_message_header(builder)
     message_header = IngramMicro::MessageHeaderPW.new({
       partner_name: IngramMicro.configuration.partner_name,
-      transaction_name: transaction_name})
+      transaction_name: transaction_name
+    })
     builder.send('message-header') do
       message_header.build(builder)
     end
