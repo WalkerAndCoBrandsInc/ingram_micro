@@ -623,42 +623,42 @@
     </xs:annotation>
   </xs:element>
   <xs:element name="special-message">
-		<xs:annotation>
-			<xs:documentation>Cistomer specific special message</xs:documentation>
-		</xs:annotation>
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="special-message1" minOccurs="0" maxOccurs="1"/>
-				<xs:element ref="special-message2" minOccurs="0" maxOccurs="1"/>
-				<xs:element ref="special-message3" minOccurs="0" maxOccurs="1"/>
-				<xs:element ref="special-message4" minOccurs="0" maxOccurs="1"/>
-				<xs:element ref="special-message5" minOccurs="0" maxOccurs="1"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="special-message1" type="xs:string">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Special Message 1.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="special-message2" type="xs:string">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Special Message 2.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="special-message3" type="xs:string">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Special Message 3.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="special-message4" type="xs:string">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Special Message 4.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="special-message5" type="xs:string">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">Special Message 5.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
+    <xs:annotation>
+      <xs:documentation>Cistomer specific special message</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="special-message1" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="special-message2" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="special-message3" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="special-message4" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="special-message5" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="special-message1" type="xs:string">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Special Message 1.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="special-message2" type="xs:string">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Special Message 2.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="special-message3" type="xs:string">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Special Message 3.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="special-message4" type="xs:string">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Special Message 4.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="special-message5" type="xs:string">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Special Message 5.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
 </xs:schema>
