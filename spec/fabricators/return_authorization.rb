@@ -4,4 +4,5 @@ Fabricator(:return_authorization, class_name: IngramMicro::ReturnAuthorization) 
   order_header { Fabricate.build(:return_authorization_order_header) }
   shipment_information { Fabricate.build(:return_authorization_shipment_information) }
   detail { IngramMicro::Detail.new(line_items:[Fabricate.build(:return_authorization_line_item)]) }
+  return_authorization_id "RA111"
 end
