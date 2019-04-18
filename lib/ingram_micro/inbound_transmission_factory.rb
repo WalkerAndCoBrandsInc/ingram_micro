@@ -27,6 +27,8 @@ class IngramMicro::InboundTransmissionFactory
 
   def inbound_transmission_class
     case transaction_name
+    when 'sales-order-submission'
+      IngramMicro::SalesOrderStatus
     when 'sales-order-success'
       IngramMicro::SalesOrderStatus
     when 'sales-order-rejection'

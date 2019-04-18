@@ -23,5 +23,4 @@ class IngramMicro::ShipAdvice < IngramMicro::InboundBaseElement
     detail_hash = @hash['message']['ship_advice']['detail']
     IngramMicro::InboundDetail.new(detail_hash)
   end
-
 end

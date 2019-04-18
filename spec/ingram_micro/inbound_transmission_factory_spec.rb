@@ -1,9 +1,11 @@
 require 'spec_helper'
+require 'pry'
 
 describe IngramMicro::InboundTransmissionFactory do
   let(:sales_order_success_xml) { File.read(IngramMicro::GEM_DIR + 'spec/input_xmls/sales_order_success.xml') }
   let(:sales_order_rejection_xml) { File.read(IngramMicro::GEM_DIR + 'spec/input_xmls/sales_order_rejection.xml') }
   let(:ship_advice_xml) { File.read(IngramMicro::GEM_DIR + 'spec/input_xmls/ship_advice.xml') }
+  let(:sales_order_submission_xml) { File.read(IngramMicro::GEM_DIR + 'spec/input_xmls/sales_order_submission.xml') }
 
   context 'Processes incoming sales order success data' do
     it 'creates an inbound transmission object from request body string' do
@@ -23,6 +25,13 @@ describe IngramMicro::InboundTransmissionFactory do
     it 'creates an inbound transmission object from request body string' do
       result = IngramMicro::InboundTransmissionFactory.from_xml(ship_advice_xml)
       expect(result.customer_id).to eq '308524'
+    end
+  end
+
+  context 'Processes incoming sales order subsmission data' do
+    it 'creates an inbound transmission object from request body string' do
+      result = IngramMicro::InboundTransmissionFactory.from_xml(sales_order_submission_xml)
+      expect(result.customer_id).to eq '566978'
     end
   end
 
