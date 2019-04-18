@@ -21,7 +21,7 @@ class IngramMicro::SalesOrderSubmission < IngramMicro::BaseElement
     @element[:customer] ||= IngramMicro::Customer.new
     @element[:sales_order_shipment_information] ||= IngramMicro::SalesOrderShipmentInformation.new
     @element[:credit_card_information] ||= IngramMicro::CreditCardInformation.new
-    @element[:sales_order_header] ||= SalesOrderHeader.new
+    @element[:sales_order_header] ||= IngramMicro::SalesOrderHeader.new
     @element[:detail] ||= IngramMicro::Detail.new({line_items: @element[:line_items]})
   end
 

@@ -7,6 +7,8 @@ module IngramMicro
     def extract_status_hash
       if transaction_name == 'sales-order-success'
         hash['message']['sales_order_success']
+      elsif transaction_name == 'sales-order-submission'
+        hash['message']['sales_order_submission']
       else
         hash['message']['sales_order_rejection']
       end
