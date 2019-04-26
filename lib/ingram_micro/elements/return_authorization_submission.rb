@@ -9,7 +9,8 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
     purchase_order_information: nil,
     customer_id: nil,
     business_name: nil,
-    carrier_name: nil
+    carrier_name: nil,
+    return_authorization_id: nil,
   }.freeze
 
   def defaults
@@ -18,10 +19,13 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
 
   def initialize(options={})
     super
+
     @element[:customer] ||= IngramMicro::Customer.new
     @element[:shipment_information] ||= IngramMicro::ReturnAuthorizationShipmentInformation.new
     @element[:credit_card_information] ||= IngramMicro::CreditCardInformation.new
-    @element[:order_header] ||= IngramMicro::ReturnAuthorizationOrderHeader.new
+    @element[:order_header] ||= IngramMicro::ReturnAuthorizationOrderHeader.new(
+      customer_order_number: options[:return_authorization_id]
+    )
     @element[:purchase_order_information] ||= IngramMicro::OutboundPurchaseOrderInformation.new
     @element[:detail] ||= IngramMicro::Detail.new
   end

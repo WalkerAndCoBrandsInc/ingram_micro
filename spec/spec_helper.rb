@@ -5,6 +5,7 @@ require 'support/fabrication'
 require 'support/matchers'
 require 'support/faker_dates'
 require 'nori'
+require 'pry'
 
 RSpec.configure do |rconfig|
   rconfig.before(:each) do
