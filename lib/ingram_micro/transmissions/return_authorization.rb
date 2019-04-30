@@ -1,9 +1,8 @@
 class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
   TRANSMISSION_FILENAME = 'return-authorization'
 
-  attr_accessor :customer, :credit_card_information, :order_header,
-    :shipment_information, :detail, :purchase_order_information,
-    :return_authorization_id
+  attr_accessor :customer, :customer_id ,:credit_card_information, :order_header,
+  :shipment_information, :detail, :purchase_order_information, :return_authorization_id
 
   def initialize(options={})
     super(options)
@@ -13,6 +12,7 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
     @credit_card_information = options[:credit_card_information]
     @order_header = options[:order_header]
     @detail = options[:detail]
+    @customer_id = options[:customer_id] || IngramMicro.configuration.customer_id
     @purchase_order_information = options[:purchase_order_information]
     @return_authorization_id = options[:return_authorization_id]
   end
@@ -40,6 +40,7 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
   def add_return_authorization_submission(builder)
     ra_options = {
       customer: customer,
+      customer_id: customer_id,
       shipment_information: shipment_information,
       credit_card_information: credit_card_information,
       order_header: order_header,

@@ -37,15 +37,15 @@ describe IngramMicro::SalesOrder do
     describe "customer id attribute" do
       context "with customer id param passed in" do
         it "sets customer_id" do
-          sales_order = IngramMicro::SalesOrder.new({customer_id: 12341234})
-          expect(sales_order.customer_id).to eq(12341234)
+          sales_order = IngramMicro::SalesOrder.new({customer_id: 12341234}).xml_builder.to_xml
+          expect(sales_order).to include("<customer-id>12341234</customer-id>")
         end
       end
 
       context "with customer id param not passed in" do
         it "pulls from the configuration" do
-          sales_order = IngramMicro::SalesOrder.new()
-          expect(sales_order.customer_id).to eq(123)
+          sales_order = IngramMicro::SalesOrder.new.xml_builder.to_xml
+          expect(sales_order).to include("<customer-id>123</customer-id>")
         end
       end
     end
