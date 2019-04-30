@@ -1,7 +1,7 @@
 class IngramMicro::ReturnAuthorizationOrderHeader < IngramMicro::BaseElement
 
   DEFAULTS = {
-    customer_order_number: nil,
+    customer_order_number: 0,
     brightpoint_order_number: nil,
     order_reference: nil,
     customer_order_date: nil,
