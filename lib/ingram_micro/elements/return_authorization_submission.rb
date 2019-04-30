@@ -4,7 +4,7 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
     customer: nil,
     shipment_information: nil,
     credit_card_information: nil,
-    order_header: nil,
+    return_authorization_order_header: nil,
     detail: nil,
     purchase_order_information: nil,
     customer_id: nil,
@@ -23,9 +23,7 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
     @element[:customer] ||= IngramMicro::Customer.new
     @element[:shipment_information] ||= IngramMicro::ReturnAuthorizationShipmentInformation.new
     @element[:credit_card_information] ||= IngramMicro::CreditCardInformation.new
-    @element[:order_header] ||= IngramMicro::ReturnAuthorizationOrderHeader.new(
-      customer_order_number: options[:return_authorization_id]
-    )
+    @element[:return_authorization_order_header] ||= IngramMicro::ReturnAuthorizationOrderHeader.new
     @element[:purchase_order_information] ||= IngramMicro::OutboundPurchaseOrderInformation.new
     @element[:detail] ||= IngramMicro::Detail.new
   end
@@ -48,7 +46,7 @@ class IngramMicro::ReturnAuthorizationSubmission < IngramMicro::BaseElement
         @element[:credit_card_information].build(builder)
       end
       builder.send('order-header') do
-        @element[:order_header].build(builder)
+        @element[:return_authorization_order_header].build(builder)
       end
     end
     check_line_items

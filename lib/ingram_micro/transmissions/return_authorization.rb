@@ -1,8 +1,9 @@
 class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
   TRANSMISSION_FILENAME = 'return-authorization'
 
-  attr_accessor :customer, :customer_id ,:credit_card_information, :order_header,
-  :shipment_information, :detail, :purchase_order_information, :return_authorization_id
+  attr_accessor :customer, :customer_id ,:credit_card_information,
+  :shipment_information, :detail, :purchase_order_information,
+  :return_authorization_order_header
 
   def initialize(options={})
     super(options)
@@ -10,11 +11,10 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
     @customer = options[:customer]
     @shipment_information = options[:shipment_information]
     @credit_card_information = options[:credit_card_information]
-    @order_header = options[:order_header]
+    @return_authorization_order_header = options[:return_authorization_order_header]
     @detail = options[:detail]
     @customer_id = options[:customer_id] || IngramMicro.configuration.customer_id
     @purchase_order_information = options[:purchase_order_information]
-    @return_authorization_id = options[:return_authorization_id]
   end
 
   def xml_builder
@@ -43,10 +43,9 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
       customer_id: customer_id,
       shipment_information: shipment_information,
       credit_card_information: credit_card_information,
-      order_header: order_header,
+      return_authorization_order_header: return_authorization_order_header,
       detail: detail,
       purchase_order_information: purchase_order_information,
-      return_authorization_id: return_authorization_id,
     }
     ras = IngramMicro::ReturnAuthorizationSubmission.new(ra_options)
     builder.send('return-authorization-submission') do
