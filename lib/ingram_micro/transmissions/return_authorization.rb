@@ -7,7 +7,7 @@ class IngramMicro::ReturnAuthorization < IngramMicro::Transmission
 
   def initialize(options={})
     super(options)
-    @transaction_name = 'return-authorization'
+    @transaction_name = 'return-authorization-submission'
     @customer = options[:customer]
     @shipment_information = options[:shipment_information]
     @credit_card_information = options[:credit_card_information]
