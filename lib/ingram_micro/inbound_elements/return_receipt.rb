@@ -5,7 +5,7 @@ class IngramMicro::ReturnReceipt < IngramMicro::InboundBaseElement
 
   def purchase_order_information
     IngramMicro::InboundPurchaseOrderInformation.new(
-      @hash["message"]["return-receipt"]["header"]["purchase_order_information"]
+      @hash["message"]["return_receipt"]["header"]["purchase_order_information"]
     )
   end
 
