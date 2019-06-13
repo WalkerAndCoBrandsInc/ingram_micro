@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <message-header>
+      <message-id>273007733</message-id>
+      <transaction-name>return-receipt</transaction-name>
+      <partner-name>walker</partner-name>
+      <source-url>http://www.brightpoint.com</source-url>
+      <create-timestamp>2019-06-10T13:46:28</create-timestamp>
+      <response-request>1</response-request>
+   </message-header>
+   <return-receipt>
+      <header>
+         <customer-id>565663</customer-id>
+         <customer-information>
+            <customer-first-name>romy macasieb</customer-first-name>
+            <customer-last-name />
+            <customer-middle-initial />
+            <customer-address1>316 HIGH ST</customer-address1>
+            <customer-address2 />
+            <customer-city>PALO ALTO</customer-city>
+            <customer-state>CA</customer-state>
+            <customer-post-code>94301-1042</customer-post-code>
+            <customer-country-code>US</customer-country-code>
+            <customer-phone1 />
+         </customer-information>
+         <shipment-information>
+            <ship-first-name>romy macasieb</ship-first-name>
+            <ship-last-name />
+            <ship-address1>316 HIGH ST</ship-address1>
+            <ship-city>PALO ALTO</ship-city>
+            <ship-state>CA</ship-state>
+            <ship-post-code>94301-1042</ship-post-code>
+            <ship-country-code>US</ship-country-code>
+            <ship-via>GGRNDP</ship-via>
+            <ship-request-date>20190605</ship-request-date>
+            <ship-request-warehouse>WAK1D</ship-request-warehouse>
+         </shipment-information>
+         <purchase-order-information>
+            <purchase-order-number>RA428298889</purchase-order-number>
+            <account-description />
+            <purchase-order-amount />
+            <currency-code>USD</currency-code>
+            <comments />
+         </purchase-order-information>
+         <order-header>
+            <customer-order-number>4207933624</customer-order-number>
+            <customer-order-date>20190604</customer-order-date>
+            <brightpoint-order-number>104602104</brightpoint-order-number>
+            <brightpoint-return-number>8466548</brightpoint-return-number>
+            <order-type />
+         </order-header>
+      </header>
+      <detail>
+         <line-item>
+            <line-no />
+            <item-code>800200</item-code>
+            <product-name />
+            <quantity>1</quantity>
+            <unit-of-measure>EA</unit-of-measure>
+            <market-id />
+            <line-status>Return</line-status>
+            <comments>Abuse = NO, Minutes = 0, Warranty = Y</comments>
+            <rejection-date />
+            <base-price>0.0000000000000000</base-price>
+            <service-type>CRED</service-type>
+            <return-reason-code>Unk</return-reason-code>
+         </line-item>
+      </detail>
+   </return-receipt>
+</message>

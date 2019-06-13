@@ -12,4 +12,8 @@ class IngramMicro::ReturnReceipt < IngramMicro::InboundBaseElement
   def purchase_order_number
     purchase_order_information.purchase_order_number
   end
+
+  def customer_id
+    @hash["message"]["return_receipt"]["header"]["customer_id"]
+  end
 end
