@@ -20,4 +20,15 @@ class IngramMicro::Customer < IngramMicro::BaseElement
   def defaults
     DEFAULTS
   end
+
+  def build(builder)
+    strip_ship_address2
+    super(builder)
+  end
+
+  def strip_ship_address2
+    if element[:customer_address2]
+      element[:customer_address2] = element[:customer_address2].strip
+    end
+  end
 end

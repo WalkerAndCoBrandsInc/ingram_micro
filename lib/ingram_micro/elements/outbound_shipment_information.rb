@@ -3,27 +3,27 @@ class IngramMicro::OutboundShipmentInformation < IngramMicro::BaseElement
   #
   # NOTE, the order of keys matters when doing XSD validations.
   COMMON = {
-		ship_first_name:        nil,
-		ship_last_name:         nil,
-		ship_middle_initial:    nil,
-		ship_address1:          nil,
-		ship_address2:          nil,
-		ship_address3:          nil,
-		ship_city:              nil,
-		ship_state:             nil,
-		ship_post_code:         nil,
-		ship_country_code:      nil,
-		ship_phone1:            nil,
-		ship_phone2:            nil,
-		ship_fax:               nil,
-		ship_email:             nil,
-		ship_via:               nil,
-		ship_request_date:      nil,
+    ship_first_name:     nil,
+    ship_last_name:      nil,
+    ship_middle_initial: nil,
+    ship_address1:       nil,
+    ship_address2:       nil,
+    ship_address3:       nil,
+    ship_city:           nil,
+    ship_state:          nil,
+    ship_post_code:      nil,
+    ship_country_code:   nil,
+    ship_phone1:         nil,
+    ship_phone2:         nil,
+    ship_fax:            nil,
+    ship_email:          nil,
+    ship_via:            nil,
+    ship_request_date:   nil,
   }
 
   DEFAULTS = COMMON.merge({
-		ship_request_from:      nil,
-		ship_request_warehouse: nil
+    ship_request_from:      nil,
+    ship_request_warehouse: nil
   })
 
   INTL_DEFAULTS = COMMON.merge({
@@ -55,12 +55,14 @@ class IngramMicro::OutboundShipmentInformation < IngramMicro::BaseElement
   end
 
   def build(builder)
-    add_ship_address2
+    strip_ship_address2
     super(builder)
   end
 
-  def add_ship_address2
-    element[:ship_address2] = ' ' unless element[:ship_address2]
+  def strip_ship_address2
+    if element[:ship_address2]
+      element[:ship_address2] = element[:ship_address2].strip
+    end
   end
 
   def valid?
